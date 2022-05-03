@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{logIn.css}"href="../static/logIn.css">
+    <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
 
 </head>
 <body>
+<div th:replace="fragments/general.html :: header()"></div>
 <section class="logIn">
     <img class="clockPicture" src="https://imgur.com/RkpVsO8.png">
     <h2>Velkommen</h2>
