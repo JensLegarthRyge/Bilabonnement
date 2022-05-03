@@ -9,6 +9,6 @@ public interface CRUDInterface<T> {
     public boolean create();
     public List<T> getAll();
     public T getSingleById();
-    public boolean update();
+    public boolean update(T entity);
     public T delete();
 }
