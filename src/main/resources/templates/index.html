@@ -2,13 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
+    <link rel="stylesheet" th:href="@{logIn.css}"href="../static/logIn.css">
 
 </head>
 <body>
-<div class="tester">
-    <p>test</p>
-</div>
+<section class="logIn">
+    <img class="clockPicture" src="https://imgur.com/RkpVsO8.png">
+    <h2>Velkommen</h2>
+    <p>Log ind på din personlige arbejdskonto herunder</p>
+    <form method="POST" action="/login-user" class="form-container">
+        <input type="text" placeholder="Indtast brugernavn" class="logInFields">
+        <br>
+        <input type="password" placeholder="Indtast password" class="logInFields">
+        <br>
+        <button type="submit" class="logInButton">Login</button>
+
+    </form>
+
+</section>
 </body>
 </html>
