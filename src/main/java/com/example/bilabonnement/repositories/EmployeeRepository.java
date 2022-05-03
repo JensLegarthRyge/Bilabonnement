@@ -22,6 +22,11 @@ public class EmployeeRepository implements CRUDInterface<Employee>{
     }
 
     @Override
+    public boolean update(Employee entity) {
+        return false;
+    }
+
+    @Override
     public Employee delete() {
         return null;
     }
