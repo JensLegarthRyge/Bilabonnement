@@ -1,13 +1,15 @@
 package com.example.bilabonnement.models;
 
-public class User {
+//Jens Legarth Ryge
 
-    public static void main(String[] args) {
-        hej();
-    }
-    public static void hej() {
-        int hej = 10;
-        hej = 20;
+public abstract class User {
+    private int id;
+    private String firstName;
+    private String lastName;
 
+    public User(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }
