@@ -1,6 +1,7 @@
 package com.example.bilabonnement.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,5 +17,13 @@ public class IndexController {
     public String loggedInFrontpage() {
 
         return "loggedInFrontpage";
+    }
+
+    @GetMapping("/flow")
+    public String redirectToChosenSite(WebRequest dataFromForm) {
+
+        String urlToRedirect = dataFromForm.getParameter("selected-url");
+        System.out.println(urlToRedirect);
+        return "redirect:" + urlToRedirect;
     }
 }
