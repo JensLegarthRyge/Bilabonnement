@@ -8,8 +8,9 @@ import java.awt.*;
 //Jens Legarth Ryge
 
 public class Car {
-    private String registrationId;
-    private String chassisId;
+    private int id;
+    private String registrationNumber;
+    private String chassisNumber;
     private boolean isCurrentlyRented;
     private boolean isManual;
     private FuelType fuelType;

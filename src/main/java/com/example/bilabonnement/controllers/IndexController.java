@@ -9,7 +9,6 @@ public class IndexController {
     //Vores indeks side
     @GetMapping("/")
     public String frontPage() {
-
        return "index";
     }
 }
