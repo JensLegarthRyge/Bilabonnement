@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,13 +14,12 @@
     <img class="clockPicture" src="https://imgur.com/RkpVsO8.png">
     <h2>Velkommen</h2>
     <p>Log ind på din personlige arbejdskonto herunder</p>
-    <form method="POST" action="/login-user" class="form-container">
-        <input type="text" placeholder="Indtast brugernavn" class="logInFields">
-        <br>
-        <input type="password" placeholder="Indtast password" class="logInFields">
-        <br>
-        <button type="submit" class="logInButton">Login</button>
+    <span class="error" th:text="${loginerror}"></span>
 
+    <form method="POST" action="/attempt-login" class="form-container">
+        <input type="text" placeholder="Indtast brugernavn" class="logInFields" name="id">
+        <input type="password" placeholder="Indtast password" class="logInFields" name="password">
+        <button type="submit" class="logInButton">Login</button>
     </form>
 
 </section>
