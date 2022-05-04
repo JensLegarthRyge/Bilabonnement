@@ -17,4 +17,5 @@ public class LeaseReport {
     private String pickupAddress;
     private boolean isLimited;
     private double price;
+    private LocalDate startDate;
 }

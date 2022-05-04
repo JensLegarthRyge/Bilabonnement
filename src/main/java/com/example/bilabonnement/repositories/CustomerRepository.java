@@ -1,35 +1,44 @@
 package com.example.bilabonnement.repositories;
 
-import com.example.bilabonnement.models.Car;
+import com.example.bilabonnement.models.Customer;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //Jens Legarth Ryge
 
-public class CustomerRepository implements CRUDInterface<Car> {
+public class CustomerRepository implements CRUDInterface<Customer> {
+
     @Override
-    public boolean create(Car entity) {
+    public boolean create(Customer entity) {
+
         return false;
     }
 
+
     @Override
-    public ArrayList<Car> getAll() {
+    public ArrayList<Customer> getAll() {
         return null;
     }
 
     @Override
-    public Car getSingleById(int id) {
+    public Customer getSingleById(int id) {
         return null;
     }
 
     @Override
-    public boolean update(Car entity) {
+    public boolean update(Customer entity) {
         return false;
     }
 
     @Override
-    public Car delete() {
+    public Customer delete() {
         return null;
     }
 }
