@@ -4,17 +4,26 @@ package com.example.bilabonnement.models;
 
 import com.example.bilabonnement.models.Enum.AccessFeatures;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Employee extends User {
     private String password;
-    private List<AccessFeatures> accessFeatures;
+    private ArrayList<AccessFeatures> accessFeatures;
     private boolean isAdmin;
 
-    public Employee(int id, String firstName, String lastName, String password, List<AccessFeatures> accessFeatures, boolean isAdmin) {
+    public Employee(int id, String firstName, String lastName, String password, AccessFeatures accessFeature, boolean isAdmin) {
         super(id, firstName, lastName);
         this.password = password;
-        this.accessFeatures = accessFeatures;
+        this.accessFeatures.add(accessFeature);
         this.isAdmin = isAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "password='" + password + '\'' +
+                ", accessFeatures=" + accessFeatures +
+                ", isAdmin=" + isAdmin +
+                "} " + super.toString();
     }
 }

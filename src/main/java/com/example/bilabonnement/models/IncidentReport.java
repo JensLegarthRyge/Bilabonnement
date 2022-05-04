@@ -6,11 +6,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class IncidentReport {
-    private int incidentReportId;
+    private int id;
     private int leaseReportId;
     private ArrayList<Incident> allIncidents;
     private LocalDate date;
     private double price;
     private double customerPrice;
-
 }
