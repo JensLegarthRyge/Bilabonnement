@@ -1,35 +1,35 @@
 package com.example.bilabonnement.repositories;
 
-import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.util.ArrayList;
 
 //Jens Legarth Ryge
 
-public class EmployeeRepository implements CRUDInterface<Employee> {
+public class CustomerRepository implements CRUDInterface<Car> {
     @Override
-    public boolean create(Employee entity) {
+    public boolean create(Car entity) {
         return false;
     }
 
     @Override
-    public ArrayList<Employee> getAll() {
+    public ArrayList<Car> getAll() {
         return null;
     }
 
     @Override
-    public Employee getSingleById(int id) {
+    public Car getSingleById(int id) {
         return null;
     }
 
     @Override
-    public boolean update(Employee entity) {
+    public boolean update(Car entity) {
         return false;
     }
 
     @Override
-    public Employee delete() {
+    public Car delete() {
         return null;
     }
 }

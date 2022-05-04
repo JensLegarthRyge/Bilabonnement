@@ -5,7 +5,7 @@ import java.time.LocalDate;
 //Jens Legarth Ryge
 
 public class LeaseReport {
-    private int leaseReportId;
+    private int id;
     private String registrationId;
     private int incidentReportId;
     private Employee createdBy;

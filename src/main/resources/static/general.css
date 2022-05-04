@@ -10,6 +10,12 @@ body{
     background-color: white;
     margin: 0;
 }
+.log-out {
+    width: 60px;
+    float: right;
+    padding: 5px 5px;
+    text-decoration: none;
+}
 
 .pictureForHeader{
     height: 40px;

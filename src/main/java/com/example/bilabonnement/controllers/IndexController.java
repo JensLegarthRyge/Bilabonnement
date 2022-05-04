@@ -9,13 +9,12 @@ public class IndexController {
     //Vores indeks side
     @GetMapping("/")
     public String frontPage() {
-
        return "index";
     }
 
     @GetMapping("/login-user")
     public String loggedInFrontpage() {
 
-        return "loggedInFronpage";
+        return "loggedInFrontpage";
     }
 }
