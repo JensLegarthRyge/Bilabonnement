@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Employee extends User {
     private String password;
-    private ArrayList<AccessFeatures> accessFeatures;
+    private ArrayList<AccessFeatures> accessFeatures = new ArrayList<>();
     private boolean isAdmin;
 
     public Employee(int id, String firstName, String lastName, String password, AccessFeatures accessFeature, boolean isAdmin) {
@@ -16,6 +16,18 @@ public class Employee extends User {
         this.password = password;
         this.accessFeatures.add(accessFeature);
         this.isAdmin = isAdmin;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<AccessFeatures> getAccessFeatures() {
+        return accessFeatures;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
     @Override

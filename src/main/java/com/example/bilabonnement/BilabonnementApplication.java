@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BilabonnementApplication {
 
     public static void main(String[] args) {
-
-        //SpringApplication.run(BilabonnementApplication.class, args);
+        SpringApplication.run(BilabonnementApplication.class, args);
     }
 
 }
