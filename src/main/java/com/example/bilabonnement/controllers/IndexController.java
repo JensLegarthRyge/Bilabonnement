@@ -11,4 +11,10 @@ public class IndexController {
     public String frontPage() {
        return "index";
     }
+
+    @GetMapping("/login-user")
+    public String loggedInFrontpage() {
+
+        return "loggedInFronpage";
+    }
 }
