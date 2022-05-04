@@ -8,13 +8,20 @@ import java.util.ArrayList;
 
 public class Employee extends User {
     private String password;
-    private ArrayList<AccessFeatures> accessFeatures = new ArrayList<>();
+    private int accessFeatures;
     private boolean isAdmin;
 
-    public Employee(int id, String firstName, String lastName, String password, AccessFeatures accessFeature, boolean isAdmin) {
-        super(id, firstName, lastName);
+    public Employee(int id, String firstName, String lastName, String password, int accessFeature, boolean isAdmin, String email) {
+        super(id, firstName, lastName, email);
         this.password = password;
-        this.accessFeatures.add(accessFeature);
+        this.accessFeatures = accessFeature;
+        this.isAdmin = isAdmin;
+    }
+
+    public Employee(String firstName, String lastName, String password, int accessFeatures, boolean isAdmin, String email) {
+        super(firstName, lastName, email);
+        this.password = password;
+        this.accessFeatures = accessFeatures;
         this.isAdmin = isAdmin;
     }
 
@@ -22,7 +29,7 @@ public class Employee extends User {
         return password;
     }
 
-    public ArrayList<AccessFeatures> getAccessFeatures() {
+    public int getAccessFeatures() {
         return accessFeatures;
     }
 

@@ -13,6 +13,7 @@ public class DatabaseConnectionManager {
     private static String password;
     private static Connection conn;
 
+
     private DatabaseConnectionManager(){}
     //Her connectes der til vores database med link, navn og kodeord.
     //Noget med Singleton
