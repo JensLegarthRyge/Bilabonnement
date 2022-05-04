@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{login.css}" href="../static/logIn.css">
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{loggedInFrontpage.css}" href="../static/loggedInFrontpage.css">
+
 </head>
 <body>
-<p>Logged in</p>
+<div th:replace="fragments/logged-in.html :: header()"></div>
+
+<section class="split">
+    <div class="news">
+        <p>hej</p>
+    </div>
+    <div class="selection">
+        <p>hej</p>
+    </div>
+</section>
 </body>
 </html>

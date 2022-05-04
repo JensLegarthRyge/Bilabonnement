@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+.split {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.news {
+    -ms-flex: 65%;
+    flex: 65%;
+    background-color: white;
+    padding: 20px;
+}
+
+.selection {
+    -ms-flex: 35%;
+    flex: 35%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
