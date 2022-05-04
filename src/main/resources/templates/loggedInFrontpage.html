@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{login.css}" href="../static/logIn.css">
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{loggedInFrontpage.css}" href="../static/loggedInFrontpage.css">
+
 </head>
 <body>
-<p>Logged in</p>
+<div th:replace="fragments/logged-in.html :: header()"></div>
+
+<section class="split">
+    <div class="news">
+        <p>hej</p>
+    </div>
+    <div class="selection">
+        <form method="post" action="/flow">
+            <select name="dropdown-content" id="dropdown-content">
+                <option value="damage-and-maintenance">Skade og udbredreing</option>
+                <option value="data-registration">Dataregistrering</option>
+                <option value="business-development">Forretningsudvikling</option>
+                <option value="admin">Admin</option>
+            </select>
+            <input type="submit" onclick="getUrl()" name="selected-url" id="selected-url">
+        </form>
+    </div>
+</section>
+
+<script>
+    function getUrl() {
+        var select = document.getElementById('dropdown-content')
+        var value = select.options[select.selectedIndex].value;
+        document.getElementById('selected-url').setAttribute("value", value)
+    }
+</script>
 </body>
 </html>

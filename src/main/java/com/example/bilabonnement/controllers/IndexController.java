@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -34,5 +34,13 @@ public class IndexController {
             return "redirect:/?status=not-verified";
         }
 
+    }
+
+    @PostMapping("/flow")
+    public String redirectToChosenSite(WebRequest dataFromForm) {
+
+        String urlToRedirect = dataFromForm.getParameter("selected-url");
+        System.out.println(urlToRedirect);
+        return "redirect:/" + urlToRedirect;
     }
 }
