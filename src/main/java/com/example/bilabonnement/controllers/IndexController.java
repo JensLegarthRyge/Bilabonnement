@@ -1,4 +1,6 @@
 package com.example.bilabonnement.controllers;
+import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.repositories.EmployeeRepository;
 import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

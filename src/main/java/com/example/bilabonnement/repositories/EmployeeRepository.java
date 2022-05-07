@@ -3,6 +3,7 @@ package com.example.bilabonnement.repositories;
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -64,6 +65,24 @@ public class EmployeeRepository implements CRUDInterface<Employee> {
 
     @Override
     public Employee getSingleById(int id) {
+        try {
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM employees WHERE employee_id = '"+id+"'");
+
+            int employeeID = rs.getInt("employee_id");
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String password = rs.getString("password");
+            int accessFeature = rs.getInt("access_feature");
+            boolean isAdmin = rs.getInt("is_admin") != 0;
+            String email = rs.getString("email");
+
+            return new Employee(employeeID, firstName, lastName, password, accessFeature, isAdmin, email);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
