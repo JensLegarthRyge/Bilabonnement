@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 //Jens Legarth Ryge
+//Mads Bøgh Højer Nielsen
 
 public class CarRepository implements CRUDInterface<Car> {
     Connection connection = DatabaseConnectionManager.getConnection();
@@ -45,11 +46,12 @@ public class CarRepository implements CRUDInterface<Car> {
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.executeUpdate();
+            return true;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
-        return false;
     }
 
     @Override
@@ -155,9 +157,8 @@ public class CarRepository implements CRUDInterface<Car> {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
 
     @Override
