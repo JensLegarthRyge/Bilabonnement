@@ -1,0 +1,50 @@
+/* Jens Legarth Ryge */
+.main-container{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0 20px;
+    background-color: #F4F8FF;
+    font-family: Montserrat,sans-serif;
+}
+
+.registration-creation-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 30px;
+}
+
+.button{
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #1892c3;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    width: 200px;
+    opacity: 0.8;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.button:hover{
+    opacity: 1;
+}
+
+input{
+    display: none;
+}
+
+
+
+
+
+@media screen and (max-width: 700px) {
+    .logInFields{
+        width: 70px;
+    }
+}

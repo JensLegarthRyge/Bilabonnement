@@ -35,16 +35,11 @@ public class IndexController {
         } else{
             return "redirect:/?status=not-verified";
         }
-
     }
 
-
-
-    @PostMapping("/flow")
-    public String redirectToChosenSite(WebRequest dataFromForm) {
-
+    @PostMapping("/system-redirect")
+    public String redirectToChosenSite(WebRequest dataFromForm, HttpSession session) {
         String urlToRedirect = dataFromForm.getParameter("selected-url");
-        System.out.println(urlToRedirect);
         return "redirect:/" + urlToRedirect;
     }
 
