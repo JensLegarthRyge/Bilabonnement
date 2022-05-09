@@ -38,10 +38,7 @@ public class IndexController {
 
     }
 
-    @GetMapping("/login-user")
-    public String frontpage() {
-        return "loggedInFrontpage";
-    }
+
 
     @PostMapping("/system-redirect")
     public String redirectToChosenSite(WebRequest dataFromForm, HttpSession session) {
@@ -50,7 +47,8 @@ public class IndexController {
     }
 
     @GetMapping("/log-out")
-    public String logout() {
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/";
     }
 }
