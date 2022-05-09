@@ -30,7 +30,7 @@ public class IncidentReportRepository implements CRUDInterface<IncidentReport> {
     }
 
     @Override
-    public IncidentReport delete() {
-        return null;
+    public void delete(int id) {
+
     }
 }

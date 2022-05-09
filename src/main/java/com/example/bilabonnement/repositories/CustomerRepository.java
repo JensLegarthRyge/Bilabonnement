@@ -38,7 +38,7 @@ public class CustomerRepository implements CRUDInterface<Customer> {
     }
 
     @Override
-    public Customer delete() {
-        return null;
+    public void delete(int id) {
+
     }
 }

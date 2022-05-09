@@ -10,5 +10,5 @@ public interface CRUDInterface<T> {
     public ArrayList<T> getAll();
     public T getSingleById(int id);
     public boolean update(T entity);
-    public T delete();
+    public void delete(int id);
 }

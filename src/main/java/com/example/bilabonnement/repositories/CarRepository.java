@@ -100,11 +100,19 @@ public class CarRepository implements CRUDInterface<Car> {
 
     @Override
     public boolean update(Car entity) {
+
         return false;
     }
 
     @Override
-    public Car delete() {
-        return null;
+    public void delete(int id) {
+        String query = "DELETE FROM cars WHERE car_id='"+id+"';";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

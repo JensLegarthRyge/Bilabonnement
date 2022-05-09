@@ -92,7 +92,7 @@ public class EmployeeRepository implements CRUDInterface<Employee> {
     }
 
     @Override
-    public Employee delete() {
-        return null;
+    public void delete(int id) {
+
     }
 }

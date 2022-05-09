@@ -29,7 +29,7 @@ public class CityRepository implements CRUDInterface<City> {
     }
 
     @Override
-    public City delete() {
-        return null;
+    public void delete(int id) {
+
     }
 }

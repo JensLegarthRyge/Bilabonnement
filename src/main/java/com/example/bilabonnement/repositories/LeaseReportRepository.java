@@ -29,7 +29,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
     }
 
     @Override
-    public LeaseReport delete() {
-        return null;
+    public void delete(int id) {
+
     }
 }
