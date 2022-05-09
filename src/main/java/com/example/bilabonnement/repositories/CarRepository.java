@@ -4,37 +4,13 @@ import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.models.Enum.EnergyLabel;
 import com.example.bilabonnement.models.Enum.FuelType;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
-
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge
+//Jens Legarth Ryge & Mads Bøgh Højer Nielsen
 
 public class CarRepository implements CRUDInterface<Car> {
     Connection connection = DatabaseConnectionManager.getConnection();
-
-    public static void main(String[] args) {
-        CarRepository temp = new CarRepository();
-        ArrayList<Car> cars = new ArrayList<>(temp.getAll());
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
-
-        Car hej = new Car(temp.getSingleById(2));
-        hej.setColor("ORANGE");
-        hej.setRegistrationNumber("OL88834");
-        temp.update(hej);
-        System.out.println();
-        System.out.println();
-        cars = new ArrayList<>(temp.getAll());
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
-
-
-
-    }
 
     @Override
     public boolean create(Car entity) {
@@ -67,11 +43,12 @@ public class CarRepository implements CRUDInterface<Car> {
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.executeUpdate();
+            return true;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
-        return false;
     }
 
     @Override
@@ -85,8 +62,8 @@ public class CarRepository implements CRUDInterface<Car> {
                 int carID = rs.getInt("car_id");
                 String regNum = rs.getString("registration_number");
                 String chaNum = rs.getString("chassis_number");
-                boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented")); //Needs to be boolean
-                boolean isManual = Car.convert(rs.getInt("is_manual")); //Needs to be boolean
+                boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented"));
+                boolean isManual = Car.convert(rs.getInt("is_manual"));
                 FuelType fuelType = FuelType.valueOf(rs.getString("fuel_type"));
                 double fuelConsumption = rs.getDouble("km_l");
                 EnergyLabel energyLabel = EnergyLabel.valueOf(rs.getString("energy_label"));
@@ -177,9 +154,8 @@ public class CarRepository implements CRUDInterface<Car> {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
 
     @Override
