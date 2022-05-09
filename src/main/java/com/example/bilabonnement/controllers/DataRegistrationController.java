@@ -1,7 +1,8 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
-import com.example.bilabonnement.repositories.CarTestRepository;
+import com.example.bilabonnement.repositories.testRepositories.CarTestRepository;
+import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,12 @@ import java.util.ArrayList;
 public class DataRegistrationController {
 
     @GetMapping("/data-registration")
-    public String dataRegistration(HttpSession session, Model carModel) {
+    public String dataRegistration(HttpSession session, Model leaseModel) {
         //TEST REPLACE FOR PROD
-        CarTestRepository ctr = new CarTestRepository();
-        ArrayList<Car> allCars = ctr.getAll();
+        LeaseTestRepository lrt = new LeaseTestRepository();
 
-        carModel.addAttribute("allCars",allCars);
+
+        leaseModel.addAttribute("allLeaseReports",lrt.getAll());
 
         return "data-registration";
     }

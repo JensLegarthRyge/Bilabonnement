@@ -1,4 +1,4 @@
-package repositories;
+package com.example.bilabonnement.repositories.testRepositories;
 
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
@@ -51,3 +51,4 @@ public class EmployeeTestRepository implements CRUDInterface<Employee> {
 
     }
 }
+
