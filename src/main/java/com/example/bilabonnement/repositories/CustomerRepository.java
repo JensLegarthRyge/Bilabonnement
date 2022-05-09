@@ -1,15 +1,11 @@
 package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.Customer;
-import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge
+//Mads Bøgh Højer Nielsen
 
 public class CustomerRepository implements CRUDInterface<Customer> {
     Connection connection = DatabaseConnectionManager.getConnection();

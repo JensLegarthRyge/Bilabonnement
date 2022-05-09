@@ -4,13 +4,10 @@ import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.models.Enum.EnergyLabel;
 import com.example.bilabonnement.models.Enum.FuelType;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
-
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge
-//Mads Bøgh Højer Nielsen
+//Jens Legarth Ryge & Mads Bøgh Højer Nielsen
 
 public class CarRepository implements CRUDInterface<Car> {
     Connection connection = DatabaseConnectionManager.getConnection();

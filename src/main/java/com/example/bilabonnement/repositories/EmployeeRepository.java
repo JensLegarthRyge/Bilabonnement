@@ -2,12 +2,10 @@ package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
-
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge & Johannes Forsting
+//Jens Legarth Ryge, Johannes Forsting og Mads Bøgh Højer Nielsen
 
 public class EmployeeRepository implements CRUDInterface<Employee> {
     Connection connection = DatabaseConnectionManager.getConnection();
