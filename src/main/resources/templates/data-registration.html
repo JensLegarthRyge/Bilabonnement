@@ -27,6 +27,22 @@
     </section>
 
 
+
+    <section class="registered-cars-container">
+        <div class="car-container" th:each="Car : ${allCars}">
+            <span class="info-field" th:text="${Car.getId()}"></span>
+            <span class="info-field" th:text="${Car.getRegistrationNumber()}"></span>
+            <span class="info-field" th:text="${Car.getChassisNumber()}"></span>
+            <span class="info-field" th:text="${Car.getColor()}"></span>
+            <span class="info-field" th:text="${Car.getColor()}"></span>
+            <span class="info-field" th:text="${Car.getFuelConsumptionPerKilometer()}"></span>
+            <span class="info-field" th:text="${Car.getHorsePower()}"></span>
+        </div>
+
+
+    </section>
+
+
 </section>
 
 

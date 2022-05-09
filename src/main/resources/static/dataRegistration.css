@@ -3,7 +3,7 @@
     display:flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 0 20px;
+    gap: 20px 20px;
     background-color: #F4F8FF;
     font-family: Montserrat,sans-serif;
 }
@@ -39,9 +39,27 @@ input{
     display: none;
 }
 
+.registered-cars-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
+.car-container{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 2px solid #0f5e80;
+}
 
-
+.info-field{
+    width: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 @media screen and (max-width: 700px) {
     .logInFields{
