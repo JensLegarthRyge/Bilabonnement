@@ -63,8 +63,8 @@ public class CarRepository implements CRUDInterface<Car> {
                 int carID = rs.getInt("car_id");
                 String regNum = rs.getString("registration_number");
                 String chaNum = rs.getString("chassis_number");
-                boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented")); //Needs to be boolean
-                boolean isManual = Car.convert(rs.getInt("is_manual")); //Needs to be boolean
+                boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented"));
+                boolean isManual = Car.convert(rs.getInt("is_manual"));
                 FuelType fuelType = FuelType.valueOf(rs.getString("fuel_type"));
                 double fuelConsumption = rs.getDouble("km_l");
                 EnergyLabel energyLabel = EnergyLabel.valueOf(rs.getString("energy_label"));
