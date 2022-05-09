@@ -16,12 +16,26 @@ public class Car {
     private FuelType fuelType;
     private double fuelConsumptionPerKilometer;
     private EnergyLabel energyLabel;
-    private Color color;
+    private String color;
     private double price;
     private int horsePower;
     private double incidentFactor;
 
-    public Car(int id, String registrationNumber, String chassisNumber, boolean isCurrentlyRented, boolean isManual, FuelType fuelType, double fuelConsumptionPerKilometer, EnergyLabel energyLabel, Color color, double price, int horsePower, double incidentFactor) {
+    public Car(String registrationNumber, String chassisNumber, boolean isCurrentlyRented, boolean isManual, FuelType fuelType, double fuelConsumptionPerKilometer, EnergyLabel energyLabel, String color, double price, int horsePower, double incidentFactor) {
+        this.registrationNumber = registrationNumber;
+        this.chassisNumber = chassisNumber;
+        this.isCurrentlyRented = isCurrentlyRented;
+        this.isManual = isManual;
+        this.fuelType = fuelType;
+        this.fuelConsumptionPerKilometer = fuelConsumptionPerKilometer;
+        this.energyLabel = energyLabel;
+        this.color = color;
+        this.price = price;
+        this.horsePower = horsePower;
+        this.incidentFactor = incidentFactor;
+    }
+
+    public Car(int id, String registrationNumber, String chassisNumber, boolean isCurrentlyRented, boolean isManual, FuelType fuelType, double fuelConsumptionPerKilometer, EnergyLabel energyLabel, String color, double price, int horsePower, double incidentFactor) {
         this.id = id;
         this.registrationNumber = registrationNumber;
         this.chassisNumber = chassisNumber;
@@ -34,6 +48,27 @@ public class Car {
         this.price = price;
         this.horsePower = horsePower;
         this.incidentFactor = incidentFactor;
+    }
+
+    public Car(Car car) {
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", chassisNumber='" + chassisNumber + '\'' +
+                ", isCurrentlyRented=" + isCurrentlyRented +
+                ", isManual=" + isManual +
+                ", fuelType=" + fuelType +
+                ", fuelConsumptionPerKilometer=" + fuelConsumptionPerKilometer +
+                ", energyLabel=" + energyLabel +
+                ", color=" + color +
+                ", price=" + price +
+                ", horsePower=" + horsePower +
+                ", incidentFactor=" + incidentFactor +
+                '}';
     }
 
     public static boolean convert (int status) {
@@ -109,11 +144,11 @@ public class Car {
         this.energyLabel = energyLabel;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
