@@ -1,6 +1,7 @@
 package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.Car;
+import com.example.bilabonnement.models.Enum.FuelType;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.util.ArrayList;
@@ -10,6 +11,15 @@ import java.util.ArrayList;
 public class CarRepository implements CRUDInterface<Car> {
     @Override
     public boolean create(Car entity) {
+        int id = entity.getId();
+        String regNum = entity.getRegistrationNumber();
+        String chaNum = entity.getChassisNumber();
+        boolean isCurrentlyRented = entity.isCurrentlyRented();
+        boolean isManual = entity.isManual();
+        FuelType fuelType = entity.getFuelType();
+
+        ArrayList<Car> carRepo = new ArrayList<Car>();
+
         return false;
     }
 
