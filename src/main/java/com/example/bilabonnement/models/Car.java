@@ -21,6 +21,30 @@ public class Car {
     private int horsePower;
     private double incidentFactor;
 
+    public Car(int id, String registrationNumber, String chassisNumber, boolean isCurrentlyRented, boolean isManual, FuelType fuelType, double fuelConsumptionPerKilometer, EnergyLabel energyLabel, Color color, double price, int horsePower, double incidentFactor) {
+        this.id = id;
+        this.registrationNumber = registrationNumber;
+        this.chassisNumber = chassisNumber;
+        this.isCurrentlyRented = isCurrentlyRented;
+        this.isManual = isManual;
+        this.fuelType = fuelType;
+        this.fuelConsumptionPerKilometer = fuelConsumptionPerKilometer;
+        this.energyLabel = energyLabel;
+        this.color = color;
+        this.price = price;
+        this.horsePower = horsePower;
+        this.incidentFactor = incidentFactor;
+    }
+
+    public static boolean convert (int status) {
+
+        if (status == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public int getId() {
         return id;
     }
