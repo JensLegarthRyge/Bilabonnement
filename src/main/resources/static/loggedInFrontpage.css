@@ -1,23 +1,57 @@
 *{
     box-sizing: border-box;
 }
+
+body {
+    font-family: Montserrat,sans-serif;
+}
+
+
 .split {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    height: 91vh;
 }
 
 .news {
-    -ms-flex: 65%;
-    flex: 65%;
-    background-color: white;
-    padding: 20px;
+    -ms-flex: 70%;
+    flex: 70%;
+    padding: 60px 100px 60px 60px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .selection {
-    -ms-flex: 35%;
-    flex: 35%;
+    -ms-flex: 30%;
+    flex: 30%;
     background-color: #f1f1f1;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.content {
+    padding-top: 40vh;
+    align-items: center;
+    align-content: center;
+}
+
+button {
+    text-decoration: none;
+    height: 1.5em;
+    background-color: #E5E3D8FF;
+    color: rgb(51,51,51);
+    border-radius: 8px;
+    align-content: center;
+    justify-content: center;
+    font-size: 16px;
+    border-style: hidden;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.selection label {
+
 }

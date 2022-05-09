@@ -9,17 +9,21 @@ body{
     height: 50px;
     background-color: white;
     margin: 0;
+    padding-top: 10px;
 }
 .log-out {
-    width: 60px;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
     float: right;
     padding: 5px 5px;
     text-decoration: none;
+    text-align: center;
 }
 
 .pictureForHeader{
     height: 40px;
     width: auto;
     margin-left: 5px;
-    margin-top: 5px;
+    margin-top: -5px;
 }

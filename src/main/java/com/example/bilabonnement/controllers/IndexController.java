@@ -38,11 +38,21 @@ public class IndexController {
 
     }
 
+    @GetMapping("/login-user")
+    public String frontpage() {
+        return "loggedInFrontpage";
+    }
+
     @PostMapping("/flow")
     public String redirectToChosenSite(WebRequest dataFromForm) {
 
         String urlToRedirect = dataFromForm.getParameter("selected-url");
         System.out.println(urlToRedirect);
         return "redirect:/" + urlToRedirect;
+    }
+
+    @GetMapping("/log-out")
+    public String logout() {
+        return "redirect:/";
     }
 }

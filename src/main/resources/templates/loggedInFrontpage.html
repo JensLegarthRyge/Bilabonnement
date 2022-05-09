@@ -14,25 +14,81 @@
 
 <section class="split">
     <div class="news">
-        <p>hej</p>
+
+        <div class="customer-video">
+            <label for="video">Her er vores nye video for kunderne</label>
+            <br> <br>
+            <iframe width="702" height="409" src="https://www.youtube.com/embed/VOPnrqc7pn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen name="video" id="video"></iframe>
+        </div>
+        <div class="flawor-text">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos
+                sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+                recusandae alias error harum maxime adipisci amet laborum. Perspiciatis
+                minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit
+                quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur
+                fugiat, temporibus enim commodi iusto libero magni deleniti quod quam
+                consequuntur! Commodi minima excepturi repudiandae velit hic maxime
+                doloremque. Quaerat provident commodi consectetur veniam similique ad
+                earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo
+                fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore
+                suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto ab laudantium
+                modi minima sunt esse temporibus sint culpa, recusandae aliquam numquam
+                totam ratione voluptas quod exercitationem fuga. Possimus quis earum veniam
+                quasi aliquam eligendi, placeat qui corporis!
+
+
+
+
+            </p>
+            <br><br>
+            <label for="link-youtube">Følg os på vores youtube kanal</label>
+            <a href="https://www.youtube.com/channel/UCjFEBzFXrrju-A7d9VQ-8_A" name="link-youtube" id="link-youtube">Bilabonnement</a>
+
+
+        </div>
     </div>
     <div class="selection">
-        <form method="post" action="/flow">
-            <select name="dropdown-content" id="dropdown-content">
-                <option value="damage-and-maintenance">Skade og udbredreing</option>
-                <option value="data-registration">Dataregistrering</option>
-                <option value="business-development">Forretningsudvikling</option>
-                <option value="admin">Admin</option>
-            </select>
-            <input type="submit" onclick="getUrl()" name="selected-url" id="selected-url">
-        </form>
+        <div class="content">
+            <form method="post" action="/flow">
+              <label for="dropdown-content">Vælg arbejdsside</label>
+                 <br><br>
+                 <select name="dropdown-content" id="dropdown-content">
+                     <option value="pick-page"> -- Vælg side -- </option>
+                     <option value="damage">Skade og udbredreing</option>
+                     <option value="registration">Dataregistrering</option>
+                     <option value="business">Forretningsudvikling</option>
+                     <option value="admin">Admin</option>
+                 </select>
+                 <input type="hidden" name="selected-url" id="selected-url">
+                 <input type="submit" value='submit' onclick='return btnClick();'>
+            </form>
+        </div>
     </div>
 </section>
 
 <script>
+    function btnClick() {
+        let select = document.getElementById('dropdown-content')
+        let value = select.options[select.selectedIndex].value;
+        document.getElementById('selected-url').setAttribute("value", value)
+
+        if (value === 'pick-page') {
+            return false
+        } else {
+            getUrl()
+        }
+    }
     function getUrl() {
-        var select = document.getElementById('dropdown-content')
-        var value = select.options[select.selectedIndex].value;
+        let select = document.getElementById('dropdown-content')
+        let value = select.options[select.selectedIndex].value;
         document.getElementById('selected-url').setAttribute("value", value)
     }
 </script>
