@@ -12,12 +12,12 @@ import java.util.Arrays;
 public class EmployeeTestRepository implements CRUDInterface<Employee> {
     ArrayList<Employee> employees = new ArrayList<>(
             Arrays.asList(
-//                    new Employee(1,"Jens","Legarth Ryge","jensejense1337",
-//                            AccessFeatures.BUSINESSDEVELOPMENT,true),
-//                    new Employee(2,"Johannes","Forsting","johafors4321",
-//                            AccessFeatures.DATAREGISTRATION,false),
-//                    new Employee(3,"Mads","Bøgh Højer Nielsen", "mbhxluna1998",
-//                            AccessFeatures.DAMAGEANDREPAIR,false)
+                    new Employee(1,"Jens","Legarth Ryge", "Jense1337"
+                            ,1,true,"jens.l.ryge@pol.dk"),
+                    new Employee(2,"Johannes","Forsting","johafors4321",
+                            4,false,"johannes.forsting@gmail.com"),
+                    new Employee(3,"Mads","Bøgh Højer Nielsen", "mbhxluna1998",
+                            2,true,"mbhnxluna@gmail.com")
             )
     );
 

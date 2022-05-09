@@ -1,10 +1,34 @@
+<!-- Jens Legarth Ryge -->
+
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bilabonnement - Dataregistrering</title>
+    <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
+    <link rel="stylesheet" th:href="@{dataRegistration.css}"href="../static/dataRegistration.css">
 </head>
+
 <body>
+<div th:replace="fragments/general.html :: header()"></div>
+
+<section class="main-container">
+    <section class="registration-creation-container">
+        <form method="POST" action="/get-upload" >
+            <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
+            <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
+        </form>
+        eller
+        <label for="manual-registration" class="button">Opret manuelt</label>
+        <input type="submit" id="manual-registration" onclick="openRegistrationForm()">
+    </section>
+
+
+</section>
+
 
 </body>
 </html>

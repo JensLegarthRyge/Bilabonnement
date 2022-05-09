@@ -35,10 +35,7 @@ public class IndexController {
         } else{
             return "redirect:/?status=not-verified";
         }
-
     }
-
-
 
     @PostMapping("/system-redirect")
     public String redirectToChosenSite(WebRequest dataFromForm, HttpSession session) {
