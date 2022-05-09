@@ -43,11 +43,9 @@ public class IndexController {
         return "loggedInFrontpage";
     }
 
-    @PostMapping("/flow")
-    public String redirectToChosenSite(WebRequest dataFromForm) {
-
+    @PostMapping("/system-redirect")
+    public String redirectToChosenSite(WebRequest dataFromForm, HttpSession session) {
         String urlToRedirect = dataFromForm.getParameter("selected-url");
-        System.out.println(urlToRedirect);
         return "redirect:/" + urlToRedirect;
     }
 
