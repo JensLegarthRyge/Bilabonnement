@@ -14,28 +14,6 @@ import java.util.ArrayList;
 public class CarRepository implements CRUDInterface<Car> {
     Connection connection = DatabaseConnectionManager.getConnection();
 
-    public static void main(String[] args) {
-        CarRepository temp = new CarRepository();
-        ArrayList<Car> cars = new ArrayList<>(temp.getAll());
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
-
-        Car hej = new Car(temp.getSingleById(2));
-        hej.setColor("ORANGE");
-        hej.setRegistrationNumber("OL88834");
-        temp.update(hej);
-        System.out.println();
-        System.out.println();
-        cars = new ArrayList<>(temp.getAll());
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i).toString());
-        }
-
-
-
-    }
-
     @Override
     public boolean create(Car entity) {
 

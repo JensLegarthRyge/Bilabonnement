@@ -50,9 +50,6 @@ public class Car {
         this.incidentFactor = incidentFactor;
     }
 
-    public Car(Car car) {
-    }
-
     @Override
     public String toString() {
         return "Car{" +
