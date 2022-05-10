@@ -17,7 +17,7 @@
 
 <section class="main-container">
     <section class="registration-creation-container">
-        <form method="POST" action="/get-upload" >
+        <form method="POST" action="/get-upload" enctype="multipart/form-data">
             <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
             <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
         </form>
