@@ -15,9 +15,9 @@ public class CarTestRepository implements CRUDInterface<Car> {
             Arrays.asList(
                     new Car(1, "BS23576", "YSK7759123J1723", false, true, FuelType.DIESEL,
                             17.4, EnergyLabel.D, "JETBLACK", 144699,  109, 1.3),
-                    new Car(1, "UX89717", "JLKJD1892731JKASD", true, true, FuelType.PETROL,
+                    new Car(2, "UX89717", "JLKJD1892731JKASD", true, true, FuelType.PETROL,
                             20.8, EnergyLabel.B, "CORALBLUE", 89599,  76, 1.4),
-                    new Car(1, "AL86337", "YSK7759123J1723", false, false, FuelType.ELECTRIC,
+                    new Car(3, "AL86337", "YSK7759123J1723", false, false, FuelType.ELECTRIC,
                             11, EnergyLabel.A, "ANTHRACITEGRAY", 699095,  170, 2.7)
             )
     );
