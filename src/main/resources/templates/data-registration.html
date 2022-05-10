@@ -26,25 +26,81 @@
         <input type="submit" id="manual-registration" onclick="openRegistrationForm()">
     </section>
 
-
-
-    <section class="registered-cars-container">
-        <div class="car-container" th:each="Car : ${allCars}">
-            <span class="info-field" th:text="${Car.getId()}"></span>
-            <span class="info-field" th:text="${Car.getRegistrationNumber()}"></span>
-            <span class="info-field" th:text="${Car.getChassisNumber()}"></span>
-            <span class="info-field" th:text="${Car.getColor()}"></span>
-            <span class="info-field" th:text="${Car.getColor()}"></span>
-            <span class="info-field" th:text="${Car.getFuelConsumptionPerKilometer()}"></span>
-            <span class="info-field" th:text="${Car.getHorsePower()}"></span>
+    <section class="lease-container">
+        <div class="lease-info-container-header">
+            <span class="info-field-id">ID:</span>
+            <span class="info-field">Nr.plade:</span>
+            <span class="info-field-id" title="Skadesrapport ID">SR ID:</span>
+            <span class="info-field-long">Oprettet af:</span>
+            <span class="info-field-long">Lejet af:</span>
+            <span class="info-field">Oprettet:</span>
+            <span class="info-field-image" title="Lav selvrisiko">LS</span>
+            <span class="info-field-image" title="Afhentningsforsikring">AF</span>
+            <span class="info-field-image" title="Limited">LTD</span>
+            <span class="info-field-long">Afhentningsadresse:</span>
+            <span class="info-field">Antal dage:</span>
+            <span class="info-field">Pris DKK:</span>
+            <span class="info-field">Startdato:</span>
+            <div><img class="info-field-image" src="https://i.stack.imgur.com/olrL8.png"></div>
         </div>
+        <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
+            <span class="info-field-id" th:text="${LeaseReport.getId()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getRegistrationId()}"></span>
+            <span class="info-field-id" th:text="${LeaseReport.getIncidentReportId()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getCreatedBy().getEmail()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getRentedBy().getEmail()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getCreatedDate()}"></span>
+            <!-- truefalse?? -->
+
+            <span th:if="${LeaseReport.hasLowDeductableInsurance()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+            <span th:unless="${LeaseReport.hasLowDeductableInsurance()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+
+            <span th:if="${LeaseReport.hasReturnInsurance()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+            <span th:unless="${LeaseReport.hasReturnInsurance()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+
+            <span th:if="${LeaseReport.isLimited()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+            <span th:unless="${LeaseReport.isLimited()}">
+                <span class="info-field">
+                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                </span>
+            </span>
+
+            <!-- truefalse?? -->
+            <span class="info-field-long" th:text="${LeaseReport.getPickupAddress()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getPeriod()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
 
 
+            <div>
+                <form method="POST" action="/remove-lease">
+                    <input name="id" type="hidden" th:value="${LeaseReport.getId()}">
+                    <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt=""></input>
+                </form>
+                <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt=""></input>
+            </div>
+        </div>
     </section>
-
-
 </section>
-
-
 </body>
 </html>
