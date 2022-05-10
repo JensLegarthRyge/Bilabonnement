@@ -91,7 +91,6 @@
             <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
 
-
             <div>
                 <form method="POST" action="/remove-lease">
                     <input name="id" type="hidden" th:value="${LeaseReport.getId()}">
