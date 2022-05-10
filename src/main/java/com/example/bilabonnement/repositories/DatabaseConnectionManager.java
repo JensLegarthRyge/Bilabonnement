@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
-
+//Skrevet af Johannes Forsting
 public class DatabaseConnectionManager {
     private static String url;
     private static String username;
@@ -15,8 +15,7 @@ public class DatabaseConnectionManager {
 
 
     private DatabaseConnectionManager(){}
-    //Her connectes der til vores database med link, navn og kodeord.
-    //Noget med Singleton
+    //Her laves en connection til databasen. Singleton design pattern bliver brugt her da der ikke kan laves mere end 1 connection.
     public static Connection getConnection(){
         if(conn != null){
             return conn;
