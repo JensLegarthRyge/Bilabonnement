@@ -92,6 +92,7 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
+
     public int getId() {
         return id;
     }

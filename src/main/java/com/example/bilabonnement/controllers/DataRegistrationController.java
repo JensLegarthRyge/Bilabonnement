@@ -40,6 +40,7 @@ public class DataRegistrationController {
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
         CSVFileService.writeDataToFile(file);
+        System.out.println("hej");
 
         return "redirect:/data-registration";
     }

@@ -3,6 +3,7 @@ package com.example.bilabonnement.services;
 import com.example.bilabonnement.models.Customer;
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.models.LeaseReport;
+import com.example.bilabonnement.repositories.CarRepository;
 import com.example.bilabonnement.repositories.CustomerRepository;
 import com.example.bilabonnement.repositories.EmployeeRepository;
 import com.example.bilabonnement.repositories.LeaseReportRepository;
@@ -19,7 +20,6 @@ public class CSVFileService {
 
     public static void writeDataToFile(MultipartFile file) throws IOException {
         LeaseReportRepository lr = new LeaseReportRepository();
-
         byte[] tmp = file.getBytes();
         String decoded = new String(tmp, StandardCharsets.UTF_8);
         FileOutputStream fos = new FileOutputStream("src/main/resources/static/csvFiles/temp");
@@ -33,8 +33,7 @@ public class CSVFileService {
 
         ArrayList<LeaseReport> leaseReportList = formatDataFromFile();
         for (int i = 0; i < leaseReportList.size(); i++) {
-
-
+            lr.create(leaseReportList.get(i));
         }
 
 
@@ -43,49 +42,56 @@ public class CSVFileService {
 
     static ArrayList<LeaseReport> formatDataFromFile()  {
 
+        CarRepository carRepo= new CarRepository();
         EmployeeRepository er = new EmployeeRepository();
         CustomerRepository cr = new CustomerRepository();
         ArrayList<LeaseReport> leaseReportList = new ArrayList<LeaseReport>();
         File leaseReportFile = new File("src/main/resources/static/csvFiles/temp");
-        /*
+
         try {
             Scanner sc = new Scanner(leaseReportFile);
             sc.nextLine();
             while (sc.hasNextLine()){
                 String leaseReportDetails = sc.nextLine();
                 String[] stringAsArray = leaseReportDetails.split(",");
-                String registrationNumber = stringAsArray[0];
-
-                int empl    oyeeID = Integer.parseInt(stringAsArray[1]);
-                Employee currentEmployee = er.getSingleById(employeeID);
-
+                int carId = carRepo.getCarByChassisNumber(stringAsArray[0]);
+                System.out.println(carId);
+                int employeeID = Integer.parseInt(stringAsArray[1]);
+                System.out.println(employeeID);
                 int customerID = Integer.parseInt(stringAsArray[2]);
-                Customer currentCustomer = cr.getSingleById(customerID);
-
+                System.out.println(customerID);
                 int period = Integer.parseInt(stringAsArray[3]);
+                System.out.println(period);
                 boolean hasDeliveryInsurance = isTrue(Integer.parseInt(stringAsArray[4]));
+                System.out.println(hasDeliveryInsurance);
                 boolean hasLowDeductable = isTrue(Integer.parseInt(stringAsArray[5]));
+                System.out.println(hasLowDeductable);
                 String pickupAddress = stringAsArray[7];
+                System.out.println(pickupAddress);
                 boolean isLimited = isTrue(Integer.parseInt(stringAsArray[6]));
+                System.out.println(isLimited);
                 double price = Double.parseDouble(stringAsArray[8]);
-
+                System.out.println(price);
                 String dateToFormat = stringAsArray[9];
                 String[] dateToFormatAsArray = dateToFormat.split("/");
-                int year = Integer.parseInt(dateToFormatAsArray[3]);
-                int month = Integer.parseInt(dateToFormatAsArray[1]);
-                int day = Integer.parseInt(dateToFormatAsArray[2]);
+                System.out.println(dateToFormat);
+                int year = Integer.parseInt(dateToFormatAsArray[2]);
+                int month = Integer.parseInt(dateToFormatAsArray[0]);
+                int day = Integer.parseInt(dateToFormatAsArray[1]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                //LeaseReport tmp = new LeaseReport(registrationNumber, currentEmployee, currentCustomer, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
-                //leaseReportList.add(tmp);
+                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
+                leaseReportList.add(tmp);
 
             }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException l) {
+            return leaseReportList;
         }
 
-         */
+
         return leaseReportList;
     }
 

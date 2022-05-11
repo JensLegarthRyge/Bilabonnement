@@ -169,4 +169,22 @@ public class CarRepository implements CRUDInterface<Car> {
         }
 
     }
+
+    public int getCarByChassisNumber (String chassisNumber) {
+        int carId = 0;
+        try {
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM cars WHERE chassis_number = '"+chassisNumber+"'");
+            rs.next();
+
+            carId = rs.getInt("car_id");
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carId;
+
+    }
 }
