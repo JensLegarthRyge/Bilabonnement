@@ -46,6 +46,20 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
+
+    public LeaseReport(int carID, Employee createdBy, int customerID, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+        this.carID = carID;
+        this.createdBy = createdBy;
+        this.customerID = customerID;
+        this.period = period;
+        this.hasReturnInsurance = hasReturnInsurance;
+        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+        this.pickupAddress = pickupAddress;
+        this.isLimited = isLimited;
+        this.price = price;
+        this.startDate = startDate;
+    }
+
     public int getId() {
         return id;
     }
