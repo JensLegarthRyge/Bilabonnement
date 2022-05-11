@@ -2,11 +2,9 @@ package com.example.bilabonnement.services;
 
 import com.example.bilabonnement.models.Customer;
 import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.models.LeaseReport;
-import com.example.bilabonnement.repositories.CarRepository;
-import com.example.bilabonnement.repositories.CustomerRepository;
-import com.example.bilabonnement.repositories.EmployeeRepository;
-import com.example.bilabonnement.repositories.LeaseReportRepository;
+import com.example.bilabonnement.repositories.*;
 import com.opencsv.CSVWriter;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +18,7 @@ public class CSVFileService {
 
     public static void writeDataToFile(MultipartFile file) throws IOException {
         LeaseReportRepository lr = new LeaseReportRepository();
+        IncidentReportRepository ir = new IncidentReportRepository();
         byte[] tmp = file.getBytes();
         String decoded = new String(tmp, StandardCharsets.UTF_8);
         FileOutputStream fos = new FileOutputStream("src/main/resources/static/csvFiles/temp");
@@ -34,6 +33,9 @@ public class CSVFileService {
         ArrayList<LeaseReport> leaseReportList = formatDataFromFile();
         for (int i = 0; i < leaseReportList.size(); i++) {
             lr.create(leaseReportList.get(i));
+            int leaseReportId = leaseReportList.get(i).getId();
+            IncidentReport currentIncidentReport = new IncidentReport(leaseReportId);
+            ir.create(currentIncidentReport);
         }
 
 
