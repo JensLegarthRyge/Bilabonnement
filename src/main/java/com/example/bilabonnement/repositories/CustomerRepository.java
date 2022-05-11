@@ -19,8 +19,8 @@ public class CustomerRepository implements CRUDInterface<Customer> {
         int zipCode = entity.getZipCode();
         String email = entity.getEmail();
         String mobile = entity.getMobile();
-        int cpr = entity.getCprNumber();
-        int regNum = entity.getRegistrationNumber();
+        long cpr = entity.getCprNumber();
+        long regNum = entity.getRegistrationNumber();
         int accountNum = entity.getAccountNumber();
 
 
@@ -54,8 +54,8 @@ public class CustomerRepository implements CRUDInterface<Customer> {
                 int zipCode = rs.getInt("zip_code");
                 String email = rs.getString("email");
                 String mobile = rs.getString("mobile");
-                int cpr = rs.getInt("cpr_number");
-                int regNum = rs.getInt("reg_number");
+                long cpr = rs.getLong("cpr_number");
+                long regNum = rs.getLong("reg_number");
                 int accountNum = rs.getInt("account_number");
                 customers.add(new Customer(id,firstName,lastName,address,zipCode,email,mobile,cpr,regNum,accountNum));
             }
@@ -80,8 +80,8 @@ public class CustomerRepository implements CRUDInterface<Customer> {
             int zipCode = rs.getInt("zip_code");
             String email = rs.getString("email");
             String mobile = rs.getString("mobile");
-            int cpr = rs.getInt("cpr_number");
-            int regNum = rs.getInt("reg_number");
+            long cpr = rs.getLong("cpr_number");
+            long regNum = rs.getLong("reg_number");
             int accountNum = rs.getInt("account_number");
 
 
@@ -102,8 +102,8 @@ public class CustomerRepository implements CRUDInterface<Customer> {
         int zipCode = entity.getZipCode();
         String email = entity.getEmail();
         String mobile = entity.getMobile();
-        int cpr = entity.getCprNumber();
-        int regNum = entity.getRegistrationNumber();
+        long cpr = entity.getCprNumber();
+        long regNum = entity.getRegistrationNumber();
         int accountNum = entity.getAccountNumber();
 
         String query = "SELECT * FROM customers AS e WHERE e.customer_id = '" + id + "'";

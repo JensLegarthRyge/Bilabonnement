@@ -1,8 +1,12 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
+import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
+import com.example.bilabonnement.services.ManualUpload;
+import com.opencsv.CSVWriter;
 
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
+import com.example.bilabonnement.services.CSVFileService;
 import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,24 +39,18 @@ public class DataRegistrationController {
 
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
-        byte[] tmp = file.getBytes();
+        CSVFileService.writeDataToFile(file);
+        System.out.println("hej");
 
-        for (int i = 0; i < tmp.length; i++) {
-            System.out.println(tmp[i]);
+        return "redirect:/data-registration";
+    }
 
-        }
+    @PostMapping("/manual-upload")
+    public String manualUpload(HttpSession session, WebRequest dataFromForm){
+        ManualUpload manU = new ManualUpload();
+        int x = Integer.parseInt(session.getAttribute("userId").toString());
+        manU.uploadManualLease(dataFromForm, Integer.parseInt(session.getAttribute("userId").toString()));
 
-        String decoded = new String(tmp, StandardCharsets.UTF_8);
-
-
-        FileOutputStream fos = new FileOutputStream("src/main/resources/static/csvFiles/temp");
-        OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
-        CSVWriter writer = new CSVWriter(osw);
-        String[] row = {decoded};
-
-        writer.writeNext(row);
-        writer.close();
-        osw.close();
 
         return "redirect:/data-registration";
     }
