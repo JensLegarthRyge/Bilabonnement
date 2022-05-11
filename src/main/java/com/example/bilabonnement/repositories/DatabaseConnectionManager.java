@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
-//Skrevet af Johannes Forsting
+//Johannes Forsting
 public class DatabaseConnectionManager {
     private static String url;
     private static String username;
