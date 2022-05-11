@@ -167,7 +167,6 @@ public class CarRepository implements CRUDInterface<Car> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public int getCarByChassisNumber (String chassisNumber) {

@@ -1,16 +1,21 @@
 package com.example.bilabonnement.services;
 
+import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.models.LeaseReport;
+import com.example.bilabonnement.repositories.IncidentReportRepository;
 import com.example.bilabonnement.repositories.LeaseReportRepository;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.naming.InitialContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ManualUpload {
 
-    public void uploadManualLease(WebRequest dataFromForm, int userId){
+    public boolean uploadManualLease(WebRequest dataFromForm, int userId){
         LeaseReportRepository leaseRep = new LeaseReportRepository();
+        IncidentReportRepository insicentRep = new IncidentReportRepository();
         int carId = Integer.parseInt(dataFromForm.getParameter("carId"));
         int customerId = Integer.parseInt(dataFromForm.getParameter("customerId"));
         int period = Integer.parseInt(dataFromForm.getParameter("period"));
@@ -22,6 +27,12 @@ public class ManualUpload {
 
         LeaseReport currentLease = new LeaseReport(carId, customerId, userId, period, deliveryInsurance, lowDeductableInsurance, isLimited, pickupAddress, startDate);
         boolean success = leaseRep.create(currentLease);
-
+        if(success){
+            ArrayList<LeaseReport> allLeases = leaseRep.getAll();
+            int leaseReportId = allLeases.get(allLeases.size() - 1).getId();
+            IncidentReport currentIncident = new IncidentReport(leaseReportId);
+            insicentRep.create(currentIncident);
+        }
+        return success;
     }
 }
