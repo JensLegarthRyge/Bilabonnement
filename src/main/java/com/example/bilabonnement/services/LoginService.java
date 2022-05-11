@@ -14,24 +14,18 @@ public class LoginService {
         ArrayList<Employee> allEmployees = employeeRepository.getAll();
         try{
             int userId = Integer.parseInt(loginForm.getParameter("id"));
-            System.out.println(userId);
             String userPassword = loginForm.getParameter("password");
-            System.out.println(userPassword);
 
             for (Employee ce:allEmployees) {
                 if (ce.getId() == userId && ce.getPassword().equals(userPassword)){
-                    System.out.println(ce.getId());
-                    System.out.println(userId);
-                    System.out.println(ce.getPassword());
-                    System.out.println(userPassword);
                     return true;
                 }
             }
         } catch (NumberFormatException e){
-            System.out.println("Exception Number");
+            System.out.println("Login not validated");
             return false;
         }
-        System.out.println("Ikke fundet");
+        System.out.println("Login not validated");
         return false;
     }
 }
