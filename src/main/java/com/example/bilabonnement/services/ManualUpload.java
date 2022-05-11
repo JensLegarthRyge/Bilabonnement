@@ -1,26 +1,27 @@
 package com.example.bilabonnement.services;
 
+import com.example.bilabonnement.models.LeaseReport;
+import com.example.bilabonnement.repositories.LeaseReportRepository;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 public class ManualUpload {
 
     public void uploadManualLease(WebRequest dataFromForm, int userId){
-//        int carID = Integer.parseInt(dataFromForm.getParameter("carID"));
-//        int customerID = Integer.parseInt(dataFromForm.getParameter("customerID"));
-//        int period = Integer.parseInt(dataFromForm.getParameter("period"));
+        LeaseReportRepository leaseRep = new LeaseReportRepository();
+        int carId = Integer.parseInt(dataFromForm.getParameter("carId"));
+        int customerId = Integer.parseInt(dataFromForm.getParameter("customerId"));
+        int period = Integer.parseInt(dataFromForm.getParameter("period"));
+        boolean deliveryInsurance = (dataFromForm.getParameter("deliveryInsurance") == null) ? false : true;
+        boolean lowDeductableInsurance = (dataFromForm.getParameter("lowDeductableInsurance") == null) ? false : true;
+        boolean isLimited = (dataFromForm.getParameter("isLimited") == null) ? false : true;
+        String pickupAddress = dataFromForm.getParameter("pickupAddress");
+        LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("startDate"));
 
-        System.out.println(dataFromForm.getParameter("carID"));
-        System.out.println(dataFromForm.getParameter("customerID"));
-        System.out.println(dataFromForm.getParameter("period"));
-        System.out.println(dataFromForm.getParameter("deliveryInsurance"));
-        System.out.println(dataFromForm.getParameter("lowDeductableInsurance"));
-        System.out.println(dataFromForm.getParameter("isLimited"));
-        System.out.println(dataFromForm.getParameter("pickupAddress"));
-        System.out.println(dataFromForm.getParameter("startDate"));
-
-
+        LeaseReport currentLease = new LeaseReport(carId, customerId, userId, period, deliveryInsurance, lowDeductableInsurance, isLimited, pickupAddress, startDate);
+        boolean success = leaseRep.create(currentLease);
 
     }
 }

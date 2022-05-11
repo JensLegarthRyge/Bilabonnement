@@ -1,15 +1,17 @@
 package com.example.bilabonnement.models;
 
+import com.example.bilabonnement.repositories.CarRepository;
+import com.example.bilabonnement.repositories.testRepositories.CarTestRepository;
+
 import java.time.LocalDate;
 
 //Jens Legarth Ryge
 
 public class LeaseReport {
     private int id;
-    private int carID;
-    private int incidentReportId;
-    private int employeeID;
-    private int customerID;
+    private int carId;
+    private int employeeId;
+    private int customerId;
     private LocalDate createdDate;
     private int period;
     private boolean hasReturnInsurance;
@@ -19,12 +21,11 @@ public class LeaseReport {
     private double price;
     private LocalDate startDate;
 
-    public LeaseReport(int id, int carID, int incidentReportId, int employeeID, int customerID, LocalDate createdDate, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+    public LeaseReport(int id, int carId, int employeeId, int customerId, LocalDate createdDate, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
         this.id = id;
-        this.carID = carID;
-        this.incidentReportId = incidentReportId;
-        this.employeeID = employeeID;
-        this.customerID = customerID;
+        this.carId = carId;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
         this.createdDate = createdDate;
         this.period = period;
         this.hasReturnInsurance = hasReturnInsurance;
@@ -36,38 +37,53 @@ public class LeaseReport {
     }
 
     //Bruges til at oprette nye leasereports
-    public LeaseReport(int carID, int customerID, int employeeID, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, String pickupAddress, LocalDate startDate){
-        this.carID = carID;
-        this.customerID = customerID;
-        this.employeeID = employeeID;
-        this.hasReturnInsurance = hasReturnInsurance;
-        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+    public LeaseReport(int carId, int customerId, int employeeId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, String pickupAddress, LocalDate startDate){
+        this.carId = carId;
+        this.customerId = customerId;
+        this.employeeId = employeeId;
         this.pickupAddress = pickupAddress;
         this.startDate = startDate;
         this.isLimited = isLimited;
         this.createdDate = LocalDate.now();
+        this.price = getCarPrice(carId);
         if(isLimited){
             this.period = 120;
+            this.hasLowDeductableInsurance = false;
+            this.hasReturnInsurance = false;
         }
         else {
             this.period = period;
+            this.hasReturnInsurance = hasReturnInsurance;
+            this.hasLowDeductableInsurance = hasLowDeductableInsurance;
         }
+        if(hasLowDeductableInsurance){
+            price += 64;
+        }
+        if(hasReturnInsurance){
+            price += 119;
+        }
+
+
         //this.id = skal auto incrementes i SQL
-        //this.createdBy = fra seesion skal denne findes
-        //this.incidentReport = skal laves mens denne bliver lavet.
-        //this.price skal beregnes afhængig af bil og forsikring osv.
-
-
+        //this.incidentReportId = skal laves mens denne bliver lavet.
 
 
 
     }
 
+    public double getCarPrice(int carId){
+        CarRepository carRep = new CarRepository();
+        CarTestRepository carTestRep = new CarTestRepository();
+        //double carPrice = carRep.getSingleById(carId).getPrice();
+        double carPrice = carTestRep.getSingleById(1).getPrice();
+        return carPrice;
+    }
 
-    public LeaseReport(int carID, int employeeID, int customerID, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
-        this.carID = carID;
-        this.employeeID = employeeID;
-        this.customerID = customerID;
+
+    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+        this.carId = carId;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
         this.hasReturnInsurance = hasReturnInsurance;
         this.hasLowDeductableInsurance = hasLowDeductableInsurance;
         this.pickupAddress = pickupAddress;
@@ -80,20 +96,16 @@ public class LeaseReport {
         return id;
     }
 
-    public int getCarID() {
-        return carID;
+    public int getCarId() {
+        return carId;
     }
 
-    public int getIncidentReportId() {
-        return incidentReportId;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
-    }
-
-    public int getCustomerID() {
-        return customerID;
+    public int getCustomerId() {
+        return customerId;
     }
 
     public LocalDate getCreatedDate() {
@@ -126,5 +138,23 @@ public class LeaseReport {
 
     public LocalDate getStartDate() {
         return startDate;
+    }
+
+    @Override
+    public String toString() {
+        return "LeaseReport{" +
+                "id=" + id +
+                ", carId=" + carId +
+                ", employeeId=" + employeeId +
+                ", customerId=" + customerId +
+                ", createdDate=" + createdDate +
+                ", period=" + period +
+                ", hasReturnInsurance=" + hasReturnInsurance +
+                ", hasLowDeductableInsurance=" + hasLowDeductableInsurance +
+                ", pickupAddress='" + pickupAddress + '\'' +
+                ", isLimited=" + isLimited +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                '}';
     }
 }

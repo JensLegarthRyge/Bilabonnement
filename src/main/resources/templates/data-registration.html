@@ -20,12 +20,12 @@
         <div class="popupHeader">Manuel indtastning</div>
         <div class="popupSectionTop">
             <div>
-                <label for="carID" class="inputFields"><b>Bil ID</b></label>
-                <input type="number" class="inputFields" placeholder="Bil ID" id="carID" name="carID">
+                <label for="carId" class="inputFields"><b>Bil ID</b></label>
+                <input type="number" class="inputFields" placeholder="Bil ID" id="carId" name="carId">
             </div>
             <div>
-                <label for="customerID" class="inputFields"><b>Kunde ID</b></label>
-                <input type="number" class="inputFields" placeholder="Kunde ID" id="customerID" name="customerID" >
+                <label for="customerId" class="inputFields"><b>Kunde ID</b></label>
+                <input type="number" class="inputFields" placeholder="Kunde ID" id="customerId" name="customerId">
             </div>
             <div>
                 <label for="period" class="inputFields"><b>Periode</b></label>
@@ -84,7 +84,6 @@
         <div class="lease-info-container-header">
             <span class="info-field-id">ID:</span>
             <span class="info-field">Nr.plade:</span>
-            <span class="info-field-id" title="Skadesrapport ID">SR ID:</span>
             <span class="info-field-long">Oprettet af:</span>
             <span class="info-field-long">Lejet af:</span>
             <span class="info-field">Oprettet:</span>
@@ -99,10 +98,9 @@
         </div>
         <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
             <span class="info-field-id" th:text="${LeaseReport.getId()}"></span>
-            <span class="info-field" th:text="${LeaseReport.getCarID()}"></span>
-            <span class="info-field-id" th:text="${LeaseReport.getIncidentReportId()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getEmployeeID()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getCustomerID()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getCarId()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getEmployeeId()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getCustomerId()}"></span>
             <span class="info-field" th:text="${LeaseReport.getCreatedDate()}"></span>
             <!-- truefalse?? -->
 

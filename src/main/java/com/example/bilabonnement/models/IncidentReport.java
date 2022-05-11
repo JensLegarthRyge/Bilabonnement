@@ -20,8 +20,9 @@ public class IncidentReport {
         this.customerPrice = customerPrice;
     }
 
-    public IncidentReport(){
+    public IncidentReport(int leaseReportId){
         //Skal laves en constructor til at lave en ny INcident rapport. Price, customerprice og id skal oprettes automastisk.
+        //Denne constructor skal kun laves når der laves en ny leasingReport
     }
 
 }
