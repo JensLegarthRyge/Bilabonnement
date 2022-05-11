@@ -27,7 +27,9 @@
             </div>
             <div>
                 <label for="customerId" class="inputFields"><b>Kunde ID</b></label>
-                <input type="number" class="inputFields" placeholder="Kunde ID" id="customerId" name="customerId">
+                <select name="customerId" id="customerId" class="inputFields">
+                    <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getFullName()}"></option>
+                </select>
             </div>
             <div>
                 <label for="period" class="inputFields"><b>Periode</b></label>

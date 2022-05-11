@@ -33,11 +33,11 @@ public class DataRegistrationController {
 
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model leaseModel, Model idList) {
-        //TEST REPLACE FOR PROD
-
+        // TODO: 5/11/2022  TEST REPLACE FOR PROD
         LeaseTestRepository lrt = new LeaseTestRepository();
         leaseModel.addAttribute("allLeaseReports",lrt.getAll());
 
+        //Working, DO NOT REPLACE
         CustomerRepository cr = new CustomerRepository();
         CarRepository carRepo = new CarRepository();
         idList.addAttribute("allCars", carRepo.getAll());
