@@ -80,15 +80,17 @@ public class LeaseReport {
     }
 
 
-    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate createdDate, LocalDate startDate) {
         this.carId = carId;
         this.employeeId = employeeId;
         this.customerId = customerId;
+        this.period = period;
         this.hasReturnInsurance = hasReturnInsurance;
         this.hasLowDeductableInsurance = hasLowDeductableInsurance;
         this.pickupAddress = pickupAddress;
         this.isLimited = isLimited;
         this.price = price;
+        this.createdDate = createdDate;
         this.startDate = startDate;
     }
 

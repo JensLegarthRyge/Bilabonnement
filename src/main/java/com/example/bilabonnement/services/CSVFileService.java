@@ -72,7 +72,16 @@ public class CSVFileService {
                 System.out.println(isLimited);
                 double price = Double.parseDouble(stringAsArray[8]);
                 System.out.println(price);
-                String dateToFormat = stringAsArray[9];
+
+                String createdDateToFormat = stringAsArray[9];
+                String[] createdDateToFormatAsArray = createdDateToFormat.split("/");
+                System.out.println(createdDateToFormat);
+                int createdYear = Integer.parseInt(createdDateToFormatAsArray[2]);
+                int createdMonth = Integer.parseInt(createdDateToFormatAsArray[0]);
+                int createdDay = Integer.parseInt(createdDateToFormatAsArray[1]);
+                LocalDate createdDate = LocalDate.of(createdYear,createdMonth,createdDay);
+
+                String dateToFormat = stringAsArray[10];
                 String[] dateToFormatAsArray = dateToFormat.split("/");
                 System.out.println(dateToFormat);
                 int year = Integer.parseInt(dateToFormatAsArray[2]);
@@ -80,7 +89,7 @@ public class CSVFileService {
                 int day = Integer.parseInt(dateToFormatAsArray[1]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
+                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, createdDate, date);
                 leaseReportList.add(tmp);
 
             }
