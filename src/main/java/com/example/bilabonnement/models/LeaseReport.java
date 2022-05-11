@@ -35,6 +35,34 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
+    public LeaseReport(String registrationId, int incidentReportId, Employee createdBy, Customer rentedBy, LocalDate createdDate, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+        this.registrationId = registrationId;
+        this.incidentReportId = incidentReportId;
+        this.createdBy = createdBy;
+        this.rentedBy = rentedBy;
+        this.createdDate = createdDate;
+        this.period = period;
+        this.hasReturnInsurance = hasReturnInsurance;
+        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+        this.pickupAddress = pickupAddress;
+        this.isLimited = isLimited;
+        this.price = price;
+        this.startDate = startDate;
+    }
+
+    public LeaseReport(String registrationId, Employee createdBy, Customer rentedBy, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+        this.registrationId = registrationId;
+        this.createdBy = createdBy;
+        this.rentedBy = rentedBy;
+        this.period = period;
+        this.hasReturnInsurance = hasReturnInsurance;
+        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+        this.pickupAddress = pickupAddress;
+        this.isLimited = isLimited;
+        this.price = price;
+        this.startDate = startDate;
+    }
+
     public int getId() {
         return id;
     }

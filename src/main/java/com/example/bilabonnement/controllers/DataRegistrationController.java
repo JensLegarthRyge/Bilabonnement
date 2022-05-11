@@ -3,6 +3,7 @@ package com.example.bilabonnement.controllers;
 import com.example.bilabonnement.models.Car;
 
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
+import com.example.bilabonnement.services.CSVFileService;
 import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,24 +35,7 @@ public class DataRegistrationController {
 
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
-        byte[] tmp = file.getBytes();
-
-        for (int i = 0; i < tmp.length; i++) {
-            System.out.println(tmp[i]);
-
-        }
-
-        String decoded = new String(tmp, StandardCharsets.UTF_8);
-
-
-        FileOutputStream fos = new FileOutputStream("src/main/resources/static/csvFiles/temp");
-        OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
-        CSVWriter writer = new CSVWriter(osw);
-        String[] row = {decoded};
-
-        writer.writeNext(row);
-        writer.close();
-        osw.close();
+        CSVFileService.writeDataToFile(file);
 
         return "redirect:/data-registration";
     }
