@@ -42,10 +42,12 @@ public class CSVFileService {
     }
 
     static ArrayList<LeaseReport> formatDataFromFile()  {
+
         EmployeeRepository er = new EmployeeRepository();
         CustomerRepository cr = new CustomerRepository();
         ArrayList<LeaseReport> leaseReportList = new ArrayList<LeaseReport>();
         File leaseReportFile = new File("src/main/resources/static/csvFiles/temp");
+        /*
         try {
             Scanner sc = new Scanner(leaseReportFile);
             sc.nextLine();
@@ -54,7 +56,7 @@ public class CSVFileService {
                 String[] stringAsArray = leaseReportDetails.split(",");
                 String registrationNumber = stringAsArray[0];
 
-                int employeeID = Integer.parseInt(stringAsArray[1]);
+                int empl    oyeeID = Integer.parseInt(stringAsArray[1]);
                 Employee currentEmployee = er.getSingleById(employeeID);
 
                 int customerID = Integer.parseInt(stringAsArray[2]);
@@ -82,6 +84,8 @@ public class CSVFileService {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+         */
         return leaseReportList;
     }
 

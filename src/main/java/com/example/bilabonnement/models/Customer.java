@@ -6,11 +6,11 @@ public class Customer extends User {
     private String address;
     private int zipCode;
     private String mobile;
-    private int cprNumber;
-    private int registrationNumber;
+    private long cprNumber;
+    private long registrationNumber;
     private int accountNumber;
 
-    public Customer(int id, String firstName, String lastName, String address, int zipCode, String mobile, int cprNumber, int registrationNumber, int accountNumber, String email) {
+    public Customer(int id, String firstName, String lastName, String address, int zipCode, String mobile, long cprNumber, long registrationNumber, int accountNumber, String email) {
         super(id, firstName, lastName, email);
         this.address = address;
         this.zipCode = zipCode;
@@ -20,7 +20,7 @@ public class Customer extends User {
         this.accountNumber = accountNumber;
     }
 
-    public Customer(int id, String firstName, String lastName, String address, int zipCode, String email, String mobile, int cpr, int regNum, int accountNum) {
+    public Customer(int id, String firstName, String lastName, String address, int zipCode, String email, String mobile, long cpr, long regNum, int accountNum) {
         super(id,firstName,lastName,email);
         this.address = address;
         this.zipCode = zipCode;
@@ -54,19 +54,19 @@ public class Customer extends User {
         this.mobile = mobile;
     }
 
-    public int getCprNumber() {
+    public long getCprNumber() {
         return cprNumber;
     }
 
-    public void setCprNumber(int cprNumber) {
+    public void setCprNumber(long cprNumber) {
         this.cprNumber = cprNumber;
     }
 
-    public int getRegistrationNumber() {
+    public long getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(int registrationNumber) {
+    public void setRegistrationNumber(long registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
 
