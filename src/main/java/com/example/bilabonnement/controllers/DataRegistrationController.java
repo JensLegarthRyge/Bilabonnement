@@ -4,6 +4,7 @@ import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.repositories.CarRepository;
 import com.example.bilabonnement.repositories.CustomerRepository;
 import com.example.bilabonnement.repositories.EmployeeRepository;
+import com.example.bilabonnement.repositories.LeaseReportRepository;
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.ManualUpload;
 import com.opencsv.CSVWriter;
@@ -34,8 +35,8 @@ public class DataRegistrationController {
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model leaseModel, Model idList) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
-        LeaseTestRepository lrt = new LeaseTestRepository();
-        leaseModel.addAttribute("allLeaseReports",lrt.getAll());
+        LeaseReportRepository lr = new LeaseReportRepository();
+        leaseModel.addAttribute("allLeaseReports",lr.getAll());
 
         //Working, DO NOT REPLACE
         CustomerRepository cr = new CustomerRepository();

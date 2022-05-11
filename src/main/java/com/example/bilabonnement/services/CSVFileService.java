@@ -34,8 +34,12 @@ public class CSVFileService {
         for (int i = 0; i < leaseReportList.size(); i++) {
             lr.create(leaseReportList.get(i));
             int leaseReportId = leaseReportList.get(i).getId();
+
             IncidentReport currentIncidentReport = new IncidentReport(leaseReportId);
+            System.out.println(leaseReportId);
             ir.create(currentIncidentReport);
+
+
         }
 
 
