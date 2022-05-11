@@ -1,5 +1,6 @@
 package com.example.bilabonnement.repositories;
 
+import com.example.bilabonnement.models.Customer;
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 import java.sql.*;
@@ -132,4 +133,6 @@ public class EmployeeRepository implements CRUDInterface<Employee> {
         }
 
     }
+
+
 }

@@ -127,6 +127,11 @@ input{
     margin-left: 20px;
 }
 
+.inputFields select, .inputFields option {
+    width: 20px;
+
+}
+
 .popupHeader{
     text-align: center;
     font-size: 30px;
@@ -173,6 +178,16 @@ input{
     height: 50px;
 
 }
+
+.id-holder {
+    width: 20px;
+}
+
+.id {
+    width: 20px;
+}
+
+
 
 
 

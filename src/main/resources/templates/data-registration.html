@@ -21,7 +21,9 @@
         <div class="popupSectionTop">
             <div>
                 <label for="carId" class="inputFields"><b>Bil ID</b></label>
-                <input type="number" class="inputFields" placeholder="Bil ID" id="carId" name="carId">
+                <select name="carId" id="carId" class="inputFields">
+                    <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+                </select>
             </div>
             <div>
                 <label for="customerId" class="inputFields"><b>Kunde ID</b></label>
