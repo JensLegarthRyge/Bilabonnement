@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,8 +47,9 @@ public class DataRegistrationController {
     @PostMapping("/manual-upload")
     public String manualUpload(HttpSession session, WebRequest dataFromForm){
         ManualUpload manU = new ManualUpload();
+        int x = Integer.parseInt(session.getAttribute("userId").toString());
+        manU.uploadManualLease(dataFromForm, Integer.parseInt(session.getAttribute("userId").toString()));
 
-        manU.uploadManualLease(dataFromForm);
 
         return "redirect:/data-registration";
     }

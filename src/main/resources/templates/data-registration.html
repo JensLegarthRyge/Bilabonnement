@@ -99,10 +99,10 @@
         </div>
         <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
             <span class="info-field-id" th:text="${LeaseReport.getId()}"></span>
-            <span class="info-field" th:text="${LeaseReport.getRegistrationId()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getCarID()}"></span>
             <span class="info-field-id" th:text="${LeaseReport.getIncidentReportId()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getCreatedBy().getEmail()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getRentedBy().getEmail()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getEmployeeID()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getCustomerID()}"></span>
             <span class="info-field" th:text="${LeaseReport.getCreatedDate()}"></span>
             <!-- truefalse?? -->
 

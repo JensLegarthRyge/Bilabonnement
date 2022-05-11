@@ -74,8 +74,8 @@ public class CSVFileService {
                 int day = Integer.parseInt(dateToFormatAsArray[2]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                LeaseReport tmp = new LeaseReport(registrationNumber, currentEmployee, currentCustomer, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
-                leaseReportList.add(tmp);
+                //LeaseReport tmp = new LeaseReport(registrationNumber, currentEmployee, currentCustomer, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
+                //leaseReportList.add(tmp);
 
             }
 
