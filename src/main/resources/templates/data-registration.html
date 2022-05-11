@@ -20,15 +20,15 @@
         <div class="popupHeader">Manuel indtastning</div>
         <div class="popupSectionTop">
             <div>
-                <label for="carId" class="inputFields"><b>Bil ID</b></label>
+                <label for="carId" class="inputFields"><b>Stelnummer</b></label>
                 <select name="carId" id="carId" class="inputFields">
                     <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
                 </select>
             </div>
             <div>
-                <label for="customerId" class="inputFields"><b>Kunde ID</b></label>
+                <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
                 <select name="customerId" id="customerId" class="inputFields">
-                    <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getFullName()}"></option>
+                    <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                 </select>
             </div>
             <div>
@@ -55,7 +55,14 @@
             <div class="popupMidRight">
                 <div>
                     <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
-                    <input type="text" class="inputFields" placeholder="Afhentningssted" id="pickupAddress" name="pickupAddress" >
+                    <select name="pickupAddress" id="pickupAddress" class="inputFields">
+                        <option  value="Rødovre">Rødovre</option>
+                        <option value="Køge">Køge</option>
+                        <option value="Odense">Odense</option>
+                        <option value="Århus">Århus</option>
+                        <option value="Ålborg">Ålborg</option>
+                    </select>
+
                 </div>
                 <div>
                     <label for="startDate" class="inputFields"><b>Startdato</b></label>
