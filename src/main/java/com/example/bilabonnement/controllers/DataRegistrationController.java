@@ -1,7 +1,9 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
-import com.example.bilabonnement.repositories.CarTestRepository;
+import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
+import com.example.bilabonnement.services.ManualUpload;
+import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +52,15 @@ public class DataRegistrationController {
         writer.writeNext(row);
         writer.close();
         osw.close();
+
+        return "redirect:/data-registration";
+    }
+
+    @PostMapping("/manual-upload")
+    public String manualUpload(HttpSession session, WebRequest dataFromForm){
+        ManualUpload manU = new ManualUpload();
+
+        manU.uploadManualLease(dataFromForm);
 
         return "redirect:/data-registration";
     }

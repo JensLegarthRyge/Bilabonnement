@@ -37,7 +37,7 @@ public class CarRepository implements CRUDInterface<Car> {
         int horsePower = entity.getHorsePower();
         double incidentFactor = entity.getIncidentFactor();
 
-        String query = "INSERT INTO `bilabonnement`.`cars` (`registration_number`, `chassis_number`, `is_rented`, `is_manual`, `fuel_type`, `km_l`, `energy_label`, `color`, `price`, `horse_power`, `incident_factor`) " +
+        String query = "INSERT INTO `bilabonnement`.`cars` (`registration_number`, `chassis_number`, `is_rented`, `is_manual`, `fuel_type`, `fuel_consumption`, `energy_label`, `color`, `price`, `horse_power`, `incident_factor`) " +
             " VALUES ('"+regNum+"', '"+chaNum+"', '"+isCurrentlyRented+"', '"+isManual+"', '"+fuelType+"', '"+fuelConsumption+"', '"+energyLabel+"', '"+color+"', '"+price+"', '"+horsePower+"', '"+incidentFactor+"');";
 
         try {
@@ -65,7 +65,7 @@ public class CarRepository implements CRUDInterface<Car> {
                 boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented"));
                 boolean isManual = Car.convert(rs.getInt("is_manual"));
                 FuelType fuelType = FuelType.valueOf(rs.getString("fuel_type"));
-                double fuelConsumption = rs.getDouble("km_l");
+                double fuelConsumption = rs.getDouble("fuel_consumption");
                 EnergyLabel energyLabel = EnergyLabel.valueOf(rs.getString("energy_label"));
                 String color = rs.getString("color");
                 double price = rs.getInt("price");
@@ -94,7 +94,7 @@ public class CarRepository implements CRUDInterface<Car> {
             boolean isCurrentlyRented = Car.convert(rs.getInt("is_rented"));
             boolean isManual = Car.convert(rs.getInt("is_manual"));
             FuelType fuelType = FuelType.valueOf(rs.getString("fuel_type"));
-            double fuelConsumption = rs.getDouble("km_l");
+            double fuelConsumption = rs.getDouble("fuel_consumption");
             EnergyLabel energyLabel = EnergyLabel.valueOf(rs.getString("energy_label"));
             String color = rs.getString("color");
             double price = rs.getInt("price");
@@ -141,7 +141,7 @@ public class CarRepository implements CRUDInterface<Car> {
                 "is_rented='" + isCurrentlyRented + "' , " +
                 "is_manual='" + isManual + "' , " +
                 "fuel_type='" + fuelType + "' ," +
-                "km_l='" + fuelConsumption + "' , " +
+                "fuel_consumption='" + fuelConsumption + "' , " +
                 "energy_label='" + energyLabel + "' , " +
                 "color='" + color + "' , " +
                 "price='" + price + "' , " +

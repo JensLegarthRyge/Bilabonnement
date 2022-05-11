@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 public class LeaseReport {
     private int id;
-    private String registrationId;
+    private int carID;
     private int incidentReportId;
     private Employee createdBy;
-    private Customer rentedBy;
+    private int customerID;
     private LocalDate createdDate;
     private int period;
     private boolean hasReturnInsurance;
@@ -19,12 +19,12 @@ public class LeaseReport {
     private double price;
     private LocalDate startDate;
 
-    public LeaseReport(int id, String registrationId, int incidentReportId, Employee createdBy, Customer rentedBy, LocalDate createdDate, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
+    public LeaseReport(int id, int carID, int incidentReportId, Employee createdBy, int customerID, LocalDate createdDate, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, String pickupAddress, boolean isLimited, double price, LocalDate startDate) {
         this.id = id;
-        this.registrationId = registrationId;
+        this.carID = carID;
         this.incidentReportId = incidentReportId;
         this.createdBy = createdBy;
-        this.rentedBy = rentedBy;
+        this.customerID = customerID;
         this.createdDate = createdDate;
         this.period = period;
         this.hasReturnInsurance = hasReturnInsurance;
@@ -35,12 +35,23 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
+    public LeaseReport(int carID, int customerID, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, String pickupAddress, LocalDate startDate){
+        this.carID = carID;
+        this.customerID = customerID;
+        this.period = period;
+        this.hasReturnInsurance = hasReturnInsurance;
+        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+        this.isLimited = isLimited;
+        this.pickupAddress = pickupAddress;
+        this.startDate = startDate;
+    }
+
     public int getId() {
         return id;
     }
 
-    public String getRegistrationId() {
-        return registrationId;
+    public int getCarID() {
+        return carID;
     }
 
     public int getIncidentReportId() {
@@ -51,8 +62,8 @@ public class LeaseReport {
         return createdBy;
     }
 
-    public Customer getRentedBy() {
-        return rentedBy;
+    public int getRentedBy() {
+        return customerID;
     }
 
     public LocalDate getCreatedDate() {

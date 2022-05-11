@@ -15,15 +15,69 @@
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
 
-<section class="main-container">
+<div id="manualPopupForm" style="display: none">
+    <form method="POST" action="/manual-upload" class="popup">
+        <div class="popupHeader">Manuel indtastning</div>
+        <div class="popupSectionTop">
+            <div>
+                <label for="carID" class="inputFields"><b>Bil ID</b></label>
+                <input type="number" class="inputFields" placeholder="Bil ID" id="carID" name="carID">
+            </div>
+            <div>
+                <label for="customerID" class="inputFields"><b>Kunde ID</b></label>
+                <input type="number" class="inputFields" placeholder="Kunde ID" id="customerID" name="customerID" >
+            </div>
+            <div>
+                <label for="period" class="inputFields"><b>Periode</b></label>
+                <input type="number" class="inputFields" placeholder="Periode" id="period" name="period">
+            </div>
+        </div>
+        <div class="popupMid">
+            <div class="popupMidLeft">
+                <div class="radioButtons">
+                    <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
+                    <input type="checkbox" class="inputFields" id="deliveryInsurance" name="deliveryInsurance" >
+                </div>
+                <div class="radioButtons">
+                    <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
+                    <input type="checkbox" class="inputFields" id="lowDeductableInsurance" name="lowDeductableInsurance">
+                </div>
+                <div class="radioButtons">
+                    <label for="isLimited" class="inputFields"><b>Limited</b></label>
+                    <input type="checkbox" class="inputFields" id="isLimited" name="isLimited">
+                </div>
+            </div>
+
+            <div class="popupMidRight">
+                <div>
+                    <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
+                    <input type="text" class="inputFields" placeholder="Afhentningssted" id="pickupAddress" name="pickupAddress" >
+                </div>
+                <div>
+                    <label for="startDate" class="inputFields"><b>Startdato</b></label>
+                    <input type="date" class="inputFields" placeholder="Startdato" id="startDate" name="startDate">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="popupButton">Registrér</button>
+
+
+    </form>
+</div>
+
+<section class="main-container" id="tester">
     <section class="registration-creation-container">
         <form method="POST" action="/get-upload" enctype="multipart/form-data">
             <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
             <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
         </form>
         eller
-        <label for="manual-registration" class="button">Opret manuelt</label>
-        <input type="submit" id="manual-registration" onclick="openRegistrationForm()">
+        <button type="button" class="button" onclick="openManualForm()">åben</button>
+        <button type="button" class="button" onclick="closeManualForm()">luk</button>
+
+
+
     </section>
 
     <section class="lease-container">
@@ -101,5 +155,15 @@
         </div>
     </section>
 </section>
+<script>
+    function openManualForm() {
+        document.getElementById("manualPopupForm").style.display = "block";
+        document.getElementById("tester").style.filter= "blur(5px)";
+    }
+    function closeManualForm() {
+        document.getElementById("manualPopupForm").style.display = "none";
+        document.getElementById("tester").style.filter= "blur(0px)";
+    }
+</script>
 </body>
 </html>
