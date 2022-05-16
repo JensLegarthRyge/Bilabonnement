@@ -64,17 +64,8 @@ public class LeaseReport {
         }
     }
 
-    //Tager fra en bil fra testrepository lige nu.
-    public double getCarPrice(int carId){
-        CarRepository carRep = new CarRepository();
-        CarTestRepository carTestRep = new CarTestRepository();
-        //double carPrice = carRep.getSingleById(carId).getPrice();
-        double carPrice = carTestRep.getSingleById(1).getPrice();
-        return carPrice;
-    }
 
-
-    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, int pickupLocationId, boolean isLimited, double price, LocalDate startDate) {
+    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, int pickupLocationId, boolean isLimited, double price, LocalDate createdDate, LocalDate startDate) {
         this.carId = carId;
         this.employeeId = employeeId;
         this.customerId = customerId;
@@ -86,6 +77,15 @@ public class LeaseReport {
         this.price = price;
         this.createdDate = createdDate;
         this.startDate = startDate;
+    }
+
+    //Tager fra en bil fra testrepository lige nu.
+    public double getCarPrice(int carId){
+        CarRepository carRep = new CarRepository();
+        CarTestRepository carTestRep = new CarTestRepository();
+        //double carPrice = carRep.getSingleById(carId).getPrice();
+        double carPrice = carTestRep.getSingleById(1).getPrice();
+        return carPrice;
     }
 
 
