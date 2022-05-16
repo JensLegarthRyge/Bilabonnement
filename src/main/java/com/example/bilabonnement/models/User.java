@@ -36,6 +36,8 @@ public abstract class User {
 
     public String getFullName() {return firstName + " " + lastName;}
 
+    public String getIdPlusFullName() {return id + " - " + getFullName();}
+
     public String getEmail(){
         return email;
     }

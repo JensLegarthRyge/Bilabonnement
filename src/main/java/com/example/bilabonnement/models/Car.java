@@ -3,8 +3,6 @@ package com.example.bilabonnement.models;
 import com.example.bilabonnement.models.Enum.EnergyLabel;
 import com.example.bilabonnement.models.Enum.FuelType;
 
-import java.awt.*;
-
 //Jens Legarth Ryge
 
 public class Car {
