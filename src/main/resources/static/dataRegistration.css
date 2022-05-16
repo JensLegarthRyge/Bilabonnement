@@ -121,10 +121,27 @@ input{
     flex-direction: column;
 }
 
+.close-button {
+    position: absolute;
+    left: 99vh;
+    font-size: 45px;
+    font-weight: 600;
+    display: inline-block;
+    transform: rotate(45deg);
+    padding: 0;
+    border: none;
+    background: none;
+}
+
 .inputFields{
     display: block;
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.inputFields select, .inputFields option {
+    width: 20px;
+
 }
 
 .popupHeader{
@@ -132,6 +149,11 @@ input{
     font-size: 30px;
     font-weight: bold;
     width: 100%;
+}
+
+.close-button {
+    width: 50px;
+
 }
 
 .popupSectionTop{
@@ -173,6 +195,16 @@ input{
     height: 50px;
 
 }
+
+.id-holder {
+    width: 20px;
+}
+
+.id {
+    width: 20px;
+}
+
+
 
 
 

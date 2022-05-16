@@ -5,7 +5,7 @@ import com.example.bilabonnement.repositories.testRepositories.CarTestRepository
 
 import java.time.LocalDate;
 
-//Jens Legarth Ryge
+//Jens Legarth Ryge & Johannes Forsting
 
 public class LeaseReport {
     private int id;
@@ -62,15 +62,9 @@ public class LeaseReport {
         if(hasReturnInsurance){
             price += 119;
         }
-
-
-        //this.id = skal auto incrementes i SQL
-        //this.incidentReportId = skal laves mens denne bliver lavet.
-
-
-
     }
 
+    //Tager fra en bil fra testrepository lige nu.
     public double getCarPrice(int carId){
         CarRepository carRep = new CarRepository();
         CarTestRepository carTestRep = new CarTestRepository();
@@ -84,11 +78,13 @@ public class LeaseReport {
         this.carId = carId;
         this.employeeId = employeeId;
         this.customerId = customerId;
+        this.period = period;
         this.hasReturnInsurance = hasReturnInsurance;
         this.hasLowDeductableInsurance = hasLowDeductableInsurance;
         this.pickupLocationId = pickupLocationId;
         this.isLimited = isLimited;
         this.price = price;
+        this.createdDate = createdDate;
         this.startDate = startDate;
     }
 

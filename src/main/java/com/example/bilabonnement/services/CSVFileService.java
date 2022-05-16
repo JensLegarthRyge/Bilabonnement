@@ -2,11 +2,9 @@ package com.example.bilabonnement.services;
 
 import com.example.bilabonnement.models.Customer;
 import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.models.LeaseReport;
-import com.example.bilabonnement.repositories.CarRepository;
-import com.example.bilabonnement.repositories.CustomerRepository;
-import com.example.bilabonnement.repositories.EmployeeRepository;
-import com.example.bilabonnement.repositories.LeaseReportRepository;
+import com.example.bilabonnement.repositories.*;
 import com.opencsv.CSVWriter;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +18,7 @@ public class CSVFileService {
 
     public static void writeDataToFile(MultipartFile file) throws IOException {
         LeaseReportRepository lr = new LeaseReportRepository();
+        IncidentReportRepository ir = new IncidentReportRepository();
         byte[] tmp = file.getBytes();
         String decoded = new String(tmp, StandardCharsets.UTF_8);
         FileOutputStream fos = new FileOutputStream("src/main/resources/static/csvFiles/temp");
@@ -34,6 +33,10 @@ public class CSVFileService {
         ArrayList<LeaseReport> leaseReportList = formatDataFromFile();
         for (int i = 0; i < leaseReportList.size(); i++) {
             lr.create(leaseReportList.get(i));
+            ArrayList<LeaseReport> currentLeaseReports = lr.getAll();
+            int leaseReportId = currentLeaseReports.get(currentLeaseReports.size() - 1).getId();
+            IncidentReport currentIncidentReport = new IncidentReport(leaseReportId);
+            ir.create(currentIncidentReport);
         }
 
 
@@ -72,7 +75,16 @@ public class CSVFileService {
                 System.out.println(isLimited);
                 double price = Double.parseDouble(stringAsArray[8]);
                 System.out.println(price);
-                String dateToFormat = stringAsArray[9];
+
+                String createdDateToFormat = stringAsArray[9];
+                String[] createdDateToFormatAsArray = createdDateToFormat.split("/");
+                System.out.println(createdDateToFormat);
+                int createdYear = Integer.parseInt(createdDateToFormatAsArray[2]);
+                int createdMonth = Integer.parseInt(createdDateToFormatAsArray[0]);
+                int createdDay = Integer.parseInt(createdDateToFormatAsArray[1]);
+                LocalDate createdDate = LocalDate.of(createdYear,createdMonth,createdDay);
+
+                String dateToFormat = stringAsArray[10];
                 String[] dateToFormatAsArray = dateToFormat.split("/");
                 System.out.println(dateToFormat);
                 int year = Integer.parseInt(dateToFormatAsArray[2]);
@@ -80,7 +92,7 @@ public class CSVFileService {
                 int day = Integer.parseInt(dateToFormatAsArray[1]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, date);
+                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, createdDate, date);
                 leaseReportList.add(tmp);
 
             }
