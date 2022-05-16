@@ -106,39 +106,39 @@
 
             <span th:if="${LeaseReport.hasLowDeductableInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.hasLowDeductableInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <span th:if="${LeaseReport.hasReturnInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.hasReturnInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <span th:if="${LeaseReport.isLimited()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.isLimited()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <!-- truefalse?? -->
-            <span class="info-field-long" th:text="${LeaseReport.getPickupAddress()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getPickupLocationId()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPeriod()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>

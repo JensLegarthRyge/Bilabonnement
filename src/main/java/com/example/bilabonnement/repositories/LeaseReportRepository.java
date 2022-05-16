@@ -2,7 +2,6 @@ package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
-import org.slf4j.spi.LocationAwareLogger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 
 public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
     Connection connection = DatabaseConnectionManager.getConnection();
+
     @Override
     public boolean create(LeaseReport entity) {
 
@@ -24,13 +24,13 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         int period = entity.getPeriod();
         int hasDeliveryInsurance = entity.hasReturnInsurance() ? 1 : 0;
         int hasLowDeductableInsurance = entity.hasLowDeductableInsurance() ? 1 : 0;
-        String pickupAdress = entity.getPickupAddress();
+        int pickupAdressId = entity.getPickupLocationId();
         int isLimited = entity.isLimited() ? 1 : 0;
         double price = entity.getPrice();
         LocalDate startDate = entity.getStartDate();
 
-        String query = "INSERT INTO `bilabonnement`.`leasing_report` (`car_Id`, `employee_id`, `customer_id`, `created_date`, `period`, `has_delivery_insurance`, `has_low_deductable_insurance`, `pickup_adress`, `is_limited`, `price`, `start_date`) " +
-                "VALUES ('"+carId+"', '"+employeeId+"', '"+customerId+"', '"+createdDate+"', '"+period+"', '"+hasDeliveryInsurance+"', '"+hasLowDeductableInsurance+"', '"+pickupAdress+"', '"+isLimited+"', '"+price+"', '"+startDate+"');";
+        String query = "INSERT INTO `bilabonnement`.`leasing_report` (`car_Id`, `employee_id`, `customer_id`, `created_date`, `period`, `has_delivery_insurance`, `has_low_deductable_insurance`, `pickup_adress_id`, `is_limited`, `price`, `start_date`) " +
+                "VALUES ('"+carId+"', '"+employeeId+"', '"+customerId+"', '"+createdDate+"', '"+period+"', '"+hasDeliveryInsurance+"', '"+hasLowDeductableInsurance+"', '"+pickupAdressId+"', '"+isLimited+"', '"+price+"', '"+startDate+"');";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
 
