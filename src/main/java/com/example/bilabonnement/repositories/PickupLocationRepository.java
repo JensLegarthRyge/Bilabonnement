@@ -32,7 +32,7 @@ public class PickupLocationRepository implements CRUDInterface<PickupLocation> {
                                 rs.getInt("id"),
                                 rs.getString("name"),
                                 rs.getString("street_name"),
-                                rs.getInt("street_number"),
+                                rs.getString("street_number"),
                                 rs.getInt("postcode")
                         )
                 );
@@ -56,7 +56,7 @@ public class PickupLocationRepository implements CRUDInterface<PickupLocation> {
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("street_name"),
-                    rs.getInt("street_number"),
+                    rs.getString("street_number"),
                     rs.getInt("postcode")
             );
 

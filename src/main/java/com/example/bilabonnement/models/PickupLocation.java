@@ -8,10 +8,21 @@ public class PickupLocation {
     private int id;
     private String name;
     private String streetName;
-    private int streetNumber;
+    private String streetNumber;
     private int postcode;
 
-    public PickupLocation(int id, String name, String streetName, int streetNumber, int postcode) {
+    @Override
+    public String toString() {
+        return "PickupLocation{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", streetNumber='" + streetNumber + '\'' +
+                ", postcode=" + postcode +
+                '}';
+    }
+
+    public PickupLocation(int id, String name, String streetName, String streetNumber, int postcode) {
         this.id = id;
         this.name = name;
         this.streetName = streetName;
@@ -42,7 +53,7 @@ public class PickupLocation {
         return streetName;
     }
 
-    public int getStreetNumber() {
+    public String getStreetNumber() {
         return streetNumber;
     }
 
@@ -62,7 +73,7 @@ public class PickupLocation {
         this.streetName = streetName;
     }
 
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
