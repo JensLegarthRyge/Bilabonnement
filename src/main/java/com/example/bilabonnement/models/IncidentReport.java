@@ -2,6 +2,10 @@ package com.example.bilabonnement.models;
 
 //Jens Legarth Ryge
 
+import com.example.bilabonnement.repositories.CarRepository;
+import com.example.bilabonnement.repositories.CustomerRepository;
+import com.example.bilabonnement.repositories.LeaseReportRepository;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -10,6 +14,10 @@ public class IncidentReport {
     private int leaseReportId;
     private double price;
     private double customerPrice;
+
+    static LeaseReportRepository lr = new LeaseReportRepository();
+    static CarRepository cr = new CarRepository();
+    static CustomerRepository cur = new CustomerRepository();
 
     public IncidentReport(int id, int leaseReportId, double price, double customerPrice){
         this.id = id;
@@ -38,4 +46,23 @@ public class IncidentReport {
     public double getCustomerPrice() {
         return customerPrice;
     }
+
+
+    public String getRegistrationNumber(){
+        int carId = lr.getSingleById(this.leaseReportId).getCarId();
+        String registrationNumber = cr.getSingleById(carId).getRegistrationNumber();
+        return registrationNumber;
+    }
+
+    public String getLeasedBy(){
+        int customerId = lr.getSingleById(this.leaseReportId).getCustomerId();
+        String customerName = cur.getSingleById(customerId).getFullName();
+        return customerName;
+    }
+
+    public String getCreationDate(){
+        String creationDate = lr.getSingleById(this.leaseReportId).getCreatedDate().toString();
+        return creationDate;
+    }
+
 }

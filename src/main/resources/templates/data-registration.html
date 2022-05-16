@@ -79,7 +79,7 @@
     </form>
 </div>
 
-<section class="main-container" id="tester">
+<section class="main-container" id="blurr">
     <section class="registration-creation-container">
         <form method="POST" action="/get-upload" enctype="multipart/form-data">
             <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
@@ -119,39 +119,39 @@
 
             <span th:if="${LeaseReport.hasLowDeductableInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.hasLowDeductableInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <span th:if="${LeaseReport.hasReturnInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.hasReturnInsurance()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <span th:if="${LeaseReport.isLimited()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-good-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/checked-checkbox--v1.png">
                 </span>
             </span>
             <span th:unless="${LeaseReport.isLimited()}">
                 <span class="info-field">
-                    <img class="info-field-image" src="https://img.icons8.com/external-prettycons-lineal-prettycons/452/external-wrong-text-formatting-prettycons-lineal-prettycons.png">
+                    <img class="info-field-image" src="https://img.icons8.com/ios/344/unchecked-checkbox.png">
                 </span>
             </span>
 
             <!-- truefalse?? -->
-            <span class="info-field-long" th:text="${LeaseReport.getPickupAddress()}"></span>
+            <span class="info-field-long" th:text="${LeaseReport.getPickupLocationId()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPeriod()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
@@ -250,11 +250,11 @@
 
     function openManualForm() {
         document.getElementById("manualPopupForm").style.display = "block";
-        document.getElementById("tester").style.filter= "blur(5px)";
+        document.getElementById("blurr").style.filter= "blur(5px)";
     }
     function closeManualForm() {
         document.getElementById("manualPopupForm").style.display = "none";
-        document.getElementById("tester").style.filter= "blur(0px)";
+        document.getElementById("blurr").style.filter= "blur(0px)";
     }
 </script>
 </body>

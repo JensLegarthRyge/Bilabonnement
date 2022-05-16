@@ -69,8 +69,8 @@ public class CSVFileService {
                 System.out.println(hasDeliveryInsurance);
                 boolean hasLowDeductable = isTrue(Integer.parseInt(stringAsArray[5]));
                 System.out.println(hasLowDeductable);
-                String pickupAddress = stringAsArray[7];
-                System.out.println(pickupAddress);
+                int pickupLocationId = Integer.parseInt(stringAsArray[7]);
+                System.out.println(pickupLocationId);
                 boolean isLimited = isTrue(Integer.parseInt(stringAsArray[6]));
                 System.out.println(isLimited);
                 double price = Double.parseDouble(stringAsArray[8]);
@@ -92,7 +92,7 @@ public class CSVFileService {
                 int day = Integer.parseInt(dateToFormatAsArray[1]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupAddress, isLimited, price, createdDate, date);
+                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupLocationId, isLimited, price, createdDate, date);
                 leaseReportList.add(tmp);
 
             }
