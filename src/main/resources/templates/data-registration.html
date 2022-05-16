@@ -70,7 +70,7 @@
     </form>
 </div>
 
-<section class="main-container" id="tester">
+<section class="main-container" id="blurr">
     <section class="registration-creation-container">
         <form method="POST" action="/get-upload" enctype="multipart/form-data">
             <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
@@ -160,11 +160,11 @@
 <script>
     function openManualForm() {
         document.getElementById("manualPopupForm").style.display = "block";
-        document.getElementById("tester").style.filter= "blur(5px)";
+        document.getElementById("blurr").style.filter= "blur(5px)";
     }
     function closeManualForm() {
         document.getElementById("manualPopupForm").style.display = "none";
-        document.getElementById("tester").style.filter= "blur(0px)";
+        document.getElementById("blurr").style.filter= "blur(0px)";
     }
 </script>
 </body>

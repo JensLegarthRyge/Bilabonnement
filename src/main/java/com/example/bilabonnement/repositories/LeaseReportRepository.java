@@ -80,7 +80,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         try {
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM leasing_reports WHERE lease_report_id = '"+id+"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM leasing_report WHERE lease_report_id = '"+id+"'");
             rs.next();
 
             int leaseReportId = rs.getInt("lease_report_id");
