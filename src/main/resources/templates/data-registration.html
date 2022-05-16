@@ -17,6 +17,7 @@
 
 <div id="manualPopupForm" style="display: none">
     <form method="POST" action="/manual-upload" class="popup">
+        <button type="button" class="close-button" id="button-close" onclick="closeManualForm()">+</button>
         <div class="popupHeader">Manuel indtastning</div>
         <div class="popupSectionTop">
             <div>
@@ -71,6 +72,7 @@
             </div>
         </div>
 
+
         <button type="submit" class="popupButton">Registrér</button>
 
 
@@ -85,7 +87,7 @@
         </form>
         eller
         <button type="button" class="button" onclick="openManualForm()">åben</button>
-        <button type="button" class="button" onclick="closeManualForm()">luk</button>
+
 
 
 
@@ -156,15 +158,77 @@
 
             <div>
                 <form method="POST" action="/remove-lease">
-                    <input name="id" type="hidden" th:value="${LeaseReport.getId()}">
-                    <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt=""></input>
+                    <input name="id" th:id="edit-id + ${LeaseReport.getId()}" type="hidden" th:value="${LeaseReport.getId()}">
+                    <input type="submit" th:onclick="getEditId(${LeaseReport.getId()})"><img class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit"></input>
+
                 </form>
-                <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt=""></input>
+                <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt="Delete"></input>
             </div>
         </div>
     </section>
 </section>
+
+<section class="edit-field" id="edit" >
+    <div id="edit-popup" style="display: none">
+        <form method="POST" action="/manual-upload" class="popup">
+            <button type="button" class="close-button" onclick="closeManualForm()">+</button>
+            <div class="popupHeader">Information</div>
+            <div class="popupSectionTop">
+                <div>
+                    <label for="carId" class="inputFields"><b>Stelnummer</b></label>
+                    <div class="inputFields">
+                        <span class="id" id="edit-car-id"></span>
+                    </div>
+                </div>
+                <div>
+                    <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
+                    <div class="inputFields">
+                        <span class="id" id="edit-customer"></span>
+                        <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
+                    </div>
+                </div>
+                <div>
+                    <label for="period" class="inputFields"><b>Periode</b></label>
+                    <span id="edit-period" class="inputFields"></span>
+                </div>
+            </div>
+            <div class="popupMid">
+                <div class="popupMidLeft">
+                    <div class="radioButtons">
+                        <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
+                        <input type="checkbox" class="inputFields" name="deliveryInsurance" >
+                    </div>
+                    <div class="radioButtons">
+                        <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
+                        <input type="checkbox" class="inputFields" name="lowDeductableInsurance">
+                    </div>
+                    <div class="radioButtons">
+                        <label for="isLimited" class="inputFields"><b>Limited</b></label>
+                        <input type="checkbox" class="inputFields" name="isLimited">
+                    </div>
+                </div>
+
+                <div class="popupMidRight">
+                        <span class="id" id="edit-address"></span>
+                </div>
+            </div>
+
+
+            <button type="submit" class="popupButton">Registrér</button>
+
+
+        </form>
+    </div>
+
+</section>
+
+
 <script>
+    function getEditId(id, customer, period, address) {
+        document.getElementById("edit-popup").style.display = "block";
+        document.getElementById("tester").style.filter = "blur(5x)";
+    }
+
     function openManualForm() {
         document.getElementById("manualPopupForm").style.display = "block";
         document.getElementById("tester").style.filter= "blur(5px)";
