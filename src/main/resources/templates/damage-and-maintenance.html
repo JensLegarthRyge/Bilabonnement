@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{damageAndRepair.css}"href="../static/damageAndRepair.css">
 </head>
 <body>
+
 <div th:replace="fragments/general.html :: header()"></div>
 
 <div id="manualPopupForm" style="display: none">
@@ -22,7 +23,7 @@
             <span class="info-field">Nr.plade:</span>
             <span class="info-field">Lejet af:</span>
             <span class="info-field">Oprettelsesdato:</span>
-            <span class="info-field"></span>
+            <span class="info-field-filler"></span>
         </div>
         <div class="lease-info-container" th:each="IncidentReport : ${allIncidentReports}">
             <span class="info-field" th:text="${IncidentReport.getId()}"></span>
