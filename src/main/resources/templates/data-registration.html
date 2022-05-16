@@ -79,7 +79,7 @@
     </form>
 </div>
 
-<section class="main-container" id="tester">
+<section class="main-container" id="blurr">
     <section class="registration-creation-container">
         <form method="POST" action="/get-upload" enctype="multipart/form-data">
             <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
@@ -159,7 +159,7 @@
             <div>
                 <form method="POST" action="/remove-lease">
                     <input name="id" th:id="edit-id + ${LeaseReport.getId()}" type="hidden" th:value="${LeaseReport.getId()}">
-                    <input type="submit" th:onclick="getEditId(${LeaseReport.getId()})"><img class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit"></input>
+                    <input type="submit" th:onclick="getEditId(${LeaseReport.getCarId()} + ${LeaseReport.getCustomerId() + ${LeaseReport.getPeriod()} + ${LeaseReport.getPickupAddress()}})"><img class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit"></input>
 
                 </form>
                 <input type="submit"><img class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt="Delete"></input>
@@ -171,7 +171,7 @@
 <section class="edit-field" id="edit" >
     <div id="edit-popup" style="display: none">
         <form method="POST" action="/manual-upload" class="popup">
-            <button type="button" class="close-button" onclick="closeManualForm()">+</button>
+            <button type="button" class="close-button" onclick="closeEditForm()">+</button>
             <div class="popupHeader">Information</div>
             <div class="popupSectionTop">
                 <div>
@@ -184,7 +184,6 @@
                     <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
                     <div class="inputFields">
                         <span class="id" id="edit-customer"></span>
-                        <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                     </div>
                 </div>
                 <div>
@@ -227,15 +226,35 @@
     function getEditId(id, customer, period, address) {
         document.getElementById("edit-popup").style.display = "block";
         document.getElementById("tester").style.filter = "blur(5x)";
+        var carId = document.getElementById("edit-car-id");
+        carId.value = id;
+        var customerId = document.getElementById("edit-customer");
+        customerId.value = customer;
+        var leasingPeriod = document.getElementById("edit-period");
+        leasingPeriod.value = period;
+        var addressLocation = document.getElementById("edit-address");
+        addressLocation.value = address;
+
+    }
+
+    function openEditForm() {
+        document.getElementById("edit-popup").style.display = "block";
+        document.getElementById("tester").style.filter = "blur(5x)";
+
+    }
+
+    function closeEditForm() {
+        document.getElementById("edit-popup").style.display = "none";
+        document.getElementById("tester").style.filter = "blur(0x)";
     }
 
     function openManualForm() {
         document.getElementById("manualPopupForm").style.display = "block";
-        document.getElementById("tester").style.filter= "blur(5px)";
+        document.getElementById("blurr").style.filter= "blur(5px)";
     }
     function closeManualForm() {
         document.getElementById("manualPopupForm").style.display = "none";
-        document.getElementById("tester").style.filter= "blur(0px)";
+        document.getElementById("blurr").style.filter= "blur(0px)";
     }
 </script>
 </body>

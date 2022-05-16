@@ -106,4 +106,25 @@ public class IncidentRepository implements CRUDInterface<Incident> {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<Incident> getALlSpecific(int id){
+        ArrayList<Incident> incidents = new ArrayList<>();
+        try {
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM incidents AS i WHERE i.incident_id = '"+id+"'");
+
+            while(rs.next()){
+                int incidentId = rs.getInt("incident_id");
+                int incidentReportId = rs.getInt("incident_report_id");
+                int incidentTypeId = rs.getInt("incident_type_id");
+
+                incidents.add(new Incident(incidentId, incidentReportId, incidentTypeId));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return incidents;
+    }
 }

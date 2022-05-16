@@ -22,10 +22,10 @@ public class ManualUpload {
         boolean deliveryInsurance = (dataFromForm.getParameter("deliveryInsurance") == null) ? false : true;
         boolean lowDeductableInsurance = (dataFromForm.getParameter("lowDeductableInsurance") == null) ? false : true;
         boolean isLimited = (dataFromForm.getParameter("isLimited") == null) ? false : true;
-        String pickupAddress = dataFromForm.getParameter("pickupAddress");
+        int pickudLocationId = Integer.parseInt(dataFromForm.getParameter("pickupAddress"));
         LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("startDate"));
 
-        LeaseReport currentLease = new LeaseReport(carId, customerId, userId, period, deliveryInsurance, lowDeductableInsurance, isLimited, pickupAddress, startDate);
+        LeaseReport currentLease = new LeaseReport(carId, customerId, userId, period, deliveryInsurance, lowDeductableInsurance, isLimited, pickudLocationId, startDate);
         boolean success = leaseRep.create(currentLease);
         if(success){
             ArrayList<LeaseReport> allLeases = leaseRep.getAll();

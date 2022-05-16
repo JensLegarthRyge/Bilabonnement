@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>damage and repair report</title>
+    <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
+    <link rel="stylesheet" th:href="@{damageAndRepair.css}"href="../static/damageAndRepair.css">
+</head>
+<body>
+<div th:replace="fragments/general.html :: header()"></div>
+
+<p>Damage report</p>
+<p class="info-field" th:text="${report}"></p>
+
+
+</body>
+</html>

@@ -62,11 +62,11 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
                 int period = rs.getInt("period");
                 boolean hasDeliveryInsurance = rs.getInt("has_delivery_insurance") != 0;
                 boolean hasLowDeductableInsurance = rs.getInt("has_low_deductable_insurance") != 0;
-                String pickupAdress = rs.getString("pickup_adress");
+                int pickupLocationId = rs.getInt("pickup_location_id");
                 boolean isLimited = rs.getInt("is_limited") != 0;
                 int price = rs.getInt("price");
                 LocalDate startDate = LocalDate.parse(rs.getString("start_date"));
-                leaseReports.add(new LeaseReport(id, carId, employeeId, customerId, createdDate, period, hasDeliveryInsurance, hasLowDeductableInsurance, pickupAdress, isLimited, price, startDate));
+                leaseReports.add(new LeaseReport(id, carId, employeeId, customerId, createdDate, period, hasDeliveryInsurance, hasLowDeductableInsurance, pickupLocationId, isLimited, price, startDate));
             }
 
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         try {
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM leasing_reports WHERE lease_report_id = '"+id+"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM leasing_report WHERE lease_report_id = '"+id+"'");
             rs.next();
 
             int leaseReportId = rs.getInt("lease_report_id");
@@ -91,12 +91,12 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
             int period = rs.getInt("period");
             boolean hasDeliveryInsurance = rs.getInt("has_delivery_insurance") != 0;
             boolean hasLowDeductableInsurance = rs.getInt("has_low_deductable_insurance") != 0;
-            String pickupAdress = rs.getString("pickup_adress");
+            int pickupLocationId = rs.getInt("pickup_location_id");
             boolean isLimited = rs.getInt("is_limited") != 0;
             int price = rs.getInt("price");
             LocalDate startDate = LocalDate.parse(rs.getString("start_date"));
 
-            return new LeaseReport(leaseReportId, carId, employeeId, customerId, createdDate, period, hasDeliveryInsurance, hasLowDeductableInsurance, pickupAdress, isLimited, price, startDate);
+            return new LeaseReport(leaseReportId, carId, employeeId, customerId, createdDate, period, hasDeliveryInsurance, hasLowDeductableInsurance, pickupLocationId, isLimited, price, startDate);
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -114,7 +114,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         int period = entity.getPeriod();
         int hasDeliveryInsurance = entity.hasReturnInsurance() ? 1 : 0;
         int hasLowDeductableInsurance = entity.hasLowDeductableInsurance() ? 1 : 0;
-        String pickupAdress = entity.getPickupAddress();
+        int pickupLocation = entity.getPickupLocationId();
         int isLimited = entity.isLimited() ? 1 : 0;
         double price = entity.getPrice();
         LocalDate startDate = entity.getStartDate();
@@ -129,7 +129,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
                 "period='" + period + "' ," +
                 "has_delivery_insurance='" + hasDeliveryInsurance + "' ," +
                 "has_low_deductable_insurance='" + hasLowDeductableInsurance + "' ," +
-                "pickup_adress='" + pickupAdress + "' ," +
+                "pickup_location_id='" + pickupLocation + "' ," +
                 "is_limited='" + isLimited + "' ," +
                 "price='" + price + "' ," +
                 "start_date='" + startDate + "'" +
