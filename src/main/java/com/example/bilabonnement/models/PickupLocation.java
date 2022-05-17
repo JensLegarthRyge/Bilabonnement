@@ -80,4 +80,8 @@ public class PickupLocation {
     public void setPostcode(int postcode) {
         this.postcode = postcode;
     }
+
+    public String getStreetNameNumberPostcode( ){
+        return this.id + " - " + this.streetName + " " + this.streetNumber + ", " + this.postcode;
+    }
 }

@@ -156,8 +156,8 @@
             <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
 
-            <div>
-                <form method="POST" action="/edit-lease">
+            <div class="info-form">
+                <form method="POST" action="/edit-lease" >
                     <input type="hidden" th:value="${LeaseReport.getId()}" name="id">
                     <input type="image" class="info-field-icon" name="edit-info" id="edit-info" onclick="alertYou()"  src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit">
                 </form>

@@ -36,9 +36,11 @@
     opacity: 1;
 }
 
-input{
+input[type=file], .info-form input[type=submit] {
     display: none;
 }
+
+
 
 .lease-container{
     display: flex;

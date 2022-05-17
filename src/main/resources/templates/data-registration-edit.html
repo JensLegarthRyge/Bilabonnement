@@ -1,11 +1,17 @@
+<!-- Mads Bøgh Højer Nielsen -->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Lease information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{dataRegistration.css}"href="../static/dataRegistration.css">
 </head>
 <body>
+<div th:replace="fragments/general.html :: header()"></div>
 <div >
     <form id="information" action="">
         <label for="lease-id">Report ID</label>
@@ -42,12 +48,9 @@
         <div>
             <label for="pickup-address">Opsamlings addresse</label>
             <select name="pickup-address" id="pickup-address" class="inputFields" disabled>
-                <option th:value="${lease.getPickupLocationId()}" selected disabled></option>
-                <option  value="Rødovre">Rødovre</option>
-                <option value="Køge">Køge</option>
-                <option value="Odense">Odense</option>
-                <option value="Århus">Århus</option>
-                <option value="Ålborg">Ålborg</option>
+                <option th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
+                <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
+
             </select>
         </div>
         <br><br>
@@ -57,24 +60,39 @@
         <label for="created-date">Raport lavet</label>
         <input type="date" id="created-date" th:value="${lease.getCreatedDate()}" disabled>
         <br><br>
-        <label for="has-deductable">Afleveringsforsikring</label>
-        <input type="number" id="has-deductable" th:value="${lease.hasLowDeductableInsurance()}" disabled>
+        <div>
+            <label for="has-deductable">Afleveringsforsikring</label>
+            <select name="has-deductable" id="has-deductable" class="inputFields" disabled>
+                <option th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
+                <option value="1">Har afleveringsforsikring</option>
+                <option value="0">Har ikke afleveringsforsikring</option>
+            </select>
+        </div>
         <br><br>
-        <label for="return-insurance">Retur forsikring</label>
-        <input type="number" id="return-insurance" th:value="${lease.hasReturnInsurance()}" disabled>
+        <div>
+            <label for="return-insurance">Retur forsikring</label>
+            <select name="return-insurance" id="return-insurance" class="inputFields" disabled>
+                <option th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
+                <option value="1" >Har retur forsikring</option>
+                <option value="0">Har ikke retur forsikring</option>
+            </select>
+        </div>
         <br><br>
-        <label for="limited">Er limited</label>
-        <input type="number" id="limited" th:value="${lease.isLimited()}" disabled>
+        <div>
+            <label for="limited">Limited & Unlimited</label>
+            <select name="limited" id="limited" class="inputFields" disabled>
+                <option th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
+                <option value="1" th:text="Limited"></option>
+                <option value="0" th:text="Unlimited"></option>
+            </select>
+        </div>
+        <br><br>
+        <input type="submit">Anvend</input>
     </form>
-</div>
-
-<div>
     <button  id="edit" type="button">
-        Rediger
+    Rediger
     </button>
 </div>
-
-
 
 
 <script>
