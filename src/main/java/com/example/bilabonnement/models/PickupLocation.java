@@ -1,9 +1,5 @@
 package com.example.bilabonnement.models;
 
-import com.example.bilabonnement.repositories.PickupLocationRepository;
-
-import java.util.ArrayList;
-
 public class PickupLocation {
     private int id;
     private String name;
@@ -11,34 +7,12 @@ public class PickupLocation {
     private String streetNumber;
     private int postcode;
 
-    @Override
-    public String toString() {
-        return "PickupLocation{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", streetName='" + streetName + '\'' +
-                ", streetNumber='" + streetNumber + '\'' +
-                ", postcode=" + postcode +
-                '}';
-    }
-
     public PickupLocation(int id, String name, String streetName, String streetNumber, int postcode) {
         this.id = id;
         this.name = name;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.postcode = postcode;
-    }
-
-    public static void main(String[] args) {
-        PickupLocationRepository plr = new PickupLocationRepository();
-        ArrayList<PickupLocation> ballade = plr.getAll();
-
-        for (PickupLocation cpl: ballade) {
-            System.out.println(cpl.getName());
-        }
-
-        System.out.println(plr.getSingleById(3));
     }
 
     public int getId() {
