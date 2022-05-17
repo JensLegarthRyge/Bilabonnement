@@ -1,10 +1,8 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
-import com.example.bilabonnement.repositories.CarRepository;
-import com.example.bilabonnement.repositories.CustomerRepository;
-import com.example.bilabonnement.repositories.EmployeeRepository;
-import com.example.bilabonnement.repositories.LeaseReportRepository;
+import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.ManualUpload;
 import com.opencsv.CSVWriter;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.security.auth.message.callback.CallerPrincipalCallback;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -71,6 +70,49 @@ public class DataRegistrationController {
     public String listOfId (HttpSession session, WebRequest dataFromForm, Model idList) {
 
         return "data-registration";
+    }
+
+    @PostMapping("/edit-lease")
+    public String leaseEdit (HttpSession session, WebRequest dataFromForm, Model information){
+        LeaseReportRepository lr = new LeaseReportRepository();
+        CustomerRepository cr = new CustomerRepository();
+        CarRepository carRepo = new CarRepository();
+        EmployeeRepository er = new EmployeeRepository();
+        PickupLocationRepository pr = new PickupLocationRepository();
+
+        int leaseId = Integer.parseInt(dataFromForm.getParameter("id"));
+
+        if (lr.getSingleById(leaseId).hasLowDeductableInsurance()) {
+            information.addAttribute("hasDeductable", "Har afleveringsforsikring");
+        } else {
+            information.addAttribute("hasDeductable", "Har ikke afleveringsforsikring");
+        }
+
+        if (lr.getSingleById(leaseId).hasReturnInsurance()) {
+            information.addAttribute("hasReturn", "Har afleveringsforsikring");
+        } else {
+            information.addAttribute("hasReturn", "Har ikke afleveringsforsikring");
+        }
+
+        if (lr.getSingleById(leaseId).isLimited()) {
+            information.addAttribute("isLimited", "Limited");
+        } else {
+            information.addAttribute("isLimited", "Unlimited");
+        }
+
+
+
+        information.addAttribute("lease", lr.getSingleById(leaseId));
+        information.addAttribute("allCars", carRepo.getAll());
+        information.addAttribute("allCustomers", cr.getAll());
+        information.addAttribute("allEmployees", er.getAll());
+        information.addAttribute("allPickupLocations", pr.getAll());
+        information.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(leaseId).getCarId()));
+        information.addAttribute("customerById", cr.getSingleById(lr.getSingleById(leaseId).getCustomerId()));
+        information.addAttribute("employeeById", er.getSingleById(lr.getSingleById(leaseId).getEmployeeId()));
+        information.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(leaseId).getPickupLocationId()));
+
+        return "data-registration-edit";
     }
 
 

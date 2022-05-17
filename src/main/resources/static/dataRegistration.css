@@ -36,9 +36,11 @@
     opacity: 1;
 }
 
-input{
+input[type=file], .info-form input[type=submit] {
     display: none;
 }
+
+
 
 .lease-container{
     display: flex;
@@ -137,6 +139,10 @@ input{
     display: block;
     margin-top: 20px;
     margin-left: 20px;
+}
+
+#edit-info {
+    display: block;
 }
 
 .inputFields select, .inputFields option {
