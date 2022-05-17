@@ -12,89 +12,121 @@
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
-<div >
-    <form id="information" action="">
-        <label for="lease-id">Report ID</label>
-        <input type="number" id="lease-id" th:value="${lease.getId()}" disabled>
-        <br><br>
-        <div>
-            <label for="car-id">Stelnummer</label>
-            <select id="car-id" class="inputFields" disabled>
-                <option th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
-                <option th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+<section class="main-container">
+    <div class="edit-container">
+        <div class="edit-header">
+            <span th:text="${'Lease raport ID: ' + lease.getId()}"></span>
+            <form method="GET" action="/back-to-data-registration">
+                <input type="image" class="report-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
+            </form>
+        </div>
+        <div class="edit-content">
+            <form id="information" action="">
 
-            </select>
-        </div>
-        <br><br>
-        <label for="period">Leasing tid</label>
-        <input type="number" id="period" th:value="${lease.getPeriod()}" disabled>
-        <br><br>
-        <div>
-            <label for="customer-id">Kunde ID</label>
-            <select id="customer-id" class="inputFields" disabled>
-                <option th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
-                <option th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
-            </select>
-        </div>
-        <br><br>
-        <div>
-            <label for="employee-id">Medarbejder</label>
-            <select name="pickup-address" id="employee-id" class="inputFields" disabled>
-                <option th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
-                <option th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
-            </select>
-        </div>
-        <br><br>
-        <div>
-            <label for="pickup-address">Opsamlings addresse</label>
-            <select name="pickup-address" id="pickup-address" class="inputFields" disabled>
-                <option th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
-                <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
+                <div class="edit-content-left">
+                    <div class="left-upper">
+                        <div class="left-upper-content">
+                            <label for="lease-id">Report ID</label>
+                            <input type="number" id="lease-id" th:value="${lease.getId()}" disabled>
+                        </div>
 
-            </select>
+                        <div class="left-upper-content">
+                            <label for="car-id">Stelnummer</label>
+                            <select id="car-id" class="inputFields" disabled>
+                                <option th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
+                                <option th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="left-upper-content">
+                            <label for="period">Leasing tid</label>
+                            <input type="number" id="period" th:value="${lease.getPeriod()}" disabled>
+                        </div>
+
+                        <div class="left-upper-content">
+                            <label for="customer-id">Kunde ID</label>
+                            <select id="customer-id" class="inputFields" disabled>
+                                <option th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
+                                <option th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="left-upper-content">
+                            <label for="employee-id">Medarbejder</label>
+                            <select name="pickup-address" id="employee-id" class="inputFields" disabled>
+                                <option th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
+                                <option th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="left-lower">
+                        <div class="left-lower-content">
+                            <label for="pickup-address">Opsamlings addresse</label>
+                            <select name="pickup-address" id="pickup-address" class="inputFields" disabled>
+                                <option th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
+                                <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit-content-right">
+                    <div class="right-header">
+
+                    </div>
+
+                    <div class="right-upper">
+                        <div class="right-upper-content">
+                            <label for="start-date">Starts dato</label>
+                            <input type="date" id="start-date" th:value="${lease.getStartDate()}" disabled>
+                        </div>
+
+                        <div class="right-upper-content">
+                            <label for="created-date">Raport lavet</label>
+                            <input type="date" id="created-date" th:value="${lease.getCreatedDate()}" disabled>
+                        </div>
+                    </div>
+
+                    <div class="right-lower">
+                        <div class="right-lower-content">
+                            <label for="has-deductable">Afleveringsforsikring</label>
+                            <select name="has-deductable" id="has-deductable" class="inputFields" disabled>
+                                <option th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
+                                <option value="1">Har afleveringsforsikring</option>
+                                <option value="0">Har ikke afleveringsforsikring</option>
+                            </select>
+                        </div>
+
+                        <div class="right-lower-content">
+                            <label for="return-insurance">Retur forsikring</label>
+                            <select name="return-insurance" id="return-insurance" class="inputFields" disabled>
+                                <option th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
+                                <option value="1" >Har retur forsikring</option>
+                                <option value="0">Har ikke retur forsikring</option>
+                            </select>
+                        </div>
+
+                        <div class="right-lower-content">
+                            <label for="limited">Limited & Unlimited</label>
+                            <select name="limited" id="limited" class="inputFields" disabled>
+                                <option th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
+                                <option value="1" th:text="Limited"></option>
+                                <option value="0" th:text="Unlimited"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="submit-and-edit">
+                <button  id="edit" type="button">Rediger</button>
+                <input type="submit" onclick="form.submit()">Anvend</input>
+            </div>
+
         </div>
-        <br><br>
-        <label for="start-date">Starts dato</label>
-        <input type="date" id="start-date" th:value="${lease.getStartDate()}" disabled>
-        <br><br>
-        <label for="created-date">Raport lavet</label>
-        <input type="date" id="created-date" th:value="${lease.getCreatedDate()}" disabled>
-        <br><br>
-        <div>
-            <label for="has-deductable">Afleveringsforsikring</label>
-            <select name="has-deductable" id="has-deductable" class="inputFields" disabled>
-                <option th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
-                <option value="1">Har afleveringsforsikring</option>
-                <option value="0">Har ikke afleveringsforsikring</option>
-            </select>
-        </div>
-        <br><br>
-        <div>
-            <label for="return-insurance">Retur forsikring</label>
-            <select name="return-insurance" id="return-insurance" class="inputFields" disabled>
-                <option th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
-                <option value="1" >Har retur forsikring</option>
-                <option value="0">Har ikke retur forsikring</option>
-            </select>
-        </div>
-        <br><br>
-        <div>
-            <label for="limited">Limited & Unlimited</label>
-            <select name="limited" id="limited" class="inputFields" disabled>
-                <option th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
-                <option value="1" th:text="Limited"></option>
-                <option value="0" th:text="Unlimited"></option>
-            </select>
-        </div>
-        <br><br>
-        <input type="submit">Anvend</input>
-    </form>
-    <button  id="edit" type="button">
-    Rediger
-    </button>
-</div>
 
 
+    </div>
+
+</section>
 <script>
     var button = document.getElementById("edit");
     var info = document.getElementById("information");
