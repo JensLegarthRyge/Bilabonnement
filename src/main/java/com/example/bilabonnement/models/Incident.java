@@ -34,8 +34,8 @@ public class Incident {
         return incidentTypeId;
     }
 
-    public String getType(int id){
-        String type = itr.getSingleById(id).getType();
+    public String getType(){
+        String type = itr.getSingleById(this.incidentTypeId).getType();
         return type;
     }
 

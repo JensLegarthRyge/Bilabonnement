@@ -14,7 +14,8 @@ public class IncidentService {
 
 
     public void deleteIncident(WebRequest dataFromForm){
-
+        int incidentId = Integer.parseInt(dataFromForm.getParameter("incidentId"));
+        ir.delete(incidentId);
     }
 
 
