@@ -1,6 +1,6 @@
 package com.example.bilabonnement.repositories;
 
-import com.example.bilabonnement.models.pickupLocation;
+import com.example.bilabonnement.models.PickupLocation;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.sql.Connection;
@@ -11,29 +11,28 @@ import java.util.ArrayList;
 
 //Jens Legarth Ryge
 
-public class pickupLocationRepository implements CRUDInterface<pickupLocation> {
+public class PickupLocationRepository implements CRUDInterface<PickupLocation> {
     Connection connection = DatabaseConnectionManager.getConnection();
 
-
     @Override
-    public boolean create(pickupLocation entity) {
+    public boolean create(PickupLocation entity) {
         return false;
     }
 
     @Override
-    public ArrayList<pickupLocation> getAll() {
-        ArrayList<pickupLocation> pickupLocations = new ArrayList<>();
+    public ArrayList<PickupLocation> getAll() {
+        ArrayList<PickupLocation> pickupLocations = new ArrayList<>();
         try{
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = stmt.executeQuery("SELECT * FROM pickup_locations");
 
             while(rs.next()) {
                 pickupLocations.add(
-                        new pickupLocation(
+                        new PickupLocation(
                                 rs.getInt("id"),
                                 rs.getString("name"),
                                 rs.getString("street_name"),
-                                rs.getInt("street_number"),
+                                rs.getString("street_number"),
                                 rs.getInt("postcode")
                         )
                 );
@@ -46,18 +45,18 @@ public class pickupLocationRepository implements CRUDInterface<pickupLocation> {
     }
 
     @Override
-    public pickupLocation getSingleById(int id) {
+    public PickupLocation getSingleById(int id) {
         try{
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM pickup_locations WHERE id = '"+id+"'");
             rs.next();
 
-            return new pickupLocation(
+            return new PickupLocation(
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("street_name"),
-                    rs.getInt("street_number"),
+                    rs.getString("street_number"),
                     rs.getInt("postcode")
             );
 
@@ -68,7 +67,7 @@ public class pickupLocationRepository implements CRUDInterface<pickupLocation> {
     }
 
     @Override
-    public boolean update(pickupLocation entity) {
+    public boolean update(PickupLocation entity) {
         return false;
     }
 

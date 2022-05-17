@@ -112,7 +112,7 @@ public class IncidentRepository implements CRUDInterface<Incident> {
         try {
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM incidents AS i WHERE i.incident_id = '"+id+"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM incidents AS i WHERE i.incident_report_id = '"+id+"'");
 
             while(rs.next()){
                 int incidentId = rs.getInt("incident_id");

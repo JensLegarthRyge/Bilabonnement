@@ -42,6 +42,12 @@
     padding-bottom: 10px;
     padding-left: 5px;
 }
+.info-field-filler{
+    width: 32px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
 
 .info-field-icon{
     height: 22px;
@@ -49,3 +55,82 @@
     padding-right: 10px;
     cursor: pointer;
 }
+
+.report-container{
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    left: 20vh;
+    background-color: #f2f2f2;
+}
+
+
+.report-header{
+    height: 40px;
+    font-size: 30px;
+    margin: 5px 5px 5px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.report-cross{
+    width: 30px;
+    height: auto;
+}
+
+.report-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.report-content-left{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+}
+
+.report-content-right{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    background-color: red;
+}
+
+.left-upper{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+.left-upper-content{
+    padding: 10px;
+}
+
+.left-lower{
+    font-size: 15px;
+    height: 300px;
+    margin: 0 50px 50px 50px;
+    background-color: white;
+    overflow: scroll;
+}
+
+.left-lower-content{
+    padding: 10px 0 0 10px;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.type{
+    width: 60%;
+}
+
+.price{
+    width: 20%;
+}
+
+
