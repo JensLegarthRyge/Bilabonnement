@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lease information</title>
+</head>
+<body>
+<div >
+    <form id="information" action="">
+        <label for="lease-id">Report ID</label>
+        <input type="number" id="lease-id" th:value="${lease.getId()}" disabled>
+        <br><br>
+        <div>
+            <label for="car-id">Stelnummer</label>
+            <select id="car-id" class="inputFields" disabled>
+                <option th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
+                <option th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+
+            </select>
+        </div>
+        <br><br>
+        <label for="period">Leasing tid</label>
+        <input type="number" id="period" th:value="${lease.getPeriod()}" disabled>
+        <br><br>
+        <div>
+            <label for="customer-id">Kunde ID</label>
+            <select id="customer-id" class="inputFields" disabled>
+                <option th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
+                <option th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <label for="employee-id">Medarbejder</label>
+            <select name="pickup-address" id="employee-id" class="inputFields" disabled>
+                <option th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
+                <option th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <label for="pickup-address">Opsamlings addresse</label>
+            <select name="pickup-address" id="pickup-address" class="inputFields" disabled>
+                <option th:value="${lease.getPickupLocationId()}" selected disabled></option>
+                <option  value="Rødovre">Rødovre</option>
+                <option value="Køge">Køge</option>
+                <option value="Odense">Odense</option>
+                <option value="Århus">Århus</option>
+                <option value="Ålborg">Ålborg</option>
+            </select>
+        </div>
+        <br><br>
+        <label for="start-date">Starts dato</label>
+        <input type="date" id="start-date" th:value="${lease.getStartDate()}" disabled>
+        <br><br>
+        <label for="created-date">Raport lavet</label>
+        <input type="date" id="created-date" th:value="${lease.getCreatedDate()}" disabled>
+        <br><br>
+        <label for="has-deductable">Afleveringsforsikring</label>
+        <input type="number" id="has-deductable" th:value="${lease.hasLowDeductableInsurance()}" disabled>
+        <br><br>
+        <label for="return-insurance">Retur forsikring</label>
+        <input type="number" id="return-insurance" th:value="${lease.hasReturnInsurance()}" disabled>
+        <br><br>
+        <label for="limited">Er limited</label>
+        <input type="number" id="limited" th:value="${lease.isLimited()}" disabled>
+    </form>
+</div>
+
+<div>
+    <button  id="edit" type="button">
+        Rediger
+    </button>
+</div>
+
+
+
+
+<script>
+    var button = document.getElementById("edit");
+    var info = document.getElementById("information");
+    button.addEventListener('click', function() {
+        for (var i = 1; i <info.length ; i++) {
+            info.elements[i].disabled = false
+        }
+    })
+
+
+</script>
+</body>
+</html>

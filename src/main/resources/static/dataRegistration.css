@@ -139,6 +139,10 @@ input{
     margin-left: 20px;
 }
 
+#edit-info {
+    display: block;
+}
+
 .inputFields select, .inputFields option {
     width: 20px;
 

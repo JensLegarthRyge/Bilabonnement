@@ -1,6 +1,7 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
+import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.CarRepository;
 import com.example.bilabonnement.repositories.CustomerRepository;
 import com.example.bilabonnement.repositories.EmployeeRepository;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.security.auth.message.callback.CallerPrincipalCallback;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -71,6 +73,28 @@ public class DataRegistrationController {
     public String listOfId (HttpSession session, WebRequest dataFromForm, Model idList) {
 
         return "data-registration";
+    }
+
+    @PostMapping("/edit-lease")
+    public String leaseEdit (HttpSession session, WebRequest dataFromForm, Model information){
+        LeaseReportRepository lr = new LeaseReportRepository();
+        CustomerRepository cr = new CustomerRepository();
+        CarRepository carRepo = new CarRepository();
+        EmployeeRepository er = new EmployeeRepository();
+
+        int leaseId = Integer.parseInt(dataFromForm.getParameter("id"));
+
+
+
+        information.addAttribute("lease", lr.getSingleById(leaseId));
+        information.addAttribute("allCars", carRepo.getAll());
+        information.addAttribute("allCustomers", cr.getAll());
+        information.addAttribute("allEmployees", er.getAll());
+        information.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(leaseId).getCarId()));
+        information.addAttribute("customerById", cr.getSingleById(lr.getSingleById(leaseId).getCustomerId()));
+        information.addAttribute("employeeById", er.getSingleById(lr.getSingleById(leaseId).getEmployeeId()));
+
+        return "data-registration-edit";
     }
 
 
