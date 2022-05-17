@@ -15,14 +15,14 @@
 <section class="main-container">
     <div class="edit-container">
         <div class="edit-header">
+            <p></p>
             <span th:text="${'Lease raport ID: ' + lease.getId()}"></span>
             <form method="GET" action="/back-to-data-registration">
-                <input type="image" class="report-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
+                <input type="image" class="edit-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
             </form>
         </div>
         <div class="edit-content">
-            <form id="information" action="">
-
+            <form id="information" class="edit-content" action="">
                 <div class="edit-content-left">
                     <div class="left-upper">
                         <div class="left-upper-content">
@@ -120,10 +120,7 @@
                 <button  id="edit" type="button">Rediger</button>
                 <input type="submit" onclick="form.submit()">Anvend</input>
             </div>
-
         </div>
-
-
     </div>
 
 </section>
