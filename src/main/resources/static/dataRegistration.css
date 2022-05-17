@@ -141,7 +141,7 @@ input[type=file], .info-form input[type=submit] {
     background-image: url("https://imgur.com/tnlpboB.png");
     width: 30px;
     height: auto;
-    margin-right: 60%;
+    margin-right: 30%;
     overflow: hidden;
     background-repeat: no-repeat;
     border: none;
@@ -167,11 +167,12 @@ input[type=file], .info-form input[type=submit] {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    width: 100%;
     margin-left: 40%;
     margin-right: 60%;
     display: flex;
     justify-content: space-between;
+    width: 800px;
+
 }
 
 .close-button {
