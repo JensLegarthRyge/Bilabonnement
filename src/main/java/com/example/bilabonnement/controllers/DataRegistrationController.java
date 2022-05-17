@@ -115,5 +115,10 @@ public class DataRegistrationController {
         return "data-registration-edit";
     }
 
+    @GetMapping("/bak-to-data-registration")
+    public String backToDataRegistration() {
+        return "data-registration";
+    }
+
 
 }
