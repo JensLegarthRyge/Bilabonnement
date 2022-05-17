@@ -66,7 +66,7 @@
 
 
 .report-header{
-    height: 40px;
+    height: 60px;
     font-size: 30px;
     margin: 5px 5px 5px 5px;
     display: flex;
@@ -95,8 +95,9 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 100%;
-    background-color: red;
+    height: 550px;
+    background-color: white;
+    margin: 30px;
 }
 
 .left-upper{
@@ -133,4 +134,28 @@
     width: 20%;
 }
 
+.right-header{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-incident-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.select-incident{
+    margin: 30px auto 30px auto;
+    width: 80%;
+}
+
+.incident-submit{
+    display: flex;
+    margin: 10px auto 10px auto;
+    width: 40%;
+    height: 40px;
+}
 

@@ -3,10 +3,12 @@ package com.example.bilabonnement.controllers;
 import com.example.bilabonnement.models.Incident;
 import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.repositories.*;
+import com.example.bilabonnement.services.IncidentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
@@ -19,23 +21,28 @@ public class DamageReportController {
     IncidentReportRepository irr = new IncidentReportRepository();
     CustomerRepository cr = new CustomerRepository();
     CarRepository carRepository = new CarRepository();
+    IncidentTypeRepository itr = new IncidentTypeRepository();
 
-    @GetMapping("/damage")
-    public String damageAndMaintenance(HttpSession session, Model damageModel){
-        damageModel.addAttribute("allIncidentReports",irr.getAll());
+    @GetMapping("/back-to-damage-frontpage")
+    public String damageAndMaintenance(HttpSession session){
+
+        session.setAttribute("incidentReportId", null);
 
         return "damage-and-maintenance";
     }
 
-    @PostMapping("/report")
-    public String damageReport(HttpSession session, Model leaseReport, Model incidents, Model incidentReport, Model customer, WebRequest dataFromForm){
-        int incidentReportId = Integer.parseInt(dataFromForm.getParameter("id"));
+    @RequestMapping("/report")
+    public String damageReport(HttpSession session, Model leaseReport, Model incidentsOnReport, Model incidentReport, Model customer, Model incidentTypes, WebRequest dataFromForm){
+        if(session.getAttribute("incidentReportId") == null){
+            session.setAttribute("incidentReportId", Integer.parseInt(dataFromForm.getParameter("id")));
+        }
+        int incidentReportId = (int)session.getAttribute("incidentReportId");
         customer.addAttribute("customer", cr.getSingleById(lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()).getCustomerId()));
         leaseReport.addAttribute("leaseReport", lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()));
         incidentReport.addAttribute("incidentReport", irr.getSingleById(incidentReportId));
         ArrayList<Incident> incidents1 = ir.getALlSpecific(incidentReportId);
-        System.out.println(incidents1);
-        incidents.addAttribute("incidents", incidents1);
+        incidentsOnReport.addAttribute("incidents", incidents1);
+        incidentTypes.addAttribute("incidentTypes", itr.getAll());
 
         return "damage-report";
     }
@@ -43,6 +50,14 @@ public class DamageReportController {
     @PostMapping("delete-incident")
     public String deleteIncident(){
         System.out.println("test");
-        return "redirect:/damage-report";
+        return "redirect:/report";
+    }
+
+    @PostMapping("create-incident")
+    public String createIncident(HttpSession session, WebRequest dataFromForm){
+        IncidentService incidentService = new IncidentService();
+        incidentService.createNewIncident(dataFromForm);
+        System.out.println(dataFromForm.toString());
+        return "redirect:/report";
     }
 }
