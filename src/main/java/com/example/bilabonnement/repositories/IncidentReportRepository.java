@@ -23,6 +23,7 @@ public class IncidentReportRepository implements CRUDInterface<IncidentReport> {
         String query = "INSERT INTO `bilabonnement`.`incident_report` (`lease_report_id`, `total_price`, `customer_price`) " +
                 "VALUES ('"+leaseReportId+"', '"+price+"', '"+customerPrice+"');";
         try {
+
             PreparedStatement stmt = connection.prepareStatement(query);
 
             stmt.executeUpdate();

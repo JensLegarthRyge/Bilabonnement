@@ -179,11 +179,33 @@ public class CarRepository implements CRUDInterface<Car> {
 
             carId = rs.getInt("car_id");
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return carId;
-
     }
+
+    public String getRegistrationNumberByIncidentReportId(int incidentReportId){
+        String regNum = "";
+        try{
+
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = stmt.executeQuery("SELECT incident_report_id, cars.registration_number\n" +
+                    "FROM leasing_report\n" +
+                    "INNER JOIN cars\n" +
+                    "ON leasing_report.car_id = cars.car_id\n" +
+                    "INNER JOIN incident_report\n" +
+                    "ON leasing_report.lease_report_id = incident_report.lease_report_id\n" +
+                    "WHERE incident_report.incident_report_id ='"+incidentReportId+"'");
+            rs.next();
+            regNum = rs.getString("registration_number");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return regNum;
+    }
+
 }

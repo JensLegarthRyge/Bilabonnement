@@ -1,6 +1,7 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Incident;
+import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ public class DamageReportController {
     LeaseReportRepository lr = new LeaseReportRepository();
     IncidentRepository ir = new IncidentRepository();
     IncidentReportRepository irr = new IncidentReportRepository();
+    CustomerRepository cr = new CustomerRepository();
+    CarRepository carRepository = new CarRepository();
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
@@ -25,12 +28,21 @@ public class DamageReportController {
     }
 
     @PostMapping("/report")
-    public String damageReport(HttpSession session, Model report, Model incidents, WebRequest dataFromForm){
-        int leaseReportId = Integer.parseInt(dataFromForm.getParameter("id"));
-        report.addAttribute("report", lr.getSingleById(leaseReportId));
-
-        incidents.addAttribute("incidents", ir.getALlSpecific(leaseReportId));
+    public String damageReport(HttpSession session, Model leaseReport, Model incidents, Model incidentReport, Model customer, WebRequest dataFromForm){
+        int incidentReportId = Integer.parseInt(dataFromForm.getParameter("id"));
+        customer.addAttribute("customer", cr.getSingleById(lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()).getCustomerId()));
+        leaseReport.addAttribute("leaseReport", lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()));
+        incidentReport.addAttribute("incidentReport", irr.getSingleById(incidentReportId));
+        ArrayList<Incident> incidents1 = ir.getALlSpecific(incidentReportId);
+        System.out.println(incidents1);
+        incidents.addAttribute("incidents", incidents1);
 
         return "damage-report";
+    }
+
+    @PostMapping("delete-incident")
+    public String deleteIncident(){
+        System.out.println("test");
+        return "redirect:/damage-report";
     }
 }
