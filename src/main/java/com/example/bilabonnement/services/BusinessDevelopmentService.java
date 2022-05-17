@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class businessDevelopmentService {
+public class BusinessDevelopmentService {
     /*Jens Legarth Ryge*/
     public String getCarsRentedAmount(){
         CarRepository carRepository = new CarRepository();

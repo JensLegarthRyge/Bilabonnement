@@ -1,7 +1,7 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.repositories.CarRepository;
-import com.example.bilabonnement.services.businessDevelopmentService;
+import com.example.bilabonnement.services.BusinessDevelopmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ public class BusinessController {
     public String businessDevelopment(Model model){
         CarRepository cr = new CarRepository();
         model.addAttribute("allCars",cr.getAll());
-        model.addAttribute("businessDevelopmentService", new businessDevelopmentService());
+        model.addAttribute("businessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";
     }
 
