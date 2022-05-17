@@ -23,9 +23,9 @@ public class DamageReportController {
     CarRepository carRepository = new CarRepository();
     IncidentTypeRepository itr = new IncidentTypeRepository();
 
-    @GetMapping("/back-to-damage-frontpage")
-    public String damageAndMaintenance(HttpSession session){
-
+    @GetMapping("/damage")
+    public String damageAndMaintenance(HttpSession session, Model damageModel){
+        damageModel.addAttribute("allIncidentReports",irr.getAll());
         session.setAttribute("incidentReportId", null);
 
         return "damage-and-maintenance";
@@ -48,8 +48,9 @@ public class DamageReportController {
     }
 
     @PostMapping("delete-incident")
-    public String deleteIncident(){
-        System.out.println("test");
+    public String deleteIncident(WebRequest dataFromForm){
+        IncidentService incidentService = new IncidentService();
+        incidentService.deleteIncident(dataFromForm);
         return "redirect:/report";
     }
 

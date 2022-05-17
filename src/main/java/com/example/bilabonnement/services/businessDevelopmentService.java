@@ -28,24 +28,24 @@ public class businessDevelopmentService {
     }
 
     public static void getEarningsAmount(){
-        LeaseReportRepository leaseReportRepository = new LeaseReportRepository();
-        IncidentReportRepository incidentReportRepository = new IncidentReportRepository();
-        ArrayList<LeaseReport> allLeaseReports = leaseReportRepository.getAll();
-        ArrayList<IncidentReport> allIncidentReports = incidentReportRepository.getAll();
-        ArrayList<Integer> allActiveLeaseReportIds = new ArrayList<>();
 
         //Removes inactive lease reports
+        LeaseReportRepository leaseReportRepository = new LeaseReportRepository();
+        ArrayList<LeaseReport> allLeaseReports = leaseReportRepository.getAll();
+        ArrayList<Integer> allActiveLeaseReportIds = new ArrayList<>();
         for (LeaseReport currentLeaseReport:allLeaseReports) {
             LocalDate leaseReportStartDate = currentLeaseReport.getStartDate();
             int period = currentLeaseReport.getPeriod();
             if (leaseReportStartDate.plusDays(period).isAfter(LocalDate.now())
-            || leaseReportStartDate.isBefore(LocalDate.now())){
+                    || leaseReportStartDate.isBefore(LocalDate.now())){
                 allLeaseReports.remove(currentLeaseReport);
                 allActiveLeaseReportIds.add(currentLeaseReport.getId());
             }
         }
 
         //Removes irrelevant incident reports
+        IncidentReportRepository incidentReportRepository = new IncidentReportRepository();
+        ArrayList<IncidentReport> allIncidentReports = incidentReportRepository.getAll();
         allIncidentReports.removeIf(currentIncidentReport ->
                         !allActiveLeaseReportIds.contains(currentIncidentReport.getLeaseReportId())
         );
@@ -54,10 +54,13 @@ public class businessDevelopmentService {
         for (LeaseReport currentLeaseReport:allLeaseReports) {
             pureRentalEarnings += currentLeaseReport.getPrice()/30.437 * currentLeaseReport.getPeriod();
         }
+
         double damageEarnings = 0;
         for (IncidentReport currentIncidentReport:allIncidentReports) {
-            //damageEarnings += currentIncidentReport
+            damageEarnings += currentIncidentReport.getPrice();
         }
+
+
 
 
 

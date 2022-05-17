@@ -34,13 +34,13 @@ public class Incident {
         return incidentTypeId;
     }
 
-    public String getType(int id){
-        String type = itr.getSingleById(id).getType();
+    public String getType(){
+        String type = itr.getSingleById(this.incidentTypeId).getType();
         return type;
     }
 
-    public int getPrice(int id){
-        int price = itr.getSingleById(id).getPrice();
+    public int getPrice(){
+        int price = itr.getSingleById(getIncidentTypeId()).getPrice();
         return price;
     }
 

@@ -4,6 +4,7 @@ package com.example.bilabonnement.models;
 
 import com.example.bilabonnement.repositories.CarRepository;
 import com.example.bilabonnement.repositories.CustomerRepository;
+import com.example.bilabonnement.repositories.IncidentRepository;
 import com.example.bilabonnement.repositories.LeaseReportRepository;
 
 import java.time.LocalDate;
@@ -40,14 +41,23 @@ public class IncidentReport {
 
 
     public double getPrice() {
-
+        price = calculatePrice();
         return price;
+    }
+
+    public double calculatePrice() {
+        IncidentRepository ir = new IncidentRepository();
+        ArrayList<Incident> incidents = ir.getALlSpecific(this.id);
+        double finalPrice = 0;
+        for (Incident ci:incidents) {
+            finalPrice += ci.getPrice();
+        }
+        return finalPrice;
     }
 
     public double getCustomerPrice() {
         return customerPrice;
     }
-
 
     public String getRegistrationNumber(){
         int carId = lr.getSingleById(this.leaseReportId).getCarId();
