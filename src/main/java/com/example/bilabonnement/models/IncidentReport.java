@@ -41,16 +41,18 @@ public class IncidentReport {
 
 
     public double getPrice() {
+        price = calculatePrice();
         return price;
     }
 
     public double calculatePrice() {
         IncidentRepository ir = new IncidentRepository();
         ArrayList<Incident> incidents = ir.getALlSpecific(this.id);
+        double finalPrice = 0;
         for (Incident ci:incidents) {
-            ci.getPrice()
-
+            finalPrice += ci.getPrice();
         }
+        return finalPrice;
     }
 
     public double getCustomerPrice() {
