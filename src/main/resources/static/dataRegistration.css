@@ -30,6 +30,8 @@
     opacity: 0.8;
     transition: 0.5s;
     cursor: pointer;
+    border: none;
+    outline: inherit;
 }
 
 .button:hover{
@@ -110,6 +112,7 @@ input[type=file], .info-form input[type=submit] {
     }
 }
 
+/* MADS ELLER JOHANNES TAG LIGE CREDIT HER TAK */
 
 .popup{
     z-index: 10;

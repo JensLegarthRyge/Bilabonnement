@@ -40,6 +40,7 @@ public class IncidentReport {
 
 
     public double getPrice() {
+
         return price;
     }
 

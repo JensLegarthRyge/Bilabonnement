@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bilabonnement - Dataregistrering</title>
+    <title>Dataregistrering - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
     <link rel="stylesheet" th:href="@{dataRegistration.css}"href="../static/dataRegistration.css">
 </head>
@@ -109,6 +109,7 @@
             <span class="info-field">Startdato:</span>
             <div><img class="info-field-image" src="https://i.stack.imgur.com/olrL8.png"></div>
         </div>
+
         <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
             <span class="info-field-id" th:text="${LeaseReport.getId()}"></span>
             <span class="info-field" th:text="${LeaseReport.getCarId()}"></span>

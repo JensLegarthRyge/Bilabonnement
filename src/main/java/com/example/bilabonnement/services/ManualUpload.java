@@ -6,13 +6,10 @@ import com.example.bilabonnement.repositories.IncidentReportRepository;
 import com.example.bilabonnement.repositories.LeaseReportRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.naming.InitialContext;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ManualUpload {
-
     public boolean uploadManualLease(WebRequest dataFromForm, int userId){
         LeaseReportRepository leaseRep = new LeaseReportRepository();
         IncidentReportRepository insicentRep = new IncidentReportRepository();

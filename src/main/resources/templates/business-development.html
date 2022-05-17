@@ -1,10 +1,99 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forretningsudvikling - Bilabonnement</title>
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{businessDevelopment.css}" href="../static/businessDevelopment.css">
 </head>
+
+<!-- penge https://img.icons8.com/ios/344/swedish-krona.png -->
+<!-- available https://img.icons8.com/ios/344/car--v1.png -->
+
 <body>
+<div th:replace="fragments/general.html :: header()"></div>
+
+<section class="main-container">
+    <section class="statistics-container">
+        <div class="statistic-info-box">
+            <img class="statistic-info-box-logo" src="https://img.icons8.com/ios/344/ffffff/car-rental.png">
+            <section class="statistic-info-box-content">
+                <div class="statistic-info-box-content-header">Antal biler udlejet:</div>
+                <div class="statistic-info-box-content-body-text">17/22</div>
+            </section>
+        </div>
+        <div class="statistic-info-box">
+            <img class="statistic-info-box-logo" src="https://img.icons8.com/ios/344/ffffff/swedish-krona.png">
+            <section class="statistic-info-box-content">
+                <div class="statistic-info-box-content-header">Estimeret indtjening for biler udlejet:</div>
+                <div class="statistic-info-box-content-body-text">57.829,88 DKK</div>
+            </section>
+        </div>
+    </section>
+
+    <section class="cars-container">
+
+        <div class="car-info-container-header">
+            <span class="info-field">Nummerplade:</span>
+            <span class="info-field">Stelnummer:</span>
+            <span class="info-field-long">Transmissionstype:</span>
+            <span class="info-field">Energiressource:</span>
+            <span class="info-field">Km pr. L/kWh:</span>
+            <span class="info-field">Energi-label:</span>
+            <span class="info-field">Farve:</span>
+            <span class="info-field">Pris:</span>
+            <span class="info-field">Hestekraft:</span>
+        </div>
+
+        <div class="car-info-container" th:each="Car : ${allCars}">
+            <span class="car-info-container-unavailable" th:if="${Car.isCurrentlyRented()}">
+                    <span class="info-field" th:text="${Car.getRegistrationNumber()}"></span>
+                    <span class="info-field" th:text="${Car.getChassisNumber()}"></span>
+
+                    <span class="info-field-long" th:if="${Car.isManual()}">
+                        <img class="info-field-image" src="https://img.icons8.com/ios/344/gear-stick.png">
+                        <span>Manuelt</span>
+                    </span>
+                    <span class="info-field-long" th:unless="${Car.isManual()}">
+                        <img class="info-field-image" src="https://img.icons8.com/ios/344/gear-stick.png">
+                        <span>Automatgear</span>
+                    </span>
+
+                    <span class="info-field" th:text="${Car.getFuelType()}"></span>
+                    <span class="info-field" th:text="${Car.getFuelConsumptionPerKilometer()}"></span>
+                    <span class="info-field" th:text="${Car.getEnergyLabel()}"></span>
+                    <span class="info-field" th:text="${Car.getColor()}"></span>
+                    <span class="info-field" th:text="${Car.getPrice()}"></span>
+                    <span class="info-field" th:text="${Car.getHorsePower()}"></span>
+            </span>
+            <span class="car-info-container-available" th:unless="${Car.isCurrentlyRented()}">
+                    <span class="info-field" th:text="${Car.getRegistrationNumber()}"></span>
+                    <span class="info-field" th:text="${Car.getChassisNumber()}"></span>
+
+                    <span class="info-field-long" th:if="${Car.isManual()}">
+                            <img class="info-field-image" src="https://img.icons8.com/ios/344/gear-stick.png">
+                            <span>Manuelt</span>
+                    </span>
+                    <span class="info-field-long" th:unless="${Car.isManual()}">
+                            <img class="info-field-image" src="https://img.icons8.com/ios/344/gear-stick.png">
+                            <span>Automatgear</span>
+                    </span>
+
+                    <span class="info-field" th:text="${Car.getFuelType()}"></span>
+                    <span class="info-field" th:text="${Car.getFuelConsumptionPerKilometer()}"></span>
+                    <span class="info-field" th:text="${Car.getEnergyLabel()}"></span>
+                    <span class="info-field" th:text="${Car.getColor()}"></span>
+                    <span class="info-field" th:text="${Car.getPrice()}"></span>
+                    <span class="info-field" th:text="${Car.getHorsePower()}"></span>
+            </span>
+
+        </div>
+
+    </section>
+</section>
+
 
 </body>
 </html>
