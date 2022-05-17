@@ -16,9 +16,11 @@
 <div th:replace="fragments/general.html :: header()"></div>
 
 <div id="manualPopupForm" style="display: none">
+
     <form method="POST" action="/manual-upload" class="popup">
-        <button type="button" class="close-button" id="button-close" onclick="closeManualForm()">+</button>
-        <div class="popupHeader">Manuel indtastning</div>
+        <div class="popupHeader">Manuel indtastning
+            <button type="button" class="report-cross" id="button-close" onclick="closeManualForm()"></button>
+        </div>
         <div class="popupSectionTop">
             <div>
                 <label for="carId" class="inputFields"><b>Stelnummer</b></label>

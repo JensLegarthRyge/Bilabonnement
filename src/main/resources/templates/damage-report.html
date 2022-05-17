@@ -23,32 +23,41 @@
             <div class="report-content-left">
                 <div class="left-upper">
                     <div class="left-upper-content">
-                        <span>Udlejet til: </span>
-                        <span th:text="${customer.getFullName()}"></span>
+                        <span th:text="'Udlejet til: ' + ${customer.getFullName()}"></span>
                     </div>
                     <div class="left-upper-content">
-                        <span>Har lav selvrisiko forsikring: </span>
-                        <span th:text="${leaseReport.hasLowDeductableInsurance()}"></span>
+                        <span>Har lav afleveringsforsikring: </span>
+                        <span th:if="${leaseReport.hasLowDeductableInsurance()}">
+                            <span>Ja</span>
+                        </span>
+                        <span th:unless="${leaseReport.hasLowDeductableInsurance()}">
+                            <span>Nej</span>
+                        </span>
                     </div>
                     <div class="left-upper-content">
                         <span>Har afleveringsforsikring: </span>
-                        <span th:text="${leaseReport.hasReturnInsurance()}"></span>
+                        <span th:if="${leaseReport.hasReturnInsurance()}">
+                            <span>Ja</span>
+                        </span>
+                        <span th:unless="${leaseReport.hasReturnInsurance()}">
+                            <span>Nej</span>
+                        </span>
                     </div>
                     <div class="left-upper-content">
-                        <span>Incident report ID: </span>
-                        <span th:text="${incidentReport.getId()}"></span>
+                        <span th:text="'Samlet pris ' + ${incidentReport.getPrice()}"></span>
                     </div>
 
                 </div>
                 <div class="left-lower">
                     <div class="left-lower-content" th:each="Incident : ${incidents}">
-                        <span class="type" th:text="'Skades type: ' + ${Incident.getType(Incident.getIncidentTypeId())}"></span>
-                        <span class="price" th:text="'Pris: ' + ${Incident.getPrice(Incident.getIncidentTypeId())} + ',-'"></span>
+                        <span class="type" th:text="'Skades type: ' + ${Incident.getType()}"></span>
+                        <span class="price" th:text="'Pris: ' + ${Incident.getPrice() * incidentReport.getIncidentFactor()}"></span>
                         <form method="POST" action="/delete-incident">
                             <input type="hidden" name="incidentId" th:value="${Incident.getId()}">
                             <input type="image" class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png">
                         </form>
                     </div>
+
 
                 </div>
 
@@ -65,7 +74,7 @@
                             <option th:each="IncidentType : ${incidentTypes}" th:value="${IncidentType.getId()}" th:text="${IncidentType.getType()}"></option>
                         </Select>
                     </div>
-                    <input type="submit" class="incident-submit">
+                    <input type="submit" class="incident-submit" value="TILFØJ">
                 </form>
 
             </div>
