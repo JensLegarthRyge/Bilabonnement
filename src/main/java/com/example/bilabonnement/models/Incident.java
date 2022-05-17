@@ -39,8 +39,8 @@ public class Incident {
         return type;
     }
 
-    public int getPrice(int id){
-        int price = itr.getSingleById(id).getPrice();
+    public int getPrice(){
+        int price = itr.getSingleById(getIncidentTypeId()).getPrice();
         return price;
     }
 
