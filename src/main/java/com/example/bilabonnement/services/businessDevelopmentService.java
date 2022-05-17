@@ -54,9 +54,10 @@ public class businessDevelopmentService {
         for (LeaseReport currentLeaseReport:allLeaseReports) {
             pureRentalEarnings += currentLeaseReport.getPrice()/30.437 * currentLeaseReport.getPeriod();
         }
+
         double damageEarnings = 0;
         for (IncidentReport currentIncidentReport:allIncidentReports) {
-            //damageEarnings += currentIncidentReport
+            damageEarnings += currentIncidentReport.getId();
         }
 
 

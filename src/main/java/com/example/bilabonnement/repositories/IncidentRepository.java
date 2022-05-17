@@ -1,7 +1,6 @@
 package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.Incident;
-import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.sql.*;

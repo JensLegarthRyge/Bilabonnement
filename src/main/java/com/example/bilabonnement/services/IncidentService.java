@@ -12,7 +12,6 @@ public class IncidentService {
         ir.create(new Incident(incidentReportId, incidentTypeId));
     }
 
-
     public void deleteIncident(WebRequest dataFromForm){
         int incidentId = Integer.parseInt(dataFromForm.getParameter("incidentId"));
         ir.delete(incidentId);
