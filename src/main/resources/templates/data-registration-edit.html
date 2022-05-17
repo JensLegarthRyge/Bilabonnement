@@ -27,12 +27,12 @@
                     <div class="left-upper">
                         <div class="left-upper-content">
                             <label for="lease-id">Report ID</label>
-                            <input type="number" id="lease-id" th:value="${lease.getId()}" disabled>
+                            <input type="number" class="input-fields" id="lease-id" th:value="${lease.getId()}" disabled>
                         </div>
 
                         <div class="left-upper-content">
                             <label for="car-id">Stelnummer</label>
-                            <select id="car-id" class="inputFields" disabled>
+                            <select id="car-id" class="input-fields" disabled>
                                 <option th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
                                 <option th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
                             </select>
@@ -40,12 +40,12 @@
 
                         <div class="left-upper-content">
                             <label for="period">Leasing tid</label>
-                            <input type="number" id="period" th:value="${lease.getPeriod()}" disabled>
+                            <input type="number" id="period" class="input-fields" th:value="${lease.getPeriod()}" disabled>
                         </div>
 
                         <div class="left-upper-content">
                             <label for="customer-id">Kunde ID</label>
-                            <select id="customer-id" class="inputFields" disabled>
+                            <select id="customer-id" class="input-fields" disabled>
                                 <option th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
                                 <option th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                             </select>
@@ -53,16 +53,14 @@
 
                         <div class="left-upper-content">
                             <label for="employee-id">Medarbejder</label>
-                            <select name="pickup-address" id="employee-id" class="inputFields" disabled>
+                            <select name="pickup-address" id="employee-id" class="input-fields" disabled>
                                 <option th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
                                 <option th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
                             </select>
                         </div>
-                    </div>
-                    <div class="left-lower">
-                        <div class="left-lower-content">
+                        <div class="left-upper-content">
                             <label for="pickup-address">Opsamlings addresse</label>
-                            <select name="pickup-address" id="pickup-address" class="inputFields" disabled>
+                            <select name="pickup-address" id="pickup-address" class="input-fields" disabled>
                                 <option th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
                                 <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
                             </select>
@@ -77,37 +75,37 @@
                     <div class="right-upper">
                         <div class="right-upper-content">
                             <label for="start-date">Starts dato</label>
-                            <input type="date" id="start-date" th:value="${lease.getStartDate()}" disabled>
+                            <input type="date" id="start-date" class="input-fields" th:value="${lease.getStartDate()}" disabled>
                         </div>
 
                         <div class="right-upper-content">
                             <label for="created-date">Raport lavet</label>
-                            <input type="date" id="created-date" th:value="${lease.getCreatedDate()}" disabled>
+                            <input type="date" id="created-date" class="input-fields" th:value="${lease.getCreatedDate()}" disabled>
                         </div>
                     </div>
 
                     <div class="right-lower">
-                        <div class="right-lower-content">
+                        <div class="right-upper-content">
                             <label for="has-deductable">Afleveringsforsikring</label>
-                            <select name="has-deductable" id="has-deductable" class="inputFields" disabled>
+                            <select name="has-deductable" id="has-deductable" class="input-fields" disabled>
                                 <option th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
                                 <option value="1">Har afleveringsforsikring</option>
                                 <option value="0">Har ikke afleveringsforsikring</option>
                             </select>
                         </div>
 
-                        <div class="right-lower-content">
+                        <div class="right-upper-content">
                             <label for="return-insurance">Retur forsikring</label>
-                            <select name="return-insurance" id="return-insurance" class="inputFields" disabled>
+                            <select name="return-insurance" id="return-insurance" class="input-fields" disabled>
                                 <option th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
                                 <option value="1" >Har retur forsikring</option>
                                 <option value="0">Har ikke retur forsikring</option>
                             </select>
                         </div>
 
-                        <div class="right-lower-content">
+                        <div class="right-upper-content">
                             <label for="limited">Limited & Unlimited</label>
-                            <select name="limited" id="limited" class="inputFields" disabled>
+                            <select name="limited" id="limited" class="input-fields" disabled>
                                 <option th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
                                 <option value="1" th:text="Limited"></option>
                                 <option value="0" th:text="Unlimited"></option>
@@ -116,9 +114,11 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="edit-footer">
             <div class="submit-and-edit">
-                <button  id="edit" type="button">Rediger</button>
-                <input type="submit" onclick="form.submit()">Anvend</input>
+                <button  id="edit" onclick="unlockButton()" type="button">Rediger</button>
+                <button type="button" id="apply-button" onclick="form.submit()" disabled>Anvend</button>
             </div>
         </div>
     </div>
@@ -133,6 +133,9 @@
         }
     })
 
+    function unlockButton() {
+        document.getElementById("apply-button").disabled = false;
+    }
 
 </script>
 </body>

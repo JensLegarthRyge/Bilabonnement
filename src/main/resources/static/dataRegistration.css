@@ -154,6 +154,12 @@ input[type=file], .info-form input[type=submit] {
     margin-left: 20px;
 }
 
+.input-fields {
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 #edit-info {
     display: block;
 }
@@ -252,6 +258,7 @@ input[type=file], .info-form input[type=submit] {
 .edit-content{
     display: flex;
     flex-direction: row;
+
 }
 
 .edit-content-left{
@@ -266,7 +273,6 @@ input[type=file], .info-form input[type=submit] {
     flex-direction: column;
     width: 40%;
     height: 550px;
-    background-color: white;
     margin: 30px;
 }
 
@@ -274,39 +280,66 @@ input[type=file], .info-form input[type=submit] {
     padding: 50px;
     display: flex;
     flex-direction: column;
-    font-size: 25px;
-}
-
-.left-upper-content .right-upper-content{
-    padding: 10px;
-}
-
-.left-lower .right-lower{
-    font-size: 15px;
-    height: 300px;
-    margin: 0 50px 50px 50px;
-    background-color: white;
-    overflow: scroll;
-}
-
-.left-lower-content .right-lower-content{
-    padding: 10px 0 0 10px;
-    font-size: 15px;
-    display: flex;
-    justify-content: space-between;
+    font-size: 18px;
 }
 
 .right-upper {
-
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
 }
 
-.right-lower {
-
+.left-upper-content, .right-upper-content {
+    padding: 10px;
 }
+
+.right-upper-content{
+    padding: 10px;
+}
+
+.left-lower, .right-lower {
+    font-size: 18px;
+    height: 300px;
+    margin: 0 50px 50px 50px;
+}
+
+
+.left-lower-content {
+    padding: 10px 0 0 10px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right-lower-content {
+    padding: 10px 0 0 10px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.edit-footer {
+    height: 60px;
+    font-size: 30px;
+    margin: -78px 5px 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.edit-footer button {
+    margin-right: 30px;
+}
+
+
 
 .submit-and-edit {
 
+
 }
+
 
 
 
