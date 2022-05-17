@@ -1,6 +1,7 @@
 package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.repositories.CarRepository;
+import com.example.bilabonnement.services.BusinessDevelopmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BusinessController {
 
     @GetMapping("/business")
-    public String businessDevelopment(Model carModel){
+    public String businessDevelopment(Model model){
         CarRepository cr = new CarRepository();
-        carModel.addAttribute("allCars",cr.getAll());
+        model.addAttribute("allCars",cr.getAll());
+        model.addAttribute("businessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";
     }
 
