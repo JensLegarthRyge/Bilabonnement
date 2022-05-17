@@ -52,6 +52,7 @@ public class IncidentReport {
         for (Incident ci:incidents) {
             finalPrice += ci.getPrice();
         }
+        finalPrice = finalPrice * getIncidentFactor();
         return finalPrice;
     }
 
@@ -69,6 +70,11 @@ public class IncidentReport {
         int customerId = lr.getSingleById(this.leaseReportId).getCustomerId();
         String customerName = cur.getSingleById(customerId).getFullName();
         return customerName;
+    }
+
+    public double getIncidentFactor(){
+        int carId = lr.getSingleById(this.leaseReportId).getCarId();
+        return cr.getSingleById(carId).getIncidentFactor();
     }
 
     public String getCreationDate(){
