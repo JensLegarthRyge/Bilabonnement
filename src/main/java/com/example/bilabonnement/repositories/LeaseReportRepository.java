@@ -46,7 +46,6 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
 
     @Override
     public ArrayList<LeaseReport> getAll() {
-        //Skal rettes til. Den er kopieret fra employee lige nu
         ArrayList<LeaseReport> leaseReports = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

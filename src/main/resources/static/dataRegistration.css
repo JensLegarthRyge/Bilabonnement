@@ -113,16 +113,79 @@ input[type=file], .info-form input[type=submit] {
 
 /* MADS ELLER JOHANNES TAG LIGE CREDIT HER TAK */
 
+
 .popup{
-    z-index: 10;
-    height: 50%;
-    width: 60%;
+    display: flex;
     position: absolute;
-    margin-top: 10%;
-    left: 40vh;
-    background-color: #f6ffff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    font-family: Montserrat,sans-serif;
+}
+
+.popup-window{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    height: 50%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border-color: #0f5e80;
+    border-style: solid;
+    gap: 15px;
+}
+
+.popup-close-button{
+    position: absolute;
+    padding: 5px;
+    right: 25%;
+    top: 25%;
+    width: 30px;
+    height: 30px;
+}
+
+.popup-Header{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.popup-drop-down-formulas-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
+.popup-split-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popup-tickbox-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-pickup-and-startdate-container{
+    display: flex;
+    flex-direction: row;
+    padding-right: 10%;
+}
+
+.popup-submit-button{
+    display: flex;
+    justify-content: center;
 }
 
 .close-button {
@@ -135,17 +198,6 @@ input[type=file], .info-form input[type=submit] {
     padding: 0;
     border: none;
     background: none;
-}
-
-.report-cross{
-    background-image: url("https://imgur.com/tnlpboB.png");
-    width: 30px;
-    height: auto;
-    margin-right: 30%;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    border: none;
-    background-color: Transparent;
 }
 
 .inputFields{
@@ -184,18 +236,6 @@ input[type=file], .info-form input[type=submit] {
 
 .inputFields select, .inputFields option {
     width: 20px;
-
-}
-
-.popupHeader{
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 40%;
-    margin-right: 60%;
-    display: flex;
-    justify-content: space-between;
-    width: 800px;
 
 }
 

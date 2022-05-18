@@ -44,16 +44,13 @@
 }
 
 .statistic-info-box-content-header{
-    font-size: 22px;
+    font-size: 18px;
     color: #FFFFFF;
 }
 
 .statistic-info-box-content-body-text{
-    font-size: 18px;
+    font-size: 22px;
     color: #FFFFFF;
-    text-decoration: underline;
-    text-decoration-style: solid;
-    text-decoration-thickness: 3px;
 }
 
 .cars-container{

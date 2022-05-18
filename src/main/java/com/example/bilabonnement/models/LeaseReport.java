@@ -1,9 +1,11 @@
 package com.example.bilabonnement.models;
 
 import com.example.bilabonnement.repositories.CarRepository;
+import com.example.bilabonnement.repositories.LeaseReportRepository;
 import com.example.bilabonnement.repositories.testRepositories.CarTestRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 //Jens Legarth Ryge & Johannes Forsting
 
@@ -63,7 +65,6 @@ public class LeaseReport {
             price += 119;
         }
     }
-
 
     public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, int pickupLocationId, boolean isLimited, double price, LocalDate createdDate, LocalDate startDate) {
         this.carId = carId;
@@ -136,8 +137,6 @@ public class LeaseReport {
     public LocalDate getStartDate() {
         return startDate;
     }
-
-
 
     @Override
     public String toString() {
