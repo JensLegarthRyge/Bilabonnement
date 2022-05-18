@@ -13,7 +13,7 @@ public class BusinessController {
     public String businessDevelopment(Model model){
         CarRepository cr = new CarRepository();
         model.addAttribute("allCars",cr.getAll());
-        model.addAttribute("businessDevelopmentService", new BusinessDevelopmentService());
+        model.addAttribute("BusinessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";
     }
 

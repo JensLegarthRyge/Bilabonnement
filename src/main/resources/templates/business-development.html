@@ -13,7 +13,7 @@
 <!-- available https://img.icons8.com/ios/344/car--v1.png -->
 
 <body>
-<div th:replace="fragments/logged-in.html :: header()"></div>
+<div th:replace="fragments/general.html :: header()"></div>
 
 <section class="main-container">
     <section class="statistics-container">
@@ -21,14 +21,14 @@
             <img class="statistic-info-box-logo" src="https://img.icons8.com/ios/344/ffffff/car-rental.png">
             <section class="statistic-info-box-content">
                 <div class="statistic-info-box-content-header">Antal biler udlejet:</div>
-                <div class="statistic-info-box-content-body-text" th:text="${businessDevelopmentService.getCarsRentedAmount()}"></div>
+                <div class="statistic-info-box-content-body-text" th:text="${BusinessDevelopmentService.getCarsRentedAmount()}"></div>
             </section>
         </div>
         <div class="statistic-info-box">
             <img class="statistic-info-box-logo" src="https://img.icons8.com/ios/344/ffffff/swedish-krona.png">
             <section class="statistic-info-box-content">
                 <div class="statistic-info-box-content-header">Estimeret indtjening for biler udlejet:</div>
-                <div class="statistic-info-box-content-body-text" th:text="${businessDevelopmentService.valueToCurrencyString(businessDevelopmentService.getTotalEarnings())}"></div>
+                <div class="statistic-info-box-content-body-text" th:text="${BusinessDevelopmentService.valueToCurrencyString(BusinessDevelopmentService.getTotalEarnings())}"></div>
             </section>
         </div>
     </section>

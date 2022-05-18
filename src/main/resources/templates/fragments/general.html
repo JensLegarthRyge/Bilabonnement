@@ -5,8 +5,16 @@
     <title>General fragments</title>
 </head>
 <body>
-    <div class="header" th:fragment="header()">
-        <img class="pictureForHeader" src="https://imgur.com/owCG6Ob.png">
-    </div>
+<div class="header-container" th:fragment="header()">
+    <form method="POST" action="/back-to-logged-in-frontpage" class="picture-for-header-container">
+        <input type="image" src="https://imgur.com/owCG6Ob.png" class="picture-for-header">
+    </form>
+    <form method="post" action="/log-out" class="log-out-container">
+        <button type="button" class="log-out">
+            LOG UD
+            <img class="log-out-icon" src="https://img.icons8.com/ios/344/exit.png">
+        </button>
+    </form>
+</div>
 </body>
 </html>
