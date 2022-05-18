@@ -8,13 +8,13 @@
     <link rel="stylesheet" th:href="@{loggedInFrontpage.css}" href="../static/loggedInFrontpage.css">
 </head>
     <body>
-        <div th:replace="fragments/logged-in.html :: header()"></div>
+        <div th:replace="fragments/general.html :: header()"></div>
         <section class="main-split-container">
             <section class="navigation-button-container">
                 <span class="navigation-header">
                     Vælg arbejdsområde
                 </span>
-                <form action="/admin" method="post" class="navigation-form">
+                <form action="/admin" method="GET" class="navigation-form">
                     <button type="submit" class="navigation-button">
                         <img src="https://img.icons8.com/ios/344/ffffff/wrench--v1.png" class="navigation-button-icon">
                         Administration
@@ -22,7 +22,7 @@
                     </button>
                 </form>
 
-                <form action="/data-registration" method="post" class="navigation-form">
+                <form action="/data-registration" method="GET" class="navigation-form">
                     <button type="submit" class="navigation-button">
                         <img src="https://img.icons8.com/ios/344/ffffff/licence-plate.png" class="navigation-button-icon">
                         Dataregistrering
@@ -30,7 +30,7 @@
                     </button>
                 </form>
 
-                <form action="/business-development" method="post" class="navigation-form">
+                <form action="/business" method="GET" class="navigation-form">
                     <button type="submit" onclick="" class="navigation-button">
                         <img src="https://img.icons8.com/ios/344/ffffff/cruise-control-on.png" class="navigation-button-icon">
                         Forretningsudvikling
@@ -38,7 +38,7 @@
                     </button>
                 </form>
 
-                <form action="/damage-and-maintenance" method="post" class="navigation-form">
+                <form action="/damage" method="GET" class="navigation-form">
                     <button class="navigation-button">
                         <img src="https://img.icons8.com/ios/344/ffffff/car-accident.png" class="navigation-button-icon">
                         Skade og udbedring

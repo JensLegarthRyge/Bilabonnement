@@ -35,36 +35,15 @@ public class IndexController {
         }
     }
 
-    @PostMapping("/admin")
-    public String redirectToAdmin(WebRequest dataFromForm, HttpSession session) {
-        return "admin";
-    }
-
-    @PostMapping("/business-development")
-    public String redirectToBusinessDevelopment(WebRequest dataFromForm, HttpSession session) {
-        return "business-development";
-    }
-
-    @PostMapping("/data-registration")
-    public String redirectToDataRegistration(WebRequest dataFromForm, HttpSession session) {
-        return "data-registration";
-    }
-
-    @PostMapping("/damage-and-maintenance")
-    public String redirectToDamageAndMaintenance(WebRequest dataFromForm, HttpSession session) {
-        return "damage-and-maintenance";
-    }
-
     @GetMapping("/log-out")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
-
     @PostMapping("back-to-logged-in-frontpage")
     public String backToLoggedInFrontpage(){
 
-        return "loggedInFrontpage";
+        return "logged-in-frontpage";
     }
 }
