@@ -1,6 +1,4 @@
 package com.example.bilabonnement.controllers;
-import com.example.bilabonnement.models.Employee;
-import com.example.bilabonnement.repositories.EmployeeRepository;
 import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,16 +29,30 @@ public class IndexController {
     public String loggedInFrontpage(WebRequest request, HttpSession session){
         if(loginService.verifyUserFromLoginDetails(request)){
             session.setAttribute("userId",request.getParameter("id"));
-            return "loggedInFrontpage";
+            return "logged-in-frontpage";
         } else{
             return "redirect:/?status=not-verified";
         }
     }
 
-    @PostMapping("/system-redirect")
-    public String redirectToChosenSite(WebRequest dataFromForm, HttpSession session) {
-        String urlToRedirect = dataFromForm.getParameter("selected-url");
-        return "redirect:/" + urlToRedirect;
+    @PostMapping("/admin")
+    public String redirectToAdmin(WebRequest dataFromForm, HttpSession session) {
+        return "admin";
+    }
+
+    @PostMapping("/business-development")
+    public String redirectToBusinessDevelopment(WebRequest dataFromForm, HttpSession session) {
+        return "business-development";
+    }
+
+    @PostMapping("/data-registration")
+    public String redirectToDataRegistration(WebRequest dataFromForm, HttpSession session) {
+        return "data-registration";
+    }
+
+    @PostMapping("/damage-and-maintenance")
+    public String redirectToDamageAndMaintenance(WebRequest dataFromForm, HttpSession session) {
+        return "damage-and-maintenance";
     }
 
     @GetMapping("/log-out")

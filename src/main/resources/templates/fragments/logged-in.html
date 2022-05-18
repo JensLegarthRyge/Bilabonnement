@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
     <title>Logged-in fragments</title>
 </head>
 <body>
-<div class="header" th:fragment="header()">
-    <img class="pictureForHeader" src="https://imgur.com/owCG6Ob.png">
-    <form method="post" action="/log-out">
-        <button type="button" class="log-out">Log ud</button>
-    </form>
+<section class="header-container" th:fragment="header()">
+    <div class="picture-for-header-container">
+        <img class="picture-for-header" src="https://imgur.com/owCG6Ob.png">
+    </div>
+    <div class="log-out-container">
+        <form method="post" action="/log-out">
+            <button type="button" class="log-out">Log ud</button>
+        </form>
+    </div>
 
-</div>
+</section>
 
 
 </body>
