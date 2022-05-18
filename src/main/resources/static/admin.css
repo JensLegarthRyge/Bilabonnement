@@ -1,0 +1,85 @@
+.main-container{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px 20px;
+    background-color: #F4F8FF;
+    font-family: Montserrat,sans-serif;
+}
+
+.lease-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.lease-info-container-header{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: 2px solid #0b435b;
+    font-weight: bold;
+}
+
+.lease-info-container{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 2px solid #0f5e80;
+}
+
+
+.info-field{
+    width: 7%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+.info-field-icon{
+    height: 22px;
+    width:auto;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.info-field-name{
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+
+.info-field-filler{
+    width: 32px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.create-new-employee-button{
+
+}
+
+.button{
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #1892c3;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    width: 200px;
+    opacity: 0.8;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+    outline: inherit;
+}
