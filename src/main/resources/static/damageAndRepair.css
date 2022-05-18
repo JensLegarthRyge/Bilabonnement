@@ -42,6 +42,15 @@
     padding-bottom: 10px;
     padding-left: 5px;
 }
+
+.info-field-name{
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+
 .info-field-filler{
     width: 32px;
     padding-top: 10px;
@@ -160,3 +169,26 @@
     text-align: center;
 }
 
+
+.search-bar-form{
+    display: flex;
+    flex-direction: row;
+    margin: 60px auto 0 auto;
+    justify-content: space-between;
+
+}
+
+.search-bar{
+    height: 40px;
+    width: 300px;
+}
+
+.search-submit{
+    height: 25px;
+    width: auto;
+    margin: auto 0 auto 5px;
+}
+
+.search-test{
+    display: flex;
+}
