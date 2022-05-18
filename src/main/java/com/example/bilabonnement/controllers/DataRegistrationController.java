@@ -44,6 +44,42 @@ public class DataRegistrationController {
         idList.addAttribute("allCars", carRepo.getAll());
         idList.addAttribute("allCustomers", cr.getAll());
 
+        LeaseReportRepository lr = new LeaseReportRepository();
+        EmployeeRepository er = new EmployeeRepository();
+        PickupLocationRepository pr = new PickupLocationRepository();
+
+
+
+        if (lr.getSingleById(24).hasLowDeductableInsurance()) {
+            model.addAttribute("hasDeductable", "Har afleveringsforsikring");
+        } else {
+            model.addAttribute("hasDeductable", "Har ikke afleveringsforsikring");
+        }
+
+        if (lr.getSingleById(24).hasReturnInsurance()) {
+            model.addAttribute("hasReturn", "Har afleveringsforsikring");
+        } else {
+            model.addAttribute("hasReturn", "Har ikke afleveringsforsikring");
+        }
+
+        if (lr.getSingleById(24).isLimited()) {
+            model.addAttribute("isLimited", "Limited");
+        } else {
+            model.addAttribute("isLimited", "Unlimited");
+        }
+
+
+
+        model.addAttribute("lease", lr.getSingleById(24));
+        model.addAttribute("allCars", carRepo.getAll());
+        model.addAttribute("allCustomers", cr.getAll());
+        model.addAttribute("allEmployees", er.getAll());
+        model.addAttribute("allPickupLocations", pr.getAll());
+        model.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(24).getCarId()));
+        model.addAttribute("customerById", cr.getSingleById(lr.getSingleById(24).getCustomerId()));
+        model.addAttribute("employeeById", er.getSingleById(lr.getSingleById(24).getEmployeeId()));
+        model.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(24).getPickupLocationId()));
+
 
         return "data-registration";
     }
@@ -72,7 +108,7 @@ public class DataRegistrationController {
         return "data-registration";
     }
 
-    @PostMapping("/edit-lease")
+    @PostMapping("/edit-lease-update")
     public String leaseEdit (HttpSession session, WebRequest dataFromForm, Model information){
         LeaseReportRepository lr = new LeaseReportRepository();
         CustomerRepository cr = new CustomerRepository();
