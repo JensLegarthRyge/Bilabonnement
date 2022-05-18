@@ -7,100 +7,46 @@
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
     <link rel="stylesheet" th:href="@{loggedInFrontpage.css}" href="../static/loggedInFrontpage.css">
 </head>
-<body>
-<div th:replace="fragments/logged-in.html :: header()"></div>
-<section class="main-split-container">
-    <section class="navigation-button-container">
-        <span class="navigation-header">
-            Vælg arbejdsområde
-        </span>
-        <form action="/admin" method="post" class="navigation-form">
-            <button type="submit" class="navigation-button">
-                <img src="https://img.icons8.com/ios/344/ffffff/wrench--v1.png" class="navigation-button-icon">
-                Administration
-                <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
-            </button>
-        </form>
+    <body>
+        <div th:replace="fragments/logged-in.html :: header()"></div>
+        <section class="main-split-container">
+            <section class="navigation-button-container">
+                <span class="navigation-header">
+                    Vælg arbejdsområde
+                </span>
+                <form action="/admin" method="post" class="navigation-form">
+                    <button type="submit" class="navigation-button">
+                        <img src="https://img.icons8.com/ios/344/ffffff/wrench--v1.png" class="navigation-button-icon">
+                        Administration
+                        <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
+                    </button>
+                </form>
 
-        <form action="/data-registration" method="post" class="navigation-form">
-            <button type="submit" class="navigation-button">
-                <img src="https://img.icons8.com/ios/344/ffffff/licence-plate.png" class="navigation-button-icon">
-                Dataregistrering
-                <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
-            </button>
-        </form>
+                <form action="/data-registration" method="post" class="navigation-form">
+                    <button type="submit" class="navigation-button">
+                        <img src="https://img.icons8.com/ios/344/ffffff/licence-plate.png" class="navigation-button-icon">
+                        Dataregistrering
+                        <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
+                    </button>
+                </form>
 
-        <form action="/business-development" method="post" class="navigation-form">
-            <button type="submit" onclick="" class="navigation-button">
-                <img src="https://img.icons8.com/ios/344/ffffff/cruise-control-on.png" class="navigation-button-icon">
-                Forretningsudvikling
-                <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
-            </button>
-        </form>
+                <form action="/business-development" method="post" class="navigation-form">
+                    <button type="submit" onclick="" class="navigation-button">
+                        <img src="https://img.icons8.com/ios/344/ffffff/cruise-control-on.png" class="navigation-button-icon">
+                        Forretningsudvikling
+                        <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
+                    </button>
+                </form>
 
-        <form action="/damage-and-maintenance" method="post" class="navigation-form">
-            <button class="navigation-button">
-                <img src="https://img.icons8.com/ios/344/ffffff/car-accident.png" class="navigation-button-icon">
-                Skade og udbedring
-                <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
-            </button>
-        </form>
-    </section>
-    <img class="frontpage-image" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fill,q_80,w_1280/v1/Frontpage/1600x990_i7jmdv_fbhwwc.png">
-
-</section>
-
-
-
-<!--
-
-<section class="split">
-    <div class="news">
-
-        <div class="customer-video">
-            <h1>Her er vores nye video for kunderne</h1>
-            <br> <br>
-            <iframe  class="video" width="702" height="409" src="https://www.youtube.com/embed/VOPnrqc7pn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen name="video" id="video"></iframe>
-        </div>
-        <div class="flawor-text">
-            <p>
-                Hos Bilabonnement synes vi det skal være simpelt og sikkert at have en bil.
-                Vi har derfor lavet et produkt, der gør det lige så simpelt at have en bil som at have et streaming-abonnement!
-
-                Vælger du et bilabonnement hos os, slipper du for at bekymre dig om service, forsikring og grøn ejerafgift. Når dit bilabonnement udløber, afleverer du bare bilen til os - let og simpelt.
-
-            </p>
-            <br><br>
-            <label for="link-youtube">Følg os på vores youtube kanal</label>
-            <a href="https://www.youtube.com/channel/UCjFEBzFXrrju-A7d9VQ-8_A" name="link-youtube" id="link-youtube">Bilabonnement</a>
-
-
-        </div>
-    </div>
-    <div class="selection">
-        <div class="content">
-            <form method="post" action="/system-redirect">
-              <label for="dropdown-content">Vælg arbejdsside</label>
-                 <br><br>
-                 <select name="dropdown-content" id="dropdown-content">
-                     <option value="pick-page"> -- Vælg side -- </option>
-                     <option value="damage">Skade og udbredreing</option>
-                     <option value="data-registration">Dataregistrering</option>
-                     <option value="business">Forretningsudvikling</option>
-                     <option value="admin">Admin</option>
-                 </select>
-                 <input type="hidden" name="selected-url" id="selected-url">
-                 <input type="submit" value='Vælg' onclick='return btnClick();'>
-            </form>
-        </div>
-    </div>
-
-</section>
-
--->
-
-<script>
-
-</script>
-</body>
+                <form action="/damage-and-maintenance" method="post" class="navigation-form">
+                    <button class="navigation-button">
+                        <img src="https://img.icons8.com/ios/344/ffffff/car-accident.png" class="navigation-button-icon">
+                        Skade og udbedring
+                        <img class="navigation-button-arrow" src="https://img.icons8.com/ios-glyphs/344/ffffff/arrow.png">
+                    </button>
+                </form>
+            </section>
+            <img class="frontpage-image" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fill,q_80,w_1280/v1/Frontpage/1600x990_i7jmdv_fbhwwc.png">
+        </section>
+    </body>
 </html>

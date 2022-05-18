@@ -50,3 +50,13 @@ body{
 .customer-video{
     padding: 0;
 }
+
+.header-form{
+    height: 100%;
+    width: auto;
+}
+
+.header-pic{
+    height: 100%;
+    width: auto;
+}

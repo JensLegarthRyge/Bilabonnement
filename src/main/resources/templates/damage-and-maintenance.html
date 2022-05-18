@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:replace="fragments/general.html :: header()"></div>
+<div th:replace="fragments/logged-in.html :: header()"></div>
 
 <div id="manualPopupForm" style="display: none">
 
@@ -20,11 +20,11 @@
     <div class="search-bar-form">
         <form method="POST" action="/search" class="search-test">
             <input type="search" id="mySearch" name="search" placeholder="Søg efter nummerplade" class="search-bar">
-            <input type="image" class="search-submit" src="https://imgur.com/THnVOqu.png" alt="submit">
+            <input type="image" class="search-submit" src="https://imgur.com/THnVOqu.png" alt="submit" title="Search">
         </form>
         <form method="POST" action="/search" class="search-test">
             <input type="hidden" name="clear" value="1">
-            <input type="image" class="search-submit" src="https://imgur.com/xurh5Le.png" alt="submit">
+            <input type="image" class="search-submit" src="https://imgur.com/xurh5Le.png" alt="submit" title="Remove filters">
         </form>
     </div>
     <section class="lease-container">
