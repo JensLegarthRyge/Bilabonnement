@@ -25,9 +25,14 @@ public class DamageReportController {
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
-        damageModel.addAttribute("allIncidentReports",irr.getAll());
+        ArrayList<IncidentReport> incidentReports = irr.getAll();
         session.setAttribute("incidentReportId", null);
 
+        if(session.getAttribute("registrationNumber") != null){
+            incidentReports = IncidentService.removeAllBut(incidentReports, session.getAttribute("registrationNumber").toString());
+            session.setAttribute("registrationNumber", null);
+        }
+        damageModel.addAttribute("allIncidentReports",incidentReports);
         return "damage-and-maintenance";
     }
 
@@ -60,5 +65,15 @@ public class DamageReportController {
         incidentService.createNewIncident(dataFromForm);
         System.out.println(dataFromForm.toString());
         return "redirect:/report";
+    }
+
+
+    @PostMapping("search")
+    public String search(HttpSession session, WebRequest dataFromForm){
+        if(dataFromForm.getParameter("clear") != null){
+            return "redirect:/damage";
+        }
+        session.setAttribute("registrationNumber", dataFromForm.getParameter("search"));
+        return "redirect:/damage";
     }
 }

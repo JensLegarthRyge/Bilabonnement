@@ -17,18 +17,28 @@
 </div>
 
 <section class="main-container">
+    <div class="search-bar-form">
+        <form method="POST" action="/search" class="search-test">
+            <input type="search" id="mySearch" name="search" placeholder="Søg efter nummerplade" class="search-bar">
+            <input type="image" class="search-submit" src="https://imgur.com/THnVOqu.png" alt="submit">
+        </form>
+        <form method="POST" action="/search" class="search-test">
+            <input type="hidden" name="clear" value="1">
+            <input type="image" class="search-submit" src="https://imgur.com/xurh5Le.png" alt="submit">
+        </form>
+    </div>
     <section class="lease-container">
         <div class="lease-info-container-header">
-            <span class="info-field">ID:</span>
-            <span class="info-field">Nr.plade:</span>
-            <span class="info-field">Lejet af:</span>
+            <span class="info-field">Rapport ID:</span>
+            <span class="info-field">Nr plade:</span>
+            <span class="info-field-name">Lejet af:</span>
             <span class="info-field">Oprettelsesdato:</span>
             <span class="info-field-filler"></span>
         </div>
         <div class="lease-info-container" th:each="IncidentReport : ${allIncidentReports}">
             <span class="info-field" th:text="${IncidentReport.getId()}"></span>
             <span class="info-field" th:text="${IncidentReport.getRegistrationNumber()}"></span>
-            <span class="info-field" th:text="${IncidentReport.getLeasedBy()}"></span>
+            <span class="info-field-name" th:text="${IncidentReport.getLeasedBy()}"></span>
             <span class="info-field" th:text="${IncidentReport.getCreationDate()}"></span>
             <div>
                 <form method="POST" action="/report">
