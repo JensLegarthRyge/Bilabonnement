@@ -114,4 +114,26 @@ public class IncidentReportRepository implements CRUDInterface<IncidentReport> {
             e.printStackTrace();
         }
     }
+
+    public IncidentReport getSpecificByLeaseReportId(int id){
+        try {
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM incident_report AS i WHERE i.lease_report_id = '"+id+"';");
+
+            rs.next();
+
+            int incidentReportId = rs.getInt("incident_report_id");
+            int leaseReportId = rs.getInt("lease_report_id");
+            int totalPrice = rs.getInt("total_price");
+            int customerPrice = rs.getInt("customer_price");
+
+            return new IncidentReport(incidentReportId, leaseReportId, totalPrice, customerPrice);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

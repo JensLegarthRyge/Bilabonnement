@@ -48,4 +48,11 @@ public class IndexController {
         session.invalidate();
         return "redirect:/";
     }
+
+
+    @PostMapping("back-to-logged-in-frontpage")
+    public String backToLoggedInFrontpage(){
+
+        return "loggedInFrontpage";
+    }
 }

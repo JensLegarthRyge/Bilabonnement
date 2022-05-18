@@ -2,8 +2,10 @@ package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
+import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.ManualUpload;
 import com.opencsv.CSVWriter;
 
@@ -35,6 +37,7 @@ public class DataRegistrationController {
     public String dataRegistration(HttpSession session, Model leaseModel, Model idList) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
         LeaseReportRepository lr = new LeaseReportRepository();
+        System.out.println(lr.getAll());
         leaseModel.addAttribute("allLeaseReports",lr.getAll());
 
         //Working, DO NOT REPLACE
@@ -45,6 +48,9 @@ public class DataRegistrationController {
 
         return "data-registration";
     }
+
+
+
 
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
@@ -115,10 +121,20 @@ public class DataRegistrationController {
         return "data-registration-edit";
     }
 
-    @GetMapping("/bak-to-data-registration")
+
+    @GetMapping("/back-to-data-registration")
     public String backToDataRegistration() {
-        return "data-registration";
+        return "redirect:/data-registration";
     }
 
+    @RequestMapping("delete-lease-report")
+    public String tester(HttpSession session, WebRequest dataFromForm){
+        System.out.println( "leasereport ID: " + dataFromForm.getParameter("leaseId"));
+        int leaseReportId = Integer.parseInt(dataFromForm.getParameter("leaseId"));
+        LeaseReportService lrs = new LeaseReportService();
+        lrs.removeLeaseReport(leaseReportId);
+
+        return "redirect:/data-registration";
+    }
 
 }
