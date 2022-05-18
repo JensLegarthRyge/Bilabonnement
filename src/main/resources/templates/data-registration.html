@@ -15,140 +15,64 @@
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
 
-<section class="popup" id="manualPopupForm" style="display: none">
+<section class="popup" id="manual-registration-popup-form" style="display: none">
     <section class="popup-window">
         <div class="popup-Header">Manuel indtastning</div>
-        <input type="image" class="popup-close-button" src="https://imgur.com/tnlpboB.png" id="button-close" onclick="closeManualForm()">
+        <input type="image" class="popup-close-button" src="https://imgur.com/tnlpboB.png" id="button-close" onclick="closeManualRegistrationForm()">
         <form method="POST" action="/manual-upload">
             <section class="popup-drop-down-formulas-container">
                 <div>
-                    <label for="carId" class="inputFields"><b>Stelnummer</b></label>
-                    <select name="carId" id="carId" class="inputFields">
+                    <label for="carId"><b>Stelnummer</b></label>
+                    <select name="carId" id="carId" class="input-field">
                         <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
-                    <select name="customerId" id="customerId" class="inputFields">
+                    <label for="customerId"><b>Kunde ID & navn</b></label>
+                    <select name="customerId" id="customerId" class="input-field">
                         <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                     </select>
                 </div>
+
                 <div>
-                    <label for="period" class="inputFields"><b>Periode</b></label>
-                    <input type="number" class="inputFields" placeholder="Periode" id="period" name="period">
+                    <label for="pickupAddress"><b>Afhentningssted</b></label>
+                    <select name="pickupAddress" id="pickupAddress" class="input-field">
+                        <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getName()}"></option>
+                    </select>
                 </div>
             </section>
 
-            <section class="popup-split-container">
+            <section class="popup-drop-down-formulas-container">
                 <section class="popup-tickbox-container">
-                    <div class="radioButtons">
-                        <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
-                        <input type="checkbox" class="inputFields" id="deliveryInsurance" name="deliveryInsurance" >
+                    <div class="popup-radio-button">
+                        <label for="deliveryInsurance"><b>Afleverings forsikring</b></label>
+                        <input type="checkbox" id="deliveryInsurance" name="deliveryInsurance" >
                     </div>
-                    <div class="radioButtons">
-                        <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
-                        <input type="checkbox" class="inputFields" id="lowDeductableInsurance" name="lowDeductableInsurance">
+                    <div class="popup-radio-button">
+                        <label for="lowDeductableInsurance"><b>Lav selvrisiko forsikring</b></label>
+                        <input type="checkbox" id="lowDeductableInsurance" name="lowDeductableInsurance">
                     </div>
-                    <div class="radioButtons">
-                        <label for="isLimited" class="inputFields"><b>Limited</b></label>
-                        <input type="checkbox" class="inputFields" id="isLimited" name="isLimited">
-                    </div>
-                </section>
-
-                <section class="popup-pickup-and-startdate-container">
-                    <div>
-                        <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
-                        <select name="pickupAddress" id="pickupAddress" class="inputFields">
-                            <option  value="Rødovre">Rødovre</option>
-                            <option value="Køge">Køge</option>
-                            <option value="Odense">Odense</option>
-                            <option value="Århus">Århus</option>
-                            <option value="Ålborg">Ålborg</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="startDate" class="inputFields"><b>Startdato</b></label>
-                        <input type="date" class="inputFields" placeholder="Startdato" id="startDate" name="startDate">
+                    <div class="popup-radio-button">
+                        <label for="isLimited"><b>Limited</b></label>
+                        <input type="checkbox" id="isLimited" name="isLimited">
                     </div>
                 </section>
+                <div>
+                    <label for="startDate"><b>Startdato</b></label>
+                    <input type="date" class="input-field" placeholder="Startdato" id="startDate" name="startDate">
+                </div>
+                <div>
+                    <label for="period"><b>Periode</b></label>
+                    <input type="number" class="input-field" placeholder="Periode" id="period" name="period">
+                </div>
             </section>
-            <section class="popup-submit-button">
-                <button type="submit">Registrér</button>
+            <section class="popup-submit-button-container">
+                <button class="button" type="submit">Registrér</button>
             </section>
 
         </form>
     </section>
 </section>
-
-
-
-<div id="manualPopupForm2" style="display: none">
-    <section class="popup">
-        <form method="POST" action="/manual-upload" class="popup-window">
-        <div class="popup-Header">Manuel indtastning
-            <button type="button" class="report-cross" id="button-close" onclick="closeManualForm()"></button>
-        </div>
-        <div class="popupSectionTop">
-            <div>
-                <label for="carId" class="inputFields"><b>Stelnummer</b></label>
-                <select name="carId" id="carId" class="inputFields">
-                    <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
-                <select name="customerId" id="customerId" class="inputFields">
-                    <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="period" class="inputFields"><b>Periode</b></label>
-                <input type="number" class="inputFields" placeholder="Periode" id="period" name="period">
-            </div>
-        </div>
-        <div class="popupMid">
-            <div class="popupMidLeft">
-                <div class="radioButtons">
-                    <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
-                    <input type="checkbox" class="inputFields" id="deliveryInsurance" name="deliveryInsurance" >
-                </div>
-                <div class="radioButtons">
-                    <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
-                    <input type="checkbox" class="inputFields" id="lowDeductableInsurance" name="lowDeductableInsurance">
-                </div>
-                <div class="radioButtons">
-                    <label for="isLimited" class="inputFields"><b>Limited</b></label>
-                    <input type="checkbox" class="inputFields" id="isLimited" name="isLimited">
-                </div>
-            </div>
-
-            <div class="popupMidRight">
-                <div>
-                    <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
-                    <select name="pickupAddress" id="pickupAddress" class="inputFields">
-                        <option  value="Rødovre">Rødovre</option>
-                        <option value="Køge">Køge</option>
-                        <option value="Odense">Odense</option>
-                        <option value="Århus">Århus</option>
-                        <option value="Ålborg">Ålborg</option>
-                    </select>
-
-                </div>
-                <div>
-                    <label for="startDate" class="inputFields"><b>Startdato</b></label>
-                    <input type="date" class="inputFields" placeholder="Startdato" id="startDate" name="startDate">
-                </div>
-            </div>
-        </div>
-
-
-        <button type="submit" class="popupButton">Registrér</button>
-
-
-    </form>
-    </section>
-</div>
 
 <section class="main-container" id="blurr">
     <section class="registration-creation-container">
@@ -157,11 +81,7 @@
             <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
         </form>
         eller
-        <button type="button" class="button" onclick="openManualForm()">åben</button>
-
-
-
-
+        <button type="button" class="button" onclick="openManualRegistrationForm()">Registrér manuelt</button>
     </section>
 
     <section class="lease-container">
@@ -265,12 +185,12 @@
         document.getElementById("tester").style.filter = "blur(0x)";
     }
 
-    function openManualForm() {
-        document.getElementById("manualPopupForm").style.display = "flex";
+    function openManualRegistrationForm() {
+        document.getElementById("manual-registration-popup-form").style.display = "flex";
         document.getElementById("blurr").style.filter= "blur(5px)";
     }
-    function closeManualForm() {
-        document.getElementById("manualPopupForm").style.display = "none";
+    function closeManualRegistrationForm() {
+        document.getElementById("manual-registration-popup-form").style.display = "none";
         document.getElementById("blurr").style.filter= "blur(0px)";
     }
 </script>

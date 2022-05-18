@@ -2,6 +2,7 @@ package com.example.bilabonnement.controllers;
 
 import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.models.PickupLocation;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.ManualUpload;
@@ -32,16 +33,17 @@ import java.util.Scanner;
 public class DataRegistrationController {
 
     @GetMapping("/data-registration")
-    public String dataRegistration(HttpSession session, Model leaseModel, Model idList) {
+    public String dataRegistration(HttpSession session, Model model, Model idList) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
-        LeaseReportRepository lr = new LeaseReportRepository();
-        leaseModel.addAttribute("allLeaseReports",lr.getAll());
+        model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
+        model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
 
         //Working, DO NOT REPLACE
         CustomerRepository cr = new CustomerRepository();
         CarRepository carRepo = new CarRepository();
         idList.addAttribute("allCars", carRepo.getAll());
         idList.addAttribute("allCustomers", cr.getAll());
+
 
         return "data-registration";
     }
@@ -60,8 +62,6 @@ public class DataRegistrationController {
         manU.uploadManualLease(dataFromForm, x);
 
         System.out.println(dataFromForm.getParameter("carId"));
-
-
 
         return "redirect:/data-registration";
     }

@@ -111,9 +111,6 @@ input[type=file], .info-form input[type=submit] {
     }
 }
 
-/* MADS ELLER JOHANNES TAG LIGE CREDIT HER TAK */
-
-
 .popup{
     display: flex;
     position: absolute;
@@ -164,12 +161,7 @@ input[type=file], .info-form input[type=submit] {
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 30px;
-}
-
-.popup-split-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding-top: 30px;
 }
 
 .popup-tickbox-container{
@@ -183,10 +175,27 @@ input[type=file], .info-form input[type=submit] {
     padding-right: 10%;
 }
 
-.popup-submit-button{
+.popup-submit-button-container{
     display: flex;
     justify-content: center;
 }
+
+
+.input-field{
+    min-width: 150px;
+    min-height: 30px;
+    display: block;
+}
+
+.popup-radio-button{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px
+}
+
+/* MADS ELLER JOHANNES TAG LIGE CREDIT HER TAK */
 
 .close-button {
     position: absolute;
@@ -200,12 +209,6 @@ input[type=file], .info-form input[type=submit] {
     background: none;
 }
 
-.inputFields{
-    display: block;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
 .input-fields {
     display: block;
     margin-top: 20px;
@@ -216,7 +219,7 @@ input[type=file], .info-form input[type=submit] {
     display: block;
 }
 
-.inputFields select, .inputFields option {
+.input-field select, .input-field option {
     width: 20px;
 
 }
@@ -230,13 +233,6 @@ input[type=file], .info-form input[type=submit] {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
-
-.radioButtons{
-    margin-left: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .popupMidLeft{
@@ -374,12 +370,6 @@ input[type=file], .info-form input[type=submit] {
     margin-right: 30px;
 }
 
-
-
-.submit-and-edit {
-
-
-}
 
 
 
