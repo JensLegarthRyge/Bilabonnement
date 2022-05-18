@@ -15,140 +15,64 @@
 <body>
 <div th:replace="fragments/logged-in.html :: header()"></div>
 
-<section class="popup" id="manualPopupForm" style="display: none">
+<section class="popup" id="manual-registration-popup-form" style="display: none">
     <section class="popup-window">
-        <div class="popup-Header">Manuel indtastning</div>
-        <input type="image" class="popup-close-button" src="https://imgur.com/tnlpboB.png" id="button-close" onclick="closeManualForm()">
+        <div class="popup-header">Manuel indtastning</div>
+        <input type="image" class="popup-close-button" src="https://imgur.com/tnlpboB.png" id="button-close" onclick="closeManualRegistrationForm()">
         <form method="POST" action="/manual-upload">
             <section class="popup-drop-down-formulas-container">
                 <div>
-                    <label for="carId" class="inputFields"><b>Stelnummer</b></label>
-                    <select name="carId" id="carId" class="inputFields">
+                    <label for="carId"><b>Stelnummer</b></label>
+                    <select name="carId" id="carId" class="input-field">
                         <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
                     </select>
                 </div>
                 <div>
-                    <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
-                    <select name="customerId" id="customerId" class="inputFields">
+                    <label for="customerId"><b>Kunde ID & navn</b></label>
+                    <select name="customerId" id="customerId" class="input-field">
                         <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                     </select>
                 </div>
+
                 <div>
-                    <label for="period" class="inputFields"><b>Periode</b></label>
-                    <input type="number" class="inputFields" placeholder="Periode" id="period" name="period">
+                    <label for="pickupAddress"><b>Afhentningssted</b></label>
+                    <select name="pickupAddress" id="pickupAddress" class="input-field">
+                        <option th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getName()}"></option>
+                    </select>
                 </div>
             </section>
 
-            <section class="popup-split-container">
+            <section class="popup-drop-down-formulas-container">
                 <section class="popup-tickbox-container">
-                    <div class="radioButtons">
-                        <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
-                        <input type="checkbox" class="inputFields" id="deliveryInsurance" name="deliveryInsurance" >
+                    <div class="popup-radio-button">
+                        <label for="deliveryInsurance"><b>Afleverings forsikring</b></label>
+                        <input type="checkbox" id="deliveryInsurance" name="deliveryInsurance" >
                     </div>
-                    <div class="radioButtons">
-                        <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
-                        <input type="checkbox" class="inputFields" id="lowDeductableInsurance" name="lowDeductableInsurance">
+                    <div class="popup-radio-button">
+                        <label for="lowDeductableInsurance"><b>Lav selvrisiko forsikring</b></label>
+                        <input type="checkbox" id="lowDeductableInsurance" name="lowDeductableInsurance">
                     </div>
-                    <div class="radioButtons">
-                        <label for="isLimited" class="inputFields"><b>Limited</b></label>
-                        <input type="checkbox" class="inputFields" id="isLimited" name="isLimited">
-                    </div>
-                </section>
-
-                <section class="popup-pickup-and-startdate-container">
-                    <div>
-                        <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
-                        <select name="pickupAddress" id="pickupAddress" class="inputFields">
-                            <option  value="Rødovre">Rødovre</option>
-                            <option value="Køge">Køge</option>
-                            <option value="Odense">Odense</option>
-                            <option value="Århus">Århus</option>
-                            <option value="Ålborg">Ålborg</option>
-                        </select>
-
-                    </div>
-                    <div>
-                        <label for="startDate" class="inputFields"><b>Startdato</b></label>
-                        <input type="date" class="inputFields" placeholder="Startdato" id="startDate" name="startDate">
+                    <div class="popup-radio-button">
+                        <label for="isLimited"><b>Limited</b></label>
+                        <input type="checkbox" id="isLimited" name="isLimited">
                     </div>
                 </section>
+                <div>
+                    <label for="startDate"><b>Startdato</b></label>
+                    <input type="date" class="input-field" placeholder="Startdato" id="startDate" name="startDate">
+                </div>
+                <div>
+                    <label for="period"><b>Periode</b></label>
+                    <input type="number" class="input-field" placeholder="Periode" id="period" name="period">
+                </div>
             </section>
-            <section class="popup-submit-button">
-                <button type="submit">Registrér</button>
+            <section class="edit-popup-submit-button-container">
+                <button class="button" type="submit">Registrér</button>
             </section>
 
         </form>
     </section>
 </section>
-
-
-
-<div id="manualPopupForm2" style="display: none">
-    <section class="popup">
-        <form method="POST" action="/manual-upload" class="popup-window">
-        <div class="popup-Header">Manuel indtastning
-            <button type="button" class="report-cross" id="button-close" onclick="closeManualForm()"></button>
-        </div>
-        <div class="popupSectionTop">
-            <div>
-                <label for="carId" class="inputFields"><b>Stelnummer</b></label>
-                <select name="carId" id="carId" class="inputFields">
-                    <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="customerId" class="inputFields"><b>Kunde ID & navn</b></label>
-                <select name="customerId" id="customerId" class="inputFields">
-                    <option class="id" name="carIdToUse" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="period" class="inputFields"><b>Periode</b></label>
-                <input type="number" class="inputFields" placeholder="Periode" id="period" name="period">
-            </div>
-        </div>
-        <div class="popupMid">
-            <div class="popupMidLeft">
-                <div class="radioButtons">
-                    <label for="deliveryInsurance" class="inputFields"><b>Afleverings forsikring</b></label>
-                    <input type="checkbox" class="inputFields" id="deliveryInsurance" name="deliveryInsurance" >
-                </div>
-                <div class="radioButtons">
-                    <label for="lowDeductableInsurance" class="inputFields"><b>Lav selvrisiko forsikring</b></label>
-                    <input type="checkbox" class="inputFields" id="lowDeductableInsurance" name="lowDeductableInsurance">
-                </div>
-                <div class="radioButtons">
-                    <label for="isLimited" class="inputFields"><b>Limited</b></label>
-                    <input type="checkbox" class="inputFields" id="isLimited" name="isLimited">
-                </div>
-            </div>
-
-            <div class="popupMidRight">
-                <div>
-                    <label for="pickupAddress" class="inputFields"><b>Afhentningssted</b></label>
-                    <select name="pickupAddress" id="pickupAddress" class="inputFields">
-                        <option  value="Rødovre">Rødovre</option>
-                        <option value="Køge">Køge</option>
-                        <option value="Odense">Odense</option>
-                        <option value="Århus">Århus</option>
-                        <option value="Ålborg">Ålborg</option>
-                    </select>
-
-                </div>
-                <div>
-                    <label for="startDate" class="inputFields"><b>Startdato</b></label>
-                    <input type="date" class="inputFields" placeholder="Startdato" id="startDate" name="startDate">
-                </div>
-            </div>
-        </div>
-
-
-        <button type="submit" class="popupButton">Registrér</button>
-
-
-    </form>
-    </section>
-</div>
 
 <section class="main-container" id="blurr">
     <section class="registration-creation-container">
@@ -157,11 +81,7 @@
             <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
         </form>
         eller
-        <button type="button" class="button" onclick="openManualForm()">åben</button>
-
-
-
-
+        <button type="button" class="button" onclick="openManualRegistrationForm()">Registrér manuelt</button>
     </section>
 
     <section class="lease-container">
@@ -178,7 +98,7 @@
             <span class="info-field">Antal dage:</span>
             <span class="info-field">Pris DKK:</span>
             <span class="info-field">Startdato:</span>
-            <div><img class="info-field-image" src="https://i.stack.imgur.com/olrL8.png"></div>
+            <div><img class="info-field-image"  src="https://i.stack.imgur.com/olrL8.png"></div>
         </div>
 
         <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
@@ -229,53 +149,150 @@
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
 
             <div class="info-form">
-                <form method="POST" action="/edit-lease" >
-                    <input type="hidden" th:value="${LeaseReport.getId()}" name="id">
-                    <input type="image" class="info-field-icon" name="edit-info" id="edit-info" onclick="alertYou()"  src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit">
-                </form >
+                <input type="hidden" th:value="${LeaseReport.getId()}" name="id">
+                <input type="image" class="info-field-icon" name="edit-info" id="edit-info" onclick="openEditForm()"  src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit">
+
+                <section class="popup" id="edit-popup-form" style="display: none">
+                    <section class="edit-popup-window">
+                        <div class="edit-popup-header"><b>Rediger lease rapport</b></div>
+                        <input type="image" class="edit-popup-close-button" src="https://imgur.com/tnlpboB.png" id="edit-button-close" onclick="closeEditForm()">
+                        <form method="POST" action="/edit-lease-update" id="edit-information">
+                            <section class="edit-popup-container">
+                                <section class="edit-popup-drop-down-formulas-container-left">
+                                    <div class="edit-fields">
+                                        <label for="lease-id"><b>Report ID</b></label>
+                                        <input type="number" class="input-fields" id="lease-id" th:value="${lease.getId()}" disabled>
+                                    </div>
+                                    <div class="edit-fields">
+                                        <label for="car-chassis"><b>Stelnummer</b></label>
+                                        <select id="car-chassis" class="input-fields" disabled>
+                                            <option class="id" name="car-id-to-use" th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
+                                            <option class="id" name="car-id-to-use" th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="edit-fields">
+                                        <label for="edit-customer-id"><b>Kunde ID & navn</b></label>
+                                        <select id="edit-customer-id" class="input-fields" disabled>
+                                            <option class="id" th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
+                                            <option class="id" name="customer-id-to-use" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="edit-fields">
+                                        <label for="employee-id"><b>Medarbejder</b></label>
+                                        <select name="pickup-address" id="employee-id" class="input-fields" disabled>
+                                            <option class="id" th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
+                                            <option class="id" th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
+                                        </select>
+                                    </div>
+                                </section>
+
+                                <section class="edit-popup-drop-down-formulas-container-middle">
+                                    <section>
+                                        <div class="edit-fields">
+                                            <label for="edit-return-insurance"><b>Afleverings forsikring</b></label>
+                                            <select name="edit-return-insurance" id="edit-return-insurance" class="input-fields" disabled>
+                                                <option class="id" th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
+                                                <option class="id" value="1" >Har retur forsikring</option>
+                                                <option class="id" value="0">Har ikke retur forsikring</option>
+                                            </select>
+                                        </div>
+                                        <div class="edit-fields">
+                                            <label for="edit-low-deductable-insurance"><b>Lav selvrisiko forsikring</b></label>
+                                            <select name="edit-has-deductable" id="edit-low-deductable-insurance" class="input-fields" disabled>
+                                                <option class="id" th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
+                                                <option class="id" value="1">Har selvrisiko forsikring</option>
+                                                <option class="id" value="0">Har ikke selvrisiko forsikring</option>
+                                            </select>
+                                        </div>
+                                        <div class="edit-fields">
+                                            <label for="edit-is-limited"><b>Limited</b></label>
+                                            <select name="edit-is-limited" id="edit-is-limited" class="input-fields" disabled>
+                                                <option class="id" th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
+                                                <option class="id" value="1" th:text="Limited"></option>
+                                                <option class="id" value="0" th:text="Unlimited"></option>
+                                            </select>
+                                        </div>
+                                        <div class="edit-fields">
+                                            <label for="edit-pickup-address"><b>Afhentningssted</b></label>
+                                            <select name="edit-pickup-address" id="edit-pickup-address" class="input-fields" disabled>
+                                                <option class="id" th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
+                                                <option class="id" th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
+                                            </select>
+                                        </div>
+                                    </section>
+                                </section>
+                                <section class="edit-popup-drop-down-formulas-container-right">
+                                    <div class="edit-fields">
+                                        <label for="start-date"><b>Startdato</b></label>
+                                        <input type="date" id="start-date" class="input-fields" th:value="${lease.getStartDate()}" disabled>
+                                    </div>
+                                    <div class="edit-fields">
+                                        <label for="created-date"><b>Raport lavet</b></label>
+                                        <input type="date"  name="editCreatedDate" id="created-date" class="input-fields" th:value="${lease.getCreatedDate()}" disabled>
+                                    </div>
+                                    <div class="edit-fields">
+                                        <label for="editPeriod"><b>Periode</b></label>
+                                        <input type="number" id="editPeriod" name="editPeriod" class="input-fields" th:value="${lease.getPeriod()}" disabled>
+                                    </div>
+                                </section>
+                            </section>
+                            <section class="edit-popup-submit-button-container">
+                                <div class="submit-and-edit">
+                                    <button  id="edit" onclick="unlockButton()" type="button">Rediger</button>
+                                    <button type="submit" id="apply-button" disabled>Anvend</button>
+                                </div>
+                            </section>
+                        </form>
+                    </section>
+                </section>
+
+
+
+
+
+
                 <form method="POST" action="/delete-lease-report" >
                     <input type="hidden" th:value="${LeaseReport.getId()}" name="leaseId" >
                     <input type="image" onclick="return ask()" class="info-field-icon" id="tester" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt="delete">
-                </form>
-            </div>
+                </form></div>
         </div>
     </section>
 </section>
 
 <script>
-
     function ask() {
         return confirm('Er du sikker på du vil slette denne lejeaftale og tilhørende skadesrapport?');
     }
-
-
-    function alertYou() {
-        window.alert(document.getElementById("id").valueOf())
-    }
-
-    function getEditId(id) {
-        document.getElementById("edit-popup").style.display = "block";
-        document.getElementById("tester").style.filter = "blur(5x)";
-    }
-
-    function openEditForm() {
-        document.getElementById("edit-popup").style.display = "block";
-        document.getElementById("tester").style.filter = "blur(5x)";
+        function openEditForm() {
+        document.getElementById("edit-popup-form").style.display = "flex";
+        document.getElementById("blurr").style.filter = "blur(5x)";
 
     }
 
     function closeEditForm() {
-        document.getElementById("edit-popup").style.display = "none";
-        document.getElementById("tester").style.filter = "blur(0x)";
+        document.getElementById("edit-popup-form").style.display = "none";
+        document.getElementById("blurr").style.filter = "blur(0x)";
     }
 
-    function openManualForm() {
-        document.getElementById("manualPopupForm").style.display = "flex";
+    function openManualRegistrationForm() {
+        document.getElementById("manual-registration-popup-form").style.display = "flex";
         document.getElementById("blurr").style.filter= "blur(5px)";
     }
-    function closeManualForm() {
-        document.getElementById("manualPopupForm").style.display = "none";
+    function closeManualRegistrationForm() {
+        document.getElementById("manual-registration-popup-form").style.display = "none";
         document.getElementById("blurr").style.filter= "blur(0px)";
+    }
+
+    var button = document.getElementById("edit");
+    var info = document.getElementById("edit-information");
+    button.addEventListener('click', function() {
+        for (var i = 1; i <info.length ; i++) {
+            info.elements[i].disabled = false
+        }
+    })
+
+    function unlockButton() {
+        document.getElementById("apply-button").disabled = false;
     }
 </script>
 </body>

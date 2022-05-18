@@ -29,7 +29,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         double price = entity.getPrice();
         LocalDate startDate = entity.getStartDate();
 
-        String query = "INSERT INTO `bilabonnement`.`leasing_report` (`car_Id`, `employee_id`, `customer_id`, `created_date`, `period`, `has_delivery_insurance`, `has_low_deductable_insurance`, `pickup_adress_id`, `is_limited`, `price`, `start_date`) " +
+        String query = "INSERT INTO `bilabonnement`.`leasing_report` (`car_Id`, `employee_id`, `customer_id`, `created_date`, `period`, `has_delivery_insurance`, `has_low_deductable_insurance`, `pickup_location_id`, `is_limited`, `price`, `start_date`) " +
                 "VALUES ('"+carId+"', '"+employeeId+"', '"+customerId+"', '"+createdDate+"', '"+period+"', '"+hasDeliveryInsurance+"', '"+hasLowDeductableInsurance+"', '"+pickupAdressId+"', '"+isLimited+"', '"+price+"', '"+startDate+"');";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
