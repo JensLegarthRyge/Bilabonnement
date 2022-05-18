@@ -27,7 +27,7 @@
                     <div class="left-upper">
                         <div class="left-upper-content">
                             <label for="lease-id">Report ID</label>
-                            <input type="number" class="input-fields" id="lease-id" th:value="${lease.getId()}" disabled>
+                            <input type="number" class="input-field" id="lease-id" th:value="${lease.getId()}" disabled>
                         </div>
 
                         <div class="left-upper-content">
@@ -40,7 +40,7 @@
 
                         <div class="left-upper-content">
                             <label for="period">Leasing tid</label>
-                            <input type="number" id="period" class="input-fields" th:value="${lease.getPeriod()}" disabled>
+                            <input type="number" id="period" class="input-field" th:value="${lease.getPeriod()}" disabled>
                         </div>
 
                         <div class="left-upper-content">
@@ -75,16 +75,14 @@
                     <div class="right-upper">
                         <div class="right-upper-content">
                             <label for="start-date">Starts dato</label>
-                            <input type="date" id="start-date" class="input-fields" th:value="${lease.getStartDate()}" disabled>
+                            <input type="date" id="start-date" class="date-input-field" th:value="${lease.getStartDate()}" disabled>
                         </div>
 
                         <div class="right-upper-content">
                             <label for="created-date">Raport lavet</label>
-                            <input type="date" id="created-date" class="input-fields" th:value="${lease.getCreatedDate()}" disabled>
+                            <input type="date" id="created-date" class="date-input-field" th:value="${lease.getCreatedDate()}" disabled>
                         </div>
-                    </div>
 
-                    <div class="right-lower">
                         <div class="right-upper-content">
                             <label for="has-deductable">Afleveringsforsikring</label>
                             <select name="has-deductable" id="has-deductable" class="input-fields" disabled>

@@ -158,6 +158,24 @@ input[type=file], .info-form input[type=submit] {
     display: block;
     margin-top: 20px;
     margin-left: 20px;
+    width: 218px;
+    height: 24px;
+}
+
+.input-field {
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 210px;
+    height: 18px;
+}
+
+.date-input-field {
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 213px;
+    height: 20px;
 }
 
 #edit-info {
@@ -259,6 +277,7 @@ input[type=file], .info-form input[type=submit] {
 .edit-content{
     display: flex;
     flex-direction: row;
+    width: 100%;
 
 }
 
@@ -278,14 +297,15 @@ input[type=file], .info-form input[type=submit] {
 }
 
 .left-upper {
-    padding: 50px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     font-size: 18px;
 }
 
 .right-upper {
-    padding: 50px;
+    margin-left: 100px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     font-size: 18px;
