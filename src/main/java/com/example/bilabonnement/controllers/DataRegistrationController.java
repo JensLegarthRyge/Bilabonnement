@@ -52,19 +52,19 @@ public class DataRegistrationController {
 
 
 
-        if (lr.getSingleById(24).hasLowDeductableInsurance()) {
+        if (lr.getSingleById(25).hasLowDeductableInsurance()) {
             model.addAttribute("hasDeductable", "Har afleveringsforsikring");
         } else {
             model.addAttribute("hasDeductable", "Har ikke afleveringsforsikring");
         }
 
-        if (lr.getSingleById(24).hasReturnInsurance()) {
+        if (lr.getSingleById(25).hasReturnInsurance()) {
             model.addAttribute("hasReturn", "Har afleveringsforsikring");
         } else {
             model.addAttribute("hasReturn", "Har ikke afleveringsforsikring");
         }
 
-        if (lr.getSingleById(24).isLimited()) {
+        if (lr.getSingleById(25).isLimited()) {
             model.addAttribute("isLimited", "Limited");
         } else {
             model.addAttribute("isLimited", "Unlimited");
@@ -72,15 +72,15 @@ public class DataRegistrationController {
 
 
 
-        model.addAttribute("lease", lr.getSingleById(24));
+        model.addAttribute("lease", lr.getSingleById(25));
         model.addAttribute("allCars", carRepo.getAll());
         model.addAttribute("allCustomers", cr.getAll());
         model.addAttribute("allEmployees", er.getAll());
         model.addAttribute("allPickupLocations", pr.getAll());
-        model.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(24).getCarId()));
-        model.addAttribute("customerById", cr.getSingleById(lr.getSingleById(24).getCustomerId()));
-        model.addAttribute("employeeById", er.getSingleById(lr.getSingleById(24).getEmployeeId()));
-        model.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(24).getPickupLocationId()));
+        model.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(25).getCarId()));
+        model.addAttribute("customerById", cr.getSingleById(lr.getSingleById(25).getCustomerId()));
+        model.addAttribute("employeeById", er.getSingleById(lr.getSingleById(25).getEmployeeId()));
+        model.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(25).getPickupLocationId()));
 
 
         return "data-registration";

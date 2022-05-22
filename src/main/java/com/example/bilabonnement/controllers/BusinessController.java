@@ -11,8 +11,7 @@ public class BusinessController {
 
     @GetMapping("/business")
     public String businessDevelopment(Model model){
-        CarRepository cr = new CarRepository();
-        model.addAttribute("allCars",cr.getAll());
+        model.addAttribute("allCars",new CarRepository().getAll());
         model.addAttribute("BusinessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";
     }
