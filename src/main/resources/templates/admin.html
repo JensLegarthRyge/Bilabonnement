@@ -10,31 +10,25 @@
 <div th:replace="fragments/general.html :: header()"></div>
 
 <section class="main-container">
-    <div class="search-bar-form">
-        <form method="POST" action="/search" class="search-test">
-            <input type="search" id="mySearch" name="search" placeholder="Søg efter nummerplade" class="search-bar">
-            <input type="image" class="search-submit" src="https://imgur.com/THnVOqu.png" alt="submit" title="Search">
-        </form>
-        <form method="POST" action="/search" class="search-test">
-            <input type="hidden" name="clear" value="1">
-            <input type="image" class="search-submit" src="https://imgur.com/xurh5Le.png" alt="submit" title="Remove filters">
-        </form>
-    </div>
     <section class="lease-container">
+        <form method="POST" action="/create-new-employee">
+            <input type="submit" class="button" value="Ny medarbejder" title="Tilføj ny medarbejder">
+        </form>
         <div class="lease-info-container-header">
             <span class="info-field">Medarbjeder ID:</span>
-            <span class="info-field">Medarbejder navn:</span>
+            <span class="info-field-name">Medarbejder navn:</span>
+            <span class="info-field-name">Email:</span>
             <span class="info-field">Rettighedsniveau:</span>
-            <span class="info-field">Email:</span>
+            <span class="info-field-filler"></span>
         </div>
         <div class="lease-info-container" th:each="Employee : ${allEmployees}">
             <span class="info-field" th:text="${Employee.getId()}"></span>
-            <span class="info-field" th:text="${Employee.getFullName()}"></span>
+            <span class="info-field-name" th:text="${Employee.getFullName()}"></span>
+            <span class="info-field-name" th:text="${Employee.getEmail()}"></span>
             <span class="info-field" th:text="${Employee.getAccessFeatures()}"></span>
-            <span class="info-field" th:text="${Employee.getEmail()}"></span>
             <div>
-                <form method="POST" action="/report">
-                    <input name="id" type="hidden" th:value="${IncidentReport.getId()}">
+                <form method="POST" action="/admin">
+                    <input name="id" type="hidden" th:value="${Employee.getId()}">
                     <input type="image" class="info-field-icon" src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="submit">
                 </form>
             </div>
