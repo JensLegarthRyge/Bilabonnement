@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New employee - Bilabonnement</title>
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{admin.css}" href="../static/admin.css">
+</head>
+<body>
+<div th:replace="fragments/general.html :: header()"></div>
+<section class="main-container">
+    <form method="POST" action="create-new-employee" class="new-employee-form">
+        <div class="new-employee-form-objects">
+            First name
+            <input type="text" name="firstName">
+        </div>
+        <div class="new-employee-form-objects">
+            Last name
+            <input type="text" name="lastName">
+        </div>
+        <div class="new-employee-form-objects">
+            Email
+            <input type="text" name="email">
+        </div>
+        <div class="new-employee-form-objects">
+            Password
+            <input type="text" name="password">
+        </div>
+        <div class="new-employee-form-objects">
+            Accesrights
+            <input type="number" name="accessRights">
+        </div>
+        <div class="new-employee-form-objects">
+            Is admin
+            <input type="checkbox" name="isAdmin">
+        </div>
+        <div class="new-employee-form-objects">
+            <input type="submit" value="Opret">
+        </div>
+
+
+    </form>
+
+</section>
+
+</body>
+</html>
