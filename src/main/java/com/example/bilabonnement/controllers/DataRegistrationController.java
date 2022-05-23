@@ -28,34 +28,23 @@ public class DataRegistrationController {
         if(!ls.hasAccess("data", session)){
             return "redirect:/no-access";
         }
-        model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
-        model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
 
         //Working, DO NOT REPLACE
-        CustomerRepository customerRepository = new CustomerRepository();
         CarRepository carRepository = new CarRepository();
+        CustomerRepository customerRepository = new CustomerRepository();
         EmployeeRepository employeeRepository = new EmployeeRepository();
+        LeaseReportRepository leaseReportRepository = new LeaseReportRepository();
         PickupLocationRepository pickupLocationRepository = new PickupLocationRepository();
-        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
-        model.addAttribute("employeeRepository",employeeRepository);
-        model.addAttribute("customerRepository",customerRepository);
+
         model.addAttribute("carRepository",carRepository);
         model.addAttribute("allCars", carRepository.getAll());
+        model.addAttribute("customerRepository",customerRepository);
         model.addAttribute("allCustomers", customerRepository.getAll());
-
-        CustomerRepository cr = new CustomerRepository();
-        CarRepository carRepo = new CarRepository();
-        LeaseReportRepository lr = new LeaseReportRepository();
-        EmployeeRepository er = new EmployeeRepository();
-        PickupLocationRepository pr = new PickupLocationRepository();
-
-        model.addAttribute("allLeaseReports",lr.getAll());
-        model.addAttribute("allPickupLocations",pr.getAll());
-        model.addAttribute("allCars", carRepo.getAll());
-        model.addAttribute("allCustomers", cr.getAll());
-        model.addAttribute("allEmployees", er.getAll());
-
-
+        model.addAttribute("employeeRepository",employeeRepository);
+        model.addAttribute("allEmployees", employeeRepository.getAll());
+        model.addAttribute("allLeaseReports",leaseReportRepository.getAll());
+        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
+        model.addAttribute("allPickupLocations",pickupLocationRepository.getAll());
 
         return "data-registration";
     }
