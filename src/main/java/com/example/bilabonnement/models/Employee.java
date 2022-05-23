@@ -39,6 +39,26 @@ public class Employee extends User {
         return isAdmin;
     }
 
+    public String getAccessFeatureText(){
+        switch (accessFeatures){
+            case 1:
+                return "Dataregistrering";
+            case 2:
+                return "Skaderegistrering";
+            case 3:
+                return "Forretningsanalyse";
+            case 4:
+                return "Dataregistrering + skaderegistrering";
+            case 5:
+                return "Dataregistrering og forretningsanalyse";
+            case 6:
+                return "Skaderegistrering og forretningsanalyse";
+            case 7:
+                return "Dataregistrering, skaderegistrering og forretningsanalyse";
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

@@ -1,9 +1,12 @@
 package com.example.bilabonnement.controllers;
+import com.example.bilabonnement.models.Employee;
+import com.example.bilabonnement.repositories.EmployeeRepository;
 import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,6 +17,7 @@ import java.util.Optional;
 public class IndexController {
 
     LoginService loginService = new LoginService();
+
 
     //Vores indeks side
     @GetMapping("/")
@@ -28,7 +32,12 @@ public class IndexController {
     @PostMapping("/attempt-login")
     public String loggedInFrontpage(WebRequest request, HttpSession session){
         if(loginService.verifyUserFromLoginDetails(request)){
-            session.setAttribute("userId",request.getParameter("id"));
+            Employee currentEmp = loginService.getEmployee(request.getParameter("id"));
+            session.setAttribute("userId",currentEmp.getId());
+            session.setAttribute("accessFeatures", currentEmp.getAccessFeatures());
+            session.setAttribute("isAdmin", currentEmp.isAdmin());
+            System.out.println("isadmin is:" + session.getAttribute("isAdmin"));
+
             return "logged-in-frontpage";
         } else{
             return "redirect:/?status=not-verified";
@@ -41,9 +50,14 @@ public class IndexController {
         return "redirect:/";
     }
 
-    @PostMapping("back-to-logged-in-frontpage")
+    @RequestMapping("back-to-logged-in-frontpage")
     public String backToLoggedInFrontpage(){
 
         return "logged-in-frontpage";
+    }
+
+    @GetMapping("no-access")
+    public String noAccess(){
+        return "no-access";
     }
 }

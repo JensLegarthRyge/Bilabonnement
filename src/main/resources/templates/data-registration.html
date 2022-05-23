@@ -100,12 +100,16 @@
             <div><img class="info-field-image"  src="https://i.stack.imgur.com/olrL8.png"></div>
         </div>
 
-        <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
+        <div id="container-of-leases" class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
             <span class="info-field" th:text="${carRepository.getSingleById(LeaseReport.getCarId()).getRegistrationNumber()}"></span>
             <span class="info-field-long" th:text="${employeeRepository.getSingleById(LeaseReport.getEmployeeId()).getEmail()}"></span>
             <span class="info-field-long" th:text="${customerRepository.getSingleById(LeaseReport.getCustomerId()).getEmail()}"></span>
             <span class="info-field" th:text="${LeaseReport.getCreatedDate()}"></span>
             <!-- truefalse?? -->
+
+            <form id="test-of-edits">
+                <input type="hidden" th:value="${LeaseReport.getId()}" th:each="LeaseReport : ${allLeaseReports}">
+            </form>
 
             <span th:if="${LeaseReport.hasLowDeductableInsurance()}">
                 <span class="info-field">
@@ -145,75 +149,105 @@
             <span class="info-field" th:text="${LeaseReport.getPeriod()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPriceFormatted()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
-
-            <div class="info-form">
+            <div class="info-form" >
                 <input type="hidden" th:value="${LeaseReport.getId()}" name="id">
-                <input type="image" class="info-field-icon" name="edit-info" id="edit-info" onclick="openEditForm()"  src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit">
+                <input type="image" class="info-field-icon" name="edit-info" id="edit-info" th:onclick="'openEditForm(\'' + ${LeaseReport.getId()} + '\')'"  src="https://img.icons8.com/material-outlined/344/edit--v1.png" alt="Edit">
 
-                <section class="popup" id="edit-popup-form" style="display: none">
+                <section class="popup" th:id="${'edit-popup-form' + LeaseReport.getId()}" style="display: none">
                     <section class="edit-popup-window">
                         <div class="edit-popup-header"><b>Rediger lease rapport</b></div>
-                        <input type="image" class="edit-popup-close-button" src="https://imgur.com/tnlpboB.png" id="edit-button-close" onclick="closeEditForm()">
-                        <form method="POST" action="/edit-lease-update" id="edit-information">
+                        <input type="image" class="edit-popup-close-button" src="https://imgur.com/tnlpboB.png" id="edit-button-close" th:onclick="'closeEditForm(\'' + ${LeaseReport.getId()} + '\')'">
+                        <form method="POST" action="/edit-lease-update" th:id="${'edit-information' + LeaseReport.getId()}">
                             <section class="edit-popup-container">
                                 <section class="edit-popup-drop-down-formulas-container-left">
                                     <div class="edit-fields">
                                         <label for="lease-id"><b>Report ID</b></label>
-                                        <input type="number" class="input-fields" id="lease-id" th:value="${lease.getId()}" disabled>
+                                        <input type="number" class="input-fields" id="lease-id" th:value="${LeaseReport.getId()}" disabled>
                                     </div>
                                     <div class="edit-fields">
                                         <label for="car-chassis"><b>Stelnummer</b></label>
                                         <select id="car-chassis" class="input-fields" disabled>
-                                            <option class="id" name="car-id-to-use" th:value="${lease.getCarId()}" th:text="${carById.getChassisNumber()}" selected disabled></option>
+                                            <option class="id" name="car-id-to-use" th:value="${LeaseReport.getCarId()}" th:text="${LeaseReport.getCarById(LeaseReport.getCarId()).getChassisNumber()}" selected disabled></option>
                                             <option class="id" name="car-id-to-use" th:each="Car : ${allCars}"  th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
                                         </select>
                                     </div>
                                     <div class="edit-fields">
                                         <label for="edit-customer-id"><b>Kunde ID & navn</b></label>
                                         <select id="edit-customer-id" class="input-fields" disabled>
-                                            <option class="id" th:value="${lease.getEmployeeId()}" th:text="${customerById.getIdPlusFullName()}" selected disabled></option>
+                                            <option class="id" th:value="${LeaseReport.getEmployeeId()}" th:text="${LeaseReport.getCustomerById(LeaseReport.getCustomerId()).getIdPlusFullName()}" selected disabled></option>
                                             <option class="id" name="customer-id-to-use" th:each="Customer : ${allCustomers}" th:value="${Customer.getId()}" th:text="${Customer.getIdPlusFullName()}"></option>
                                         </select>
                                     </div>
                                     <div class="edit-fields">
                                         <label for="employee-id"><b>Medarbejder</b></label>
                                         <select name="pickup-address" id="employee-id" class="input-fields" disabled>
-                                            <option class="id" th:value="${lease.getEmployeeId()}" th:text="${employeeById.getIdPlusFullName()}" selected disabled></option>
+                                            <option class="id" th:value="${LeaseReport.getEmployeeId()}" th:text="${LeaseReport.getEmployeeById(LeaseReport.getEmployeeId()).getIdPlusFullName()}" selected disabled></option>
                                             <option class="id" th:each="Employee : ${allEmployees}" th:value="${Employee.getId()}" th:text="${Employee.getIdPlusFullName()}"></option>
                                         </select>
+                                        <input type="hidden" th:value="${LeaseReport.getEmployeeId()}" id="dig">
                                     </div>
                                 </section>
 
                                 <section class="edit-popup-drop-down-formulas-container-middle">
                                     <section>
                                         <div class="edit-fields">
-                                            <label for="edit-return-insurance"><b>Afleverings forsikring</b></label>
-                                            <select name="edit-return-insurance" id="edit-return-insurance" class="input-fields" disabled>
-                                                <option class="id" th:value="${lease.hasReturnInsurance()}" th:text="${hasReturn}" selected disabled></option>
-                                                <option class="id" value="1" >Har retur forsikring</option>
-                                                <option class="id" value="0">Har ikke retur forsikring</option>
-                                            </select>
+                                            <span th:if="${LeaseReport.hasReturnInsurance()}">
+                                                <label for="edit-return-insurance-true"><b>Afleverings forsikring</b></label>
+                                                <select name="edit-return-insurance-true" id="edit-return-insurance-true" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.hasReturnInsurance()}" selected disabled>Har afleveringsforsikring</option>
+                                                    <option class="id" value="1" >Har retur forsikring</option>
+                                                    <option class="id" value="0">Har ikke retur forsikring</option>
+                                                </select>
+                                            </span>
+                                            <span th:unless="${LeaseReport.hasReturnInsurance()}">
+                                                <label for="edit-return-insurance-false"><b>Afleverings forsikring</b></label>
+                                                <select name="edit-return-insurance-false" id="edit-return-insurance-false" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.hasReturnInsurance()}" selected disabled>Har ikke afleveringsforsikring</option>
+                                                    <option class="id" value="1" >Har retur forsikring</option>
+                                                    <option class="id" value="0">Har ikke retur forsikring</option>
+                                                </select>
+                                            </span>
                                         </div>
                                         <div class="edit-fields">
-                                            <label for="edit-low-deductable-insurance"><b>Lav selvrisiko forsikring</b></label>
-                                            <select name="edit-has-deductable" id="edit-low-deductable-insurance" class="input-fields" disabled>
-                                                <option class="id" th:value="${lease.hasLowDeductableInsurance()}" th:text="${hasDeductable}" selected disabled></option>
-                                                <option class="id" value="1">Har selvrisiko forsikring</option>
-                                                <option class="id" value="0">Har ikke selvrisiko forsikring</option>
-                                            </select>
+                                            <span th:if="${LeaseReport.hasLowDeductableInsurance()}">
+                                                <label for="edit-low-deductable-insurance-true"><b>Lav selvrisiko forsikring</b></label>
+                                                <select name="edit-has-deductable" id="edit-low-deductable-insurance-true" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.hasLowDeductableInsurance()}" selected disabled>Har selvrisiko forsikring</option>
+                                                    <option class="id" value="1">Har selvrisiko forsikring</option>
+                                                    <option class="id" value="0">Har ikke selvrisiko forsikring</option>
+                                                </select>
+                                            </span>
+                                            <span th:unless="${LeaseReport.hasLowDeductableInsurance()}">
+                                                <label for="edit-low-deductable-insurance-false"><b>Lav selvrisiko forsikring</b></label>
+                                                <select name="edit-has-deductable" id="edit-low-deductable-insurance-false" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.hasLowDeductableInsurance()}" selected disabled>Har ikke selvrisiko forsikring</option>
+                                                    <option class="id" value="1">Har selvrisiko forsikring</option>
+                                                    <option class="id" value="0">Har ikke selvrisiko forsikring</option>
+                                                </select>
+                                            </span>
                                         </div>
                                         <div class="edit-fields">
-                                            <label for="edit-is-limited"><b>Limited</b></label>
-                                            <select name="edit-is-limited" id="edit-is-limited" class="input-fields" disabled>
-                                                <option class="id" th:value="${lease.isLimited()}" th:text="${isLimited}" selected disabled></option>
-                                                <option class="id" value="1" th:text="Limited"></option>
-                                                <option class="id" value="0" th:text="Unlimited"></option>
-                                            </select>
+                                            <span th:if="${LeaseReport.isLimited()}">
+                                                <label for="edit-is-limited-true"><b>Limited</b></label>
+                                                <select name="edit-is-limited" id="edit-is-limited-true" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.isLimited()}" selected disabled>Limited</option>
+                                                    <option class="id" value="1" th:text="Limited"></option>
+                                                    <option class="id" value="0" th:text="Unlimited"></option>
+                                                </select>
+                                            </span>
+                                            <span th:unless="${LeaseReport.isLimited()}">
+                                                <label for="edit-is-limited-false"><b>Limited</b></label>
+                                                <select name="edit-is-limited" id="edit-is-limited-false" class="input-fields" disabled>
+                                                    <option class="id" th:value="${LeaseReport.isLimited()}" selected disabled>Unlimited</option>
+                                                    <option class="id" value="1" th:text="Limited"></option>
+                                                    <option class="id" value="0" th:text="Unlimited"></option>
+                                                </select>
+                                            </span>
                                         </div>
                                         <div class="edit-fields">
                                             <label for="edit-pickup-address"><b>Afhentningssted</b></label>
                                             <select name="edit-pickup-address" id="edit-pickup-address" class="input-fields" disabled>
-                                                <option class="id" th:value="${lease.getPickupLocationId()}" th:text="${pickupLocationId.getStreetNameNumberPostcode()}" selected disabled></option>
+                                                <option class="id" th:value="${LeaseReport.getPickupLocationId()}" th:text="${LeaseReport.getPickupLocationById(LeaseReport.getPickupLocationId()).getStreetNameNumberPostcode()}" selected disabled></option>
                                                 <option class="id" th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
                                             </select>
                                         </div>
@@ -222,22 +256,22 @@
                                 <section class="edit-popup-drop-down-formulas-container-right">
                                     <div class="edit-fields">
                                         <label for="start-date"><b>Startdato</b></label>
-                                        <input type="date" id="start-date" class="input-fields" th:value="${lease.getStartDate()}" disabled>
+                                        <input type="date" id="start-date" class="input-fields" th:value="${LeaseReport.getStartDate()}" disabled>
                                     </div>
                                     <div class="edit-fields">
                                         <label for="created-date"><b>Raport lavet</b></label>
-                                        <input type="date"  name="editCreatedDate" id="created-date" class="input-fields" th:value="${lease.getCreatedDate()}" disabled>
+                                        <input type="date"  name="editCreatedDate" id="created-date" class="input-fields" th:value="${LeaseReport.getCreatedDate()}" disabled>
                                     </div>
                                     <div class="edit-fields">
                                         <label for="editPeriod"><b>Periode</b></label>
-                                        <input type="number" id="editPeriod" name="editPeriod" class="input-fields" th:value="${lease.getPeriod()}" disabled>
+                                        <input type="number" id="editPeriod" name="editPeriod" class="input-fields" th:value="${LeaseReport.getPeriod()}" disabled>
                                     </div>
                                 </section>
                             </section>
                             <section class="edit-popup-submit-button-container">
                                 <div class="submit-and-edit">
-                                    <button  id="edit" onclick="unlockButton()" type="button">Rediger</button>
-                                    <button type="submit" id="apply-button" disabled>Anvend</button>
+                                    <button  th:id="${'edit' + LeaseReport.getId()}" th:onclick="'unlockButton(\'' + ${LeaseReport.getId()} + '\')'" type="button">Rediger</button>
+                                    <button type="submit" th:id="${'apply-button' + LeaseReport.getId()}" disabled>Anvend</button>
                                 </div>
                             </section>
                         </form>
@@ -251,19 +285,22 @@
     </section>
 </section>
 
-<script>
+<script th:inline="javascript">
     function ask() {
         return confirm('Er du sikker på du vil slette denne lejeaftale og tilhørende skadesrapport?');
     }
-        function openEditForm() {
-        document.getElementById("edit-popup-form").style.display = "flex";
+        function openEditForm(leaseReportNumber) {
+        document.getElementById("edit-popup-form" + leaseReportNumber).style.display = "flex";
         document.getElementById("blurr").style.filter = "blur(5x)";
+        addListener(leaseReportNumber);
 
     }
 
-    function closeEditForm() {
-        document.getElementById("edit-popup-form").style.display = "none";
+    function closeEditForm(leaseReportNumber) {
+        document.getElementById("edit-popup-form" + leaseReportNumber).style.display = "none";
         document.getElementById("blurr").style.filter = "blur(0x)";
+        lockButton(leaseReportNumber);
+        lockFields(leaseReportNumber)
     }
 
     function openManualRegistrationForm() {
@@ -275,17 +312,37 @@
         document.getElementById("blurr").style.filter= "blur(0px)";
     }
 
-    var button = document.getElementById("edit");
-    var info = document.getElementById("edit-information");
-    button.addEventListener('click', function() {
-        for (var i = 1; i <info.length ; i++) {
-            info.elements[i].disabled = false
-        }
-    })
+    var test = document.getElementById("test-of-edits")
+    for (var i = 0; i < test.length ; i++) {
 
-    function unlockButton() {
-        document.getElementById("apply-button").disabled = false;
     }
+
+    function addListener(leaseReportNumber) {
+        var button = document.getElementById("edit" + leaseReportNumber);
+        var info = document.getElementById("edit-information" + leaseReportNumber);
+        button.addEventListener('click', function () {
+            for (var i = 1; i < info.length; i++) {
+                    info.elements[i].disabled = false
+            }
+        })
+    }
+
+    function lockFields(leaseReportNumber) {
+        var info = document.getElementById("edit-information" + leaseReportNumber);
+        for (var i = 0; i < info.length; i++) {
+            info.elements[i].disabled = true;
+        }
+    }
+
+    function unlockButton(leaseReportNumber) {
+        document.getElementById("apply-button" + leaseReportNumber).disabled = false;
+    }
+
+    function lockButton(leaseReportNumber) {
+        document.getElementById("apply-button" + leaseReportNumber).disabled = true;
+    }
+
+
 </script>
 </body>
 </html>

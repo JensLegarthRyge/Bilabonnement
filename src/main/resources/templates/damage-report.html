@@ -70,7 +70,7 @@
                     <div class="select-incident">
                         <label for="incident">Vælg skade: </label>
                         <input type="hidden" name="incidentReportId" id="incidentReportId" th:value="${incidentReport.getId()}">
-                        <Select name="incident" id="incident">
+                        <Select name="incident" id="incident" class="incident-selector" >
                             <option th:each="IncidentType : ${incidentTypes}" th:value="${IncidentType.getId()}" th:text="${IncidentType.getType()}"></option>
                         </Select>
                     </div>

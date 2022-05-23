@@ -1,5 +1,6 @@
 package com.example.bilabonnement.repositories;
 
+import com.example.bilabonnement.models.Car;
 import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.models.LeaseReport;
@@ -154,4 +155,6 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         }
 
     }
+
+
 }

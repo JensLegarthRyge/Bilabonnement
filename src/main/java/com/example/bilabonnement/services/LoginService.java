@@ -4,14 +4,14 @@ import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.repositories.EmployeeRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import java.text.ParseException;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 public class LoginService {
-    EmployeeRepository employeeRepository = new EmployeeRepository();
+    EmployeeRepository er = new EmployeeRepository();
 
     public boolean verifyUserFromLoginDetails(WebRequest loginForm){
-        ArrayList<Employee> allEmployees = employeeRepository.getAll();
+        ArrayList<Employee> allEmployees = er.getAll();
         try{
             int userId = Integer.parseInt(loginForm.getParameter("id"));
             String userPassword = loginForm.getParameter("password");
@@ -28,4 +28,37 @@ public class LoginService {
         System.out.println("Login not validated");
         return false;
     }
+
+
+    public Employee getEmployee(String id){
+        int intId = Integer.parseInt(id);
+        return er.getSingleById(intId);
+    }
+
+    public boolean hasAccess(String pageToLogInto, HttpSession session){
+        int accessFeatures = (int) (session.getAttribute("accessFeatures"));
+
+        System.out.println("accessfeatures" + accessFeatures);
+        System.out.println("page" + pageToLogInto);
+        switch (pageToLogInto){
+            case "data":
+                if(accessFeatures == 1 || accessFeatures == 4 || accessFeatures == 5 ||accessFeatures == 7){
+                    return true;
+                }
+                break;
+            case "damage":
+                if(accessFeatures == 2 || accessFeatures == 4 || accessFeatures == 6 ||accessFeatures == 7){
+                    return true;
+                }
+                break;
+            case "business":
+                if(accessFeatures == 3 || accessFeatures == 5 || accessFeatures == 6 ||accessFeatures == 7){
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+
 }

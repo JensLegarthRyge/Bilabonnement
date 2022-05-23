@@ -4,6 +4,7 @@ import com.example.bilabonnement.models.Incident;
 import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.IncidentService;
+import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,15 @@ public class DamageReportController {
     CustomerRepository cr = new CustomerRepository();
     CarRepository carRepository = new CarRepository();
     IncidentTypeRepository itr = new IncidentTypeRepository();
+    LoginService ls = new LoginService();
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
+        if(!ls.hasAccess("damage", session)){
+            return "redirect:/no-access";
+        }
+
+
         ArrayList<IncidentReport> incidentReports = irr.getAll();
         session.setAttribute("incidentReportId", null);
 
@@ -37,17 +44,17 @@ public class DamageReportController {
     }
 
     @RequestMapping("/report")
-    public String damageReport(HttpSession session, Model leaseReport, Model incidentsOnReport, Model incidentReport, Model customer, Model incidentTypes, WebRequest dataFromForm){
+    public String damageReport(HttpSession session, Model model, WebRequest dataFromForm){
         if(session.getAttribute("incidentReportId") == null){
             session.setAttribute("incidentReportId", Integer.parseInt(dataFromForm.getParameter("id")));
         }
         int incidentReportId = (int)session.getAttribute("incidentReportId");
-        customer.addAttribute("customer", cr.getSingleById(lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()).getCustomerId()));
-        leaseReport.addAttribute("leaseReport", lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()));
-        incidentReport.addAttribute("incidentReport", irr.getSingleById(incidentReportId));
-        ArrayList<Incident> incidents1 = ir.getALlSpecific(incidentReportId);
-        incidentsOnReport.addAttribute("incidents", incidents1);
-        incidentTypes.addAttribute("incidentTypes", itr.getAll());
+
+        model.addAttribute("customer", cr.getSingleById(lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()).getCustomerId()));
+        model.addAttribute("leaseReport", lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()));
+        model.addAttribute("incidentReport", irr.getSingleById(incidentReportId));
+        model.addAttribute("incidents", ir.getALlSpecific(incidentReportId));
+        model.addAttribute("incidentTypes", itr.getAll());
 
         return "damage-report";
     }
