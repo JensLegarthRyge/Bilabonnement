@@ -6,6 +6,7 @@ import com.example.bilabonnement.repositories.testRepositories.CarTestRepository
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 //Jens Legarth Ryge & Johannes Forsting
 
@@ -132,6 +133,10 @@ public class LeaseReport {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getPriceFormatted(){
+        return String.format(Locale.GERMAN, "%,.2f", getPrice());
     }
 
     public LocalDate getStartDate() {

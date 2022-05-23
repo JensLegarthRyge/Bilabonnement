@@ -12,22 +12,19 @@ import java.util.ArrayList;
 
 
 public class LeaseReportService {
-
     /*Jens Legarth Ryge*/
     LeaseReportRepository leaseReportRepository = new LeaseReportRepository();
-    IncidentReportRepository irr = new IncidentReportRepository();
+    IncidentReportRepository incidentReportRepository = new IncidentReportRepository();
+
     public ArrayList<LeaseReport> getActiveLeaseReports(){
-        //Removes inactive lease reports
         ArrayList<LeaseReport> allActiveLeaseReports = new ArrayList<>();
 
-
         for (LeaseReport currentLeaseReport:leaseReportRepository.getAll()) {
-
             LocalDate leaseReportStartDate = currentLeaseReport.getStartDate();
             int period = currentLeaseReport.getPeriod();
-
-            if (!leaseReportStartDate.plusDays(period).isAfter(LocalDate.now())
-                    || !leaseReportStartDate.isBefore(LocalDate.now())){
+            //Adds only active lease reports
+            if (leaseReportStartDate.plusDays(period).isAfter(LocalDate.now())
+                    && leaseReportStartDate.isBefore(LocalDate.now())){
                 allActiveLeaseReports.add(currentLeaseReport);
             }
         }
@@ -37,7 +34,7 @@ public class LeaseReportService {
 
     public void removeLeaseReport(int id){
 
-        int incidentReportId = irr.getSpecificByLeaseReportId(id).getId();
+        int incidentReportId = incidentReportRepository.getSpecificByLeaseReportId(id).getId();
         removeIncidentReport(incidentReportId);
         leaseReportRepository.delete(id);
 
@@ -45,14 +42,14 @@ public class LeaseReportService {
 
     public void removeIncidentReport(int id){
         removeIncidents(id);
-        irr.delete(id);
+        incidentReportRepository.delete(id);
     }
 
     public void removeIncidents(int id){
-        IncidentRepository ir = new IncidentRepository();
-        ArrayList<Incident> incidents = ir.getALlSpecific(id);
+        IncidentRepository incidentRepository = new IncidentRepository();
+        ArrayList<Incident> incidents = incidentRepository.getALlSpecific(id);
         for (int i = 0; i < incidents.size(); i++) {
-            ir.delete(incidents.get(i).getId());
+            incidentRepository.delete(incidents.get(i).getId());
         }
     }
 }

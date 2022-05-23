@@ -76,17 +76,16 @@
 
 <section class="main-container" id="blurr">
     <section class="registration-creation-container">
-        <form method="POST" action="/get-upload" enctype="multipart/form-data">
-            <label for="registration-file" class="button"><span>Upload CSV-fil</span></label>
+        <form method="POST" action="/get-upload" class="button" enctype="multipart/form-data">
+            <label class="button-label" for="registration-file"><span><img class="button-image" src="https://img.icons8.com/windows/344/ffffff/import-csv.png">Upload CSV-fil</span></label>
             <input type="file" onchange="form.submit()" name="registration-file" id="registration-file" accept=".csv">
         </form>
         eller
-        <button type="button" class="button" onclick="openManualRegistrationForm()">Registrér manuelt</button>
+        <button type="button" class="button" onclick="openManualRegistrationForm()"><img class="button-image" src="https://img.icons8.com/windows/344/ffffff/edit-file.png"> Registrér manuelt</button>
     </section>
 
     <section class="lease-container">
         <div class="lease-info-container-header">
-            <span class="info-field-id">ID:</span>
             <span class="info-field">Nr.plade:</span>
             <span class="info-field-long">Oprettet af:</span>
             <span class="info-field-long">Lejet af:</span>
@@ -102,10 +101,9 @@
         </div>
 
         <div class="lease-info-container" th:each="LeaseReport : ${allLeaseReports}">
-            <span class="info-field-id" th:text="${LeaseReport.getId()}"></span>
-            <span class="info-field" th:text="${LeaseReport.getCarId()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getEmployeeId()}"></span>
-            <span class="info-field-long" th:text="${LeaseReport.getCustomerId()}"></span>
+            <span class="info-field" th:text="${carRepository.getSingleById(LeaseReport.getCarId()).getRegistrationNumber()}"></span>
+            <span class="info-field-long" th:text="${employeeRepository.getSingleById(LeaseReport.getEmployeeId()).getEmail()}"></span>
+            <span class="info-field-long" th:text="${customerRepository.getSingleById(LeaseReport.getCustomerId()).getEmail()}"></span>
             <span class="info-field" th:text="${LeaseReport.getCreatedDate()}"></span>
             <!-- truefalse?? -->
 
@@ -143,9 +141,9 @@
             </span>
 
             <!-- truefalse?? -->
-            <span class="info-field-long" th:text="${LeaseReport.getPickupLocationId()}"></span>
+            <span class="info-field-long" th:text="${pickupLocationRepository.getSingleById(LeaseReport.getPickupLocationId()).getName()}"></span>
             <span class="info-field" th:text="${LeaseReport.getPeriod()}"></span>
-            <span class="info-field" th:text="${LeaseReport.getPrice()}"></span>
+            <span class="info-field" th:text="${LeaseReport.getPriceFormatted()}"></span>
             <span class="info-field" th:text="${LeaseReport.getStartDate()}"></span>
 
             <div class="info-form">

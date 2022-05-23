@@ -1,19 +1,10 @@
 package com.example.bilabonnement.controllers;
 
-import com.example.bilabonnement.models.Car;
-import com.example.bilabonnement.models.Employee;
-import com.example.bilabonnement.models.LeaseReport;
-import com.example.bilabonnement.models.PickupLocation;
 import com.example.bilabonnement.repositories.*;
-import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.ManualUpload;
-import com.opencsv.CSVWriter;
 
-import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.CSVFileService;
-import com.opencsv.CSVWriter;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,28 +14,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.security.auth.message.callback.CallerPrincipalCallback;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 @Controller
 public class DataRegistrationController {
 
     @GetMapping("/data-registration")
-    public String dataRegistration(HttpSession session, Model model, Model idList) {
+    public String dataRegistration(HttpSession session, Model model) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
         model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
         model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
 
         //Working, DO NOT REPLACE
-        CustomerRepository cr = new CustomerRepository();
-        CarRepository carRepo = new CarRepository();
-        idList.addAttribute("allCars", carRepo.getAll());
-        idList.addAttribute("allCustomers", cr.getAll());
+        CustomerRepository customerRepository = new CustomerRepository();
+        CarRepository carRepository = new CarRepository();
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        PickupLocationRepository pickupLocationRepository = new PickupLocationRepository();
+        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
+        model.addAttribute("employeeRepository",employeeRepository);
+        model.addAttribute("customerRepository",customerRepository);
+        model.addAttribute("carRepository",carRepository);
+        model.addAttribute("allCars", carRepository.getAll());
+        model.addAttribute("allCustomers", customerRepository.getAll());
 
         LeaseReportRepository lr = new LeaseReportRepository();
         EmployeeRepository er = new EmployeeRepository();
@@ -73,12 +65,12 @@ public class DataRegistrationController {
 
 
         model.addAttribute("lease", lr.getSingleById(25));
-        model.addAttribute("allCars", carRepo.getAll());
-        model.addAttribute("allCustomers", cr.getAll());
+        model.addAttribute("allCars", carRepository.getAll());
+        model.addAttribute("allCustomers", customerRepository.getAll());
         model.addAttribute("allEmployees", er.getAll());
         model.addAttribute("allPickupLocations", pr.getAll());
-        model.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(25).getCarId()));
-        model.addAttribute("customerById", cr.getSingleById(lr.getSingleById(25).getCustomerId()));
+        model.addAttribute("carById",carRepository.getSingleById(lr.getSingleById(25).getCarId()));
+        model.addAttribute("customerById", customerRepository.getSingleById(lr.getSingleById(25).getCustomerId()));
         model.addAttribute("employeeById", er.getSingleById(lr.getSingleById(25).getEmployeeId()));
         model.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(25).getPickupLocationId()));
 

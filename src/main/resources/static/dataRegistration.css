@@ -3,7 +3,6 @@
     display:flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 20px 20px;
     background-color: #F4F8FF;
     font-family: Montserrat,sans-serif;
 }
@@ -16,22 +15,41 @@
     align-items: center;
     gap: 10px 30px;
     padding: 20px 0 40px 0;
+    height: 100px;
+}
+
+.button-image{
+    height: 22px;
+    width: auto;
+    padding-right: 3px;
 }
 
 .button{
-    display: inline-block;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
     background-color: #1892c3;
     color: #FFFFFF;
     text-align: center;
     font-size: 22px;
-    padding: 10px;
-    width: 200px;
-    opacity: 0.8;
+    width: 20%;
+    height: 50%;
     transition: 0.5s;
+    opacity: .8;
     cursor: pointer;
     border: none;
     outline: inherit;
+}
+
+.button-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
 }
 
 .button:hover{
@@ -41,7 +59,6 @@
 input[type=file], .info-form input[type=submit] {
     display: none;
 }
-
 
 .lease-container{
     display: flex;
@@ -90,6 +107,7 @@ input[type=file], .info-form input[type=submit] {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 5px;
+    word-wrap: break-word;
 }
 
 .info-field-image{
@@ -131,7 +149,7 @@ input[type=file], .info-form input[type=submit] {
     justify-content: flex-start;
     width: 50%;
     height: 55%;
-    background-color: #FFFFFF;
+    background-color: #F4F8FF;
     border-radius: 5px;
     border-color: #0f5e80;
     border-style: solid;

@@ -27,5 +27,4 @@ public class IncidentReportService {
         );
         return allIncidentReports;
     }
-
 }

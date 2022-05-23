@@ -1,10 +1,13 @@
 .main-container{
     display:flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex-wrap: nowrap;
     gap: 20px 20px;
     background-color: #F4F8FF;
     font-family: Montserrat,sans-serif;
+    padding-top: 20px;
 }
 
 .lease-container{
@@ -12,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .lease-info-container-header{
@@ -178,16 +182,52 @@
 
 }
 
-.search-bar{
-    height: 40px;
-    width: 300px;
+.search-text-field{
+    height: 100%;
+    width: 100%;
+    border-style: none;
+    font-size: 22px;
+    background-color: #1892c3;
+    color: #FFFFFF;
 }
 
-.search-submit{
+.search-text-field:focus{
+    outline: none;
+}
+
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 32px;
+    width: 30%;
+    border-style: none;
+    background-color: #1892c3;
+    padding: 10px;
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+::placeholder{
+    color: #FFFFFF;
+    opacity: .5;
+}
+
+
+.search-icon{
     height: 25px;
     width: auto;
     margin: auto 0 auto 5px;
+    opacity: .8;
+    transition: 0.3s;
 }
+
+.search-icon:hover{
+    opacity: 1;
+}
+
 
 .search-test{
     display: flex;
