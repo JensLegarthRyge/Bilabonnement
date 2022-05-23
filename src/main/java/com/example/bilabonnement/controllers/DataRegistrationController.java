@@ -37,50 +37,19 @@ public class DataRegistrationController {
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model, Model idList) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
-        model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
-        model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
-
         //Working, DO NOT REPLACE
         CustomerRepository cr = new CustomerRepository();
         CarRepository carRepo = new CarRepository();
-        idList.addAttribute("allCars", carRepo.getAll());
-        idList.addAttribute("allCustomers", cr.getAll());
-
         LeaseReportRepository lr = new LeaseReportRepository();
         EmployeeRepository er = new EmployeeRepository();
         PickupLocationRepository pr = new PickupLocationRepository();
 
-
-
-        if (lr.getSingleById(25).hasLowDeductableInsurance()) {
-            model.addAttribute("hasDeductable", "Har afleveringsforsikring");
-        } else {
-            model.addAttribute("hasDeductable", "Har ikke afleveringsforsikring");
-        }
-
-        if (lr.getSingleById(25).hasReturnInsurance()) {
-            model.addAttribute("hasReturn", "Har afleveringsforsikring");
-        } else {
-            model.addAttribute("hasReturn", "Har ikke afleveringsforsikring");
-        }
-
-        if (lr.getSingleById(25).isLimited()) {
-            model.addAttribute("isLimited", "Limited");
-        } else {
-            model.addAttribute("isLimited", "Unlimited");
-        }
-
-
-
-        model.addAttribute("lease", lr.getSingleById(25));
+        model.addAttribute("allLeaseReports",lr.getAll());
+        model.addAttribute("allPickupLocations",pr.getAll());
         model.addAttribute("allCars", carRepo.getAll());
         model.addAttribute("allCustomers", cr.getAll());
         model.addAttribute("allEmployees", er.getAll());
-        model.addAttribute("allPickupLocations", pr.getAll());
-        model.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(25).getCarId()));
-        model.addAttribute("customerById", cr.getSingleById(lr.getSingleById(25).getCustomerId()));
-        model.addAttribute("employeeById", er.getSingleById(lr.getSingleById(25).getEmployeeId()));
-        model.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(25).getPickupLocationId()));
+
 
 
         return "data-registration";

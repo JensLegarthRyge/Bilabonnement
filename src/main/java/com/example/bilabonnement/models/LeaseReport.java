@@ -1,7 +1,6 @@
 package com.example.bilabonnement.models;
 
-import com.example.bilabonnement.repositories.CarRepository;
-import com.example.bilabonnement.repositories.LeaseReportRepository;
+import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.repositories.testRepositories.CarTestRepository;
 
 import java.time.LocalDate;
@@ -136,6 +135,26 @@ public class LeaseReport {
 
     public LocalDate getStartDate() {
         return startDate;
+    }
+
+    public Car getCarById(int id) {
+        CarRepository carRepo = new CarRepository();
+        return carRepo.getSingleById(id);
+    }
+
+    public Customer getCustomerById(int id) {
+        CustomerRepository cr = new CustomerRepository();
+        return cr.getSingleById(id);
+    }
+
+    public Employee getEmployeeById(int id) {
+        EmployeeRepository er = new EmployeeRepository();
+        return er.getSingleById(id);
+    }
+
+    public PickupLocation getPickupLocationById(int id) {
+        PickupLocationRepository plr = new PickupLocationRepository();
+        return plr.getSingleById(id);
     }
 
     @Override
