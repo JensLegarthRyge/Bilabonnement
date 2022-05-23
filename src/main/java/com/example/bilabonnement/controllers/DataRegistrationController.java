@@ -7,6 +7,7 @@ import com.example.bilabonnement.models.PickupLocation;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.repositories.testRepositories.LeaseTestRepository;
 import com.example.bilabonnement.services.LeaseReportService;
+import com.example.bilabonnement.services.LoginService;
 import com.example.bilabonnement.services.ManualUpload;
 import com.opencsv.CSVWriter;
 
@@ -33,10 +34,14 @@ import java.util.Scanner;
 
 @Controller
 public class DataRegistrationController {
+    LoginService ls = new LoginService();
 
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model, Model idList) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
+        if(!ls.hasAccess("data", session)){
+            return "redirect:/no-access";
+        }
         model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
         model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
 

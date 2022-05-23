@@ -67,3 +67,46 @@ body{
         width: 70px;
     }
 }
+
+.no-pass{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.no-pass-pic{
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+}
+.no-pass-content{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+    width: 45%;
+    height: 100%;
+}
+
+.no-pass-header{
+    margin-top: 30vh;
+    font-size: 40px;
+    color: white;
+    font-weight: bolder;
+    font-family: Montserrat,sans-serif;
+
+}
+
+.no-pass-text{
+    color: white;
+    font-family: Montserrat,sans-serif;
+    font-size: 20px;
+    margin-top: 40px;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No access page</title>
+    <link rel="stylesheet" th:href="@{logIn.css}"href="../static/logIn.css">
+    <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
+</head>
+<body>
+<div th:replace="fragments/general.html :: header()"></div>
+<section class="main-container">
+    <div class="no-pass">
+        <img class="no-pass-pic" src="https://imgur.com/UeBrJlB.jpg">
+        <div class="no-pass-content">
+            <span class="no-pass-header" >ADGANG NÆGTET</span>
+            <span class="no-pass-text" >Kontakt administrator for at få adgang til denne side.</span>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

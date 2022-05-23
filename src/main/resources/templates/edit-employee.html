@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit employee</title>
+    <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
+    <link rel="stylesheet" th:href="@{admin.css}" href="../static/admin.css">
+</head>
+<body>
+<div th:replace="fragments/general.html :: header()"></div>
+
+<section class="main-container">
+    <form method="GET" action="/admin">
+        <input type="image" class="report-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
+    </form>
+    <form method="POST" action="change-employee" class="new-employee-form" id="edit-form">
+        <input type="hidden" id="employeeId" name="employeeId" th:value="${employee.getId()}">
+        <span class="admin-header" >Ændring af medarbejderdata</span>
+        <div class="new-employee-form-objects">
+            <div>
+                <label for="firstName" class="admin-input-text"><b>First name</b></label>
+                <input type="text" class="admin-input-fields" id="firstName" name="firstName" th:value="${employee.getFirstName()}" disabled>
+            </div>
+            <div>
+                <label for="lastName" class="admin-input-text"><b>Last name</b></label>
+                <input type="text" class="admin-input-fields" id="lastName" name="lastName" th:value="${employee.getLastName()}" disabled>
+            </div>
+        </div>
+        <div class="new-employee-form-objects">
+            <div>
+                <label for="email" class="admin-input-text"><b>Email</b></label>
+                <input type="text" class="admin-input-fields" id="email" name="email" th:value="${employee.getEmail()}" disabled>
+            </div>
+            <div>
+                <label for="password" class="admin-input-text"><b>Password</b></label>
+                <input type="text" class="admin-input-fields" id="password" name="password" th:value="${employee.getPassword()}" disabled>
+            </div>
+        </div>
+        <div class="new-employee-form-objects">
+            <div>
+                <label for="accessFeatures" class="admin-input-text"><b>Adgangsrettigheder</b></label>
+                <select  class="admin-input-fields" id="accessFeatures" name="accessFeatures" disabled>
+                    <option th:value="${employee.getAccessFeatures()}" th:text="${employee.getAccessFeatureText()}" disabled></option>
+                    <option value="1">Dataregistrering</option>
+                    <option value="2">Skaderegistrering</option>
+                    <option value="3">Forretningsanalyse</option>
+                    <option value="4">Dataregistrering og skaderegistrering</option>
+                    <option value="5">Dataregistrering og forretningsanalyse</option>
+                    <option value="6">Skaderegistrering og Forretningsanalyse</option>
+                    <option value="7">Dataregistrering, skaderegistrering og forretningsanalyse</option>
+                </select>
+            </div>
+            <div>
+                <label for="isAdmin" class="admin-input-text"><b>Is admin</b></label>
+                <span th:if="${employee.isAdmin()}">
+                    <input type="checkbox" name="isAdmin" id="isAdmin" checked>
+                </span>
+                <span th:unless="${employee.isAdmin()}">
+                    <input type="checkbox" name="isAdmin">
+                </span>
+            </div>
+        </div>
+        <div class="new-employee-form-objects">
+            <button class="button" id="edit" onclick="unlockButton()" type="button">Rediger</button>
+            <input class="button" type="submit" id="apply-button" disabled value="Anvend">
+        </div>
+
+
+
+
+    </form>
+
+
+</section>
+<script>
+
+    var button = document.getElementById("edit");
+    var info = document.getElementById("edit-form");
+    button.addEventListener('click', function() {
+        for (var i = 1; i <info.length ; i++) {
+            info.elements[i].disabled = false
+        }
+    })
+
+    function unlockButton() {
+        document.getElementById("apply-button").disabled = false;
+    }
+</script>
+
+</body>
+</html>

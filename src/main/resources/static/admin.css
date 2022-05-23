@@ -72,6 +72,7 @@
     text-align: center;
     font-size: 22px;
     padding: 10px;
+    margin-top: 10px;
     width: 200px;
     opacity: 0.8;
     transition: 0.5s;
@@ -82,19 +83,83 @@
 
 
 .new-employee-form{
-    width: 80%;
+    width: 60%;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     padding: 40px;
     justify-content: space-around;
     flex-wrap: wrap;
+    border: 2px solid #0f5e80;
+    border-radius: 5px;
 }
 
 .new-employee-form-objects{
     display: flex;
-    padding: 70px;
+    padding: 30px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.edit-employee{
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    background-color: #f2f2f2;
+}
+
+
+.edit-input-fields{
+    display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    margin: 40px;
+}
+
+.edit-employee-form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.edit-popup-close-button {
+    position: absolute;
+    padding: 5px;
+    right: 12%;
+    top: 15%;
+    width: 30px;
+    height: 30px;
+}
+
+.report-cross{
+    position: absolute;
+    padding: 6px;
+    right: 17%;
+    top: 15.5%;
+    width: 30px;
+    height: 30px;
+}
+
+.admin-header{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.admin-parts{
+    display: flex;
+    flex-direction: row;
+}
+
+.admin-input-text{
+    display: block;
+    width: 170px;
+}
+
+.admin-input-fields{
+    width: 170px;
 }
