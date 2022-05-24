@@ -124,7 +124,7 @@ input[type=file], .info-form input[type=submit] {
 }
 
 @media screen and (max-width: 700px) {
-    .logInFields{
+    .login-field{
         width: 70px;
     }
 }
