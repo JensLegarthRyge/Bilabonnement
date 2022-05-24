@@ -41,6 +41,7 @@ public class IndexController {
             session.setAttribute("isAdmin", currentEmp.isAdmin());
 
             return "logged-in-frontpage";
+
         } else{
             return "redirect:/?status=not-verified";
         }
