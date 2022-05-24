@@ -13,11 +13,11 @@ public class LoginService {
     public boolean verifyUserFromLoginDetails(WebRequest loginForm){
         ArrayList<Employee> allEmployees = er.getAll();
         try{
-            int userId = Integer.parseInt(loginForm.getParameter("id"));
+            String userEmail = loginForm.getParameter("email");
             String userPassword = loginForm.getParameter("password");
 
             for (Employee ce:allEmployees) {
-                if (ce.getId() == userId && ce.getPassword().equals(userPassword)){
+                if (ce.getEmail().equalsIgnoreCase(userEmail) && ce.getPassword().equals(userPassword)){
                     return true;
                 }
             }
@@ -30,9 +30,14 @@ public class LoginService {
     }
 
 
-    public Employee getEmployee(String id){
-        int intId = Integer.parseInt(id);
-        return er.getSingleById(intId);
+    public Employee getEmployee(String email){
+        ArrayList<Employee> allEmployees = er.getAll();
+        for (Employee ce : allEmployees){
+            if(ce.getEmail().equalsIgnoreCase(email)){
+                return ce;
+            }
+        }
+        return null;
     }
 
     public boolean hasAccess(String pageToLogInto, int accessFeatures){
