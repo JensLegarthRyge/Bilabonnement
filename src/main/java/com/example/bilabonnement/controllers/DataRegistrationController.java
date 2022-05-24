@@ -1,5 +1,6 @@
 package com.example.bilabonnement.controllers;
 
+import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.LoginService;
@@ -8,15 +9,13 @@ import com.example.bilabonnement.services.ManualUpload;
 import com.example.bilabonnement.services.CSVFileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.ArrayList;
 
 @Controller
 public class DataRegistrationController {
@@ -28,25 +27,47 @@ public class DataRegistrationController {
         if(!ls.hasAccess("data", session)){
             return "redirect:/no-access";
         }
+        model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
+        model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
 
         //Working, DO NOT REPLACE
-        CarRepository carRepository = new CarRepository();
         CustomerRepository customerRepository = new CustomerRepository();
+        CarRepository carRepository = new CarRepository();
         EmployeeRepository employeeRepository = new EmployeeRepository();
-        LeaseReportRepository leaseReportRepository = new LeaseReportRepository();
         PickupLocationRepository pickupLocationRepository = new PickupLocationRepository();
-
+        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
+        model.addAttribute("employeeRepository",employeeRepository);
+        model.addAttribute("customerRepository",customerRepository);
         model.addAttribute("carRepository",carRepository);
         model.addAttribute("allCars", carRepository.getAll());
-        model.addAttribute("customerRepository",customerRepository);
         model.addAttribute("allCustomers", customerRepository.getAll());
-        model.addAttribute("employeeRepository",employeeRepository);
-        model.addAttribute("allEmployees", employeeRepository.getAll());
-        model.addAttribute("allLeaseReports",leaseReportRepository.getAll());
-        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
-        model.addAttribute("allPickupLocations",pickupLocationRepository.getAll());
+
+        LeaseReport report = new LeaseReport();
+        LeaseReportRepository lr = new LeaseReportRepository();
+        EmployeeRepository er = new EmployeeRepository();
+        PickupLocationRepository pr = new PickupLocationRepository();
+        ArrayList<LeaseReport> test = new ArrayList<>(lr.getAll());
+
+        model.addAttribute("updateLease", report);
+        model.addAttribute("allLeaseReports",lr.getAll());
+        model.addAttribute("allPickupLocations",pr.getAll());
+        model.addAttribute("allEmployees", er.getAll());
+
+
 
         return "data-registration";
+    }
+
+    @PostMapping("/edit-lease-update")
+    public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
+        System.out.println();
+        System.out.println(report);
+
+
+
+
+
+        return "redirect:/data-registration";
     }
 
 
@@ -77,50 +98,6 @@ public class DataRegistrationController {
 
         return "data-registration";
     }
-
-    @PostMapping("/edit-lease-update")
-    public String leaseEdit (HttpSession session, WebRequest dataFromForm, Model information){
-        LeaseReportRepository lr = new LeaseReportRepository();
-        CustomerRepository cr = new CustomerRepository();
-        CarRepository carRepo = new CarRepository();
-        EmployeeRepository er = new EmployeeRepository();
-        PickupLocationRepository pr = new PickupLocationRepository();
-
-        int leaseId = Integer.parseInt(dataFromForm.getParameter("id"));
-
-        if (lr.getSingleById(leaseId).hasLowDeductableInsurance()) {
-            information.addAttribute("hasDeductable", "Har afleveringsforsikring");
-        } else {
-            information.addAttribute("hasDeductable", "Har ikke afleveringsforsikring");
-        }
-
-        if (lr.getSingleById(leaseId).hasReturnInsurance()) {
-            information.addAttribute("hasReturn", "Har afleveringsforsikring");
-        } else {
-            information.addAttribute("hasReturn", "Har ikke afleveringsforsikring");
-        }
-
-        if (lr.getSingleById(leaseId).isLimited()) {
-            information.addAttribute("isLimited", "Limited");
-        } else {
-            information.addAttribute("isLimited", "Unlimited");
-        }
-
-
-
-        information.addAttribute("lease", lr.getSingleById(leaseId));
-        information.addAttribute("allCars", carRepo.getAll());
-        information.addAttribute("allCustomers", cr.getAll());
-        information.addAttribute("allEmployees", er.getAll());
-        information.addAttribute("allPickupLocations", pr.getAll());
-        information.addAttribute("carById",carRepo.getSingleById(lr.getSingleById(leaseId).getCarId()));
-        information.addAttribute("customerById", cr.getSingleById(lr.getSingleById(leaseId).getCustomerId()));
-        information.addAttribute("employeeById", er.getSingleById(lr.getSingleById(leaseId).getEmployeeId()));
-        information.addAttribute("pickupLocationId", pr.getSingleById(lr.getSingleById(leaseId).getPickupLocationId()));
-
-        return "data-registration-edit";
-    }
-
 
     @GetMapping("/back-to-data-registration")
     public String backToDataRegistration() {
