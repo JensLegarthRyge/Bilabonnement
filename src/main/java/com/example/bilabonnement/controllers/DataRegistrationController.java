@@ -4,7 +4,6 @@ import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.LoginService;
-import com.example.bilabonnement.services.ManualUpload;
 
 import com.example.bilabonnement.services.CSVFileService;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,7 @@ import java.util.ArrayList;
 @Controller
 public class DataRegistrationController {
     LoginService ls = new LoginService();
+    LeaseReportService lrs = new LeaseReportService();
 
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model) {
@@ -53,19 +53,11 @@ public class DataRegistrationController {
         model.addAttribute("allPickupLocations",pr.getAll());
         model.addAttribute("allEmployees", er.getAll());
 
-
-
         return "data-registration";
     }
 
     @PostMapping("/edit-lease-update")
     public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
-        System.out.println();
-        System.out.println(report);
-
-
-
-
 
         return "redirect:/data-registration";
     }
@@ -76,18 +68,13 @@ public class DataRegistrationController {
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
         CSVFileService.writeDataToFile(file);
-
         return "redirect:/data-registration";
     }
 
     @PostMapping("/manual-upload")
     public String manualUpload(HttpSession session, WebRequest dataFromForm){
-        ManualUpload manU = new ManualUpload();
         int x = Integer.parseInt(session.getAttribute("userId").toString());
-        manU.uploadManualLease(dataFromForm, x);
-
-        System.out.println(dataFromForm.getParameter("carId"));
-
+        lrs.uploadManualLease(dataFromForm, x);
         return "redirect:/data-registration";
     }
 
@@ -104,11 +91,8 @@ public class DataRegistrationController {
 
     @RequestMapping("delete-lease-report")
     public String tester(HttpSession session, WebRequest dataFromForm){
-        System.out.println( "leasereport ID: " + dataFromForm.getParameter("leaseId"));
         int leaseReportId = Integer.parseInt(dataFromForm.getParameter("leaseId"));
-        LeaseReportService lrs = new LeaseReportService();
         lrs.removeLeaseReport(leaseReportId);
-
         return "redirect:/data-registration";
     }
 

@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class IncidentReportService {
 
     /*Jens Legarth Ryge*/
+    LeaseReportService lrs = new LeaseReportService();
     public ArrayList<IncidentReport> getActiveIncidentReports(){
         //Removes irrelevant incident reports
-        LeaseReportService lrs = new LeaseReportService();
         ArrayList<Integer> allActiveLeaseReportIds = new ArrayList<>();
 
         for (LeaseReport clr:lrs.getActiveLeaseReports()) {

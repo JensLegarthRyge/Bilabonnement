@@ -14,19 +14,17 @@ import javax.servlet.http.HttpSession;
 public class BusinessController {
 
     LoginService ls = new LoginService();
+    CarService carService = new CarService();
 
     @GetMapping("/business")
     public String businessDevelopment(HttpSession session, Model model){
-        CarService carService = new CarService();
-        carService.updateRentalStatus();
-
         if(!ls.hasAccess("business", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
+        carService.updateRentalStatus();
         model.addAttribute("allCars",new CarRepository().getAll());
         model.addAttribute("BusinessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";
     }
-
 
 }

@@ -11,9 +11,12 @@ import java.util.Locale;
 
 public class BusinessDevelopmentService {
     /*Jens Legarth Ryge*/
+    CarRepository cr = new CarRepository();
+    LeaseReportService lrs = new LeaseReportService();
+    IncidentReportService irs = new IncidentReportService();
     public String getCarsRentedAmount(){
-        CarRepository carRepository = new CarRepository();
-        ArrayList<Car> allCars = carRepository.getAll();
+
+        ArrayList<Car> allCars = cr.getAll();
         int carsRented = 0;
         for (Car currentCar:allCars) {
             if (currentCar.isCurrentlyRented()){
@@ -24,7 +27,6 @@ public class BusinessDevelopmentService {
     }
 
     public double getPureRentalEarnings() {
-        LeaseReportService lrs = new LeaseReportService();
         double RentalEarnings = 0;
         for (LeaseReport currentLeaseReport : lrs.getActiveLeaseReports()) {
             RentalEarnings += (currentLeaseReport.getPrice() / 30.437) * currentLeaseReport.getPeriod();
@@ -33,7 +35,6 @@ public class BusinessDevelopmentService {
     }
 
     public double getPureDamageEarnings(){
-        IncidentReportService irs = new IncidentReportService();
         double damageEarnings = 0;
         for (IncidentReport currentIncidentReport:irs.getActiveIncidentReports()) {
             damageEarnings += currentIncidentReport.getPrice();

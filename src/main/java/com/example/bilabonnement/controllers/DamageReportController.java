@@ -24,14 +24,13 @@ public class DamageReportController {
     CarRepository carRepository = new CarRepository();
     IncidentTypeRepository itr = new IncidentTypeRepository();
     LoginService ls = new LoginService();
+    IncidentService incidentService = new IncidentService();
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
         if(!ls.hasAccess("damage", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
-
-
         ArrayList<IncidentReport> incidentReports = irr.getAll();
         session.setAttribute("incidentReportId", null);
 
@@ -61,16 +60,13 @@ public class DamageReportController {
 
     @PostMapping("delete-incident")
     public String deleteIncident(WebRequest dataFromForm){
-        IncidentService incidentService = new IncidentService();
         incidentService.deleteIncident(dataFromForm);
         return "redirect:/report";
     }
 
     @PostMapping("create-incident")
     public String createIncident(HttpSession session, WebRequest dataFromForm){
-        IncidentService incidentService = new IncidentService();
         incidentService.createNewIncident(dataFromForm);
-        System.out.println(dataFromForm.toString());
         return "redirect:/report";
     }
 

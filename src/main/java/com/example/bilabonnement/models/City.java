@@ -10,4 +10,5 @@ public class City {
         this.postcode = postCode;
         this.cityName = cityName;
     }
+
 }

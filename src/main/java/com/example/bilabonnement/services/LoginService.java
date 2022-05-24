@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 public class LoginService {
+    //Johannes Forsting
     EmployeeRepository er = new EmployeeRepository();
 
     public boolean verifyUserFromLoginDetails(WebRequest loginForm){
@@ -41,9 +42,6 @@ public class LoginService {
     }
 
     public boolean hasAccess(String pageToLogInto, int accessFeatures){
-
-        System.out.println("accessfeatures" + accessFeatures);
-        System.out.println("page" + pageToLogInto);
         switch (pageToLogInto){
             case "data":
                 if(accessFeatures == 1 || accessFeatures == 4 || accessFeatures == 5 ||accessFeatures == 7){

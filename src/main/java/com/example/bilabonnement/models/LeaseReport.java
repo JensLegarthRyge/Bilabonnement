@@ -49,7 +49,7 @@ public class LeaseReport {
         this.createdDate = LocalDate.now();
         this.price = getCarPrice(carId);
         if(isLimited){
-            this.period = 120;
+            this.period = 150;
             this.hasLowDeductableInsurance = false;
             this.hasReturnInsurance = false;
         }

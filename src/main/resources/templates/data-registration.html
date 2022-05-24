@@ -22,9 +22,9 @@
         <form method="POST" action="/manual-upload">
             <section class="popup-drop-down-formulas-container">
                 <div>
-                    <label for="carId"><b>Stelnummer</b></label>
+                    <label for="carId"><b>Nummerplade</b></label>
                     <select name="carId" id="carId" class="input-field">
-                        <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getChassisNumber()}"></option>
+                        <option class="id" name="carIdToUse" th:each="Car : ${allCars}" th:value="${Car.getId()}" th:text="${Car.getRegistrationNumber()}"></option>
                     </select>
                 </div>
                 <div>

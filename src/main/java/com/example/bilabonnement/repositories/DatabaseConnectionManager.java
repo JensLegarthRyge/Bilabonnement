@@ -24,11 +24,8 @@ public class DatabaseConnectionManager {
             Properties props = new Properties();
             props.load(propertiesFile);
             url = props.getProperty("db.url");
-            System.out.println(url);
             username = props.getProperty("db.username");
-            System.out.println(username);
             password = props.getProperty("db.password");
-            System.out.println(password);
             conn = DriverManager.getConnection(url, username, password);
 
         }
