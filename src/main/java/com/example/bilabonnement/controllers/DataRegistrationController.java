@@ -15,16 +15,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Controller
 public class DataRegistrationController {
     LoginService ls = new LoginService();
+    LeaseReportService lrs = new LeaseReportService();
 
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
-        if(!ls.hasAccess("data", session)){
+        if(!ls.hasAccess("data", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
         model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
@@ -60,10 +62,18 @@ public class DataRegistrationController {
 
     @PostMapping("/edit-lease-update")
     public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
-        System.out.println();
-        System.out.println(report);
-
-
+    public String updateLease(WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
+        int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
+        int customerId = Integer.parseInt(dataFromForm.getParameter("edit-customer-id"));
+        int employeeId = Integer.parseInt(dataFromForm.getParameter("employee-id"));
+        boolean hasReturnInsurance = Boolean.parseBoolean(dataFromForm.getParameter("edit.return-insurance"));
+        boolean hasLowDeductable = Boolean.parseBoolean(dataFromForm.getParameter("edit-has-deductable"));
+        boolean isLimited = Boolean.parseBoolean(dataFromForm.getParameter("edit-is-limited"));
+        int pickupLocationId = Integer.parseInt(dataFromForm.getParameter("edit-pickup-address"));
+        LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
+        LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("edit-created-date"));
+        int period = Integer.parseInt(dataFromForm.getParameter("edit-period"));
 
 
 
@@ -82,14 +92,8 @@ public class DataRegistrationController {
 
     @PostMapping("/manual-upload")
     public String manualUpload(HttpSession session, WebRequest dataFromForm){
-        ManualUpload manU = new ManualUpload();
         int x = Integer.parseInt(session.getAttribute("userId").toString());
-        manU.uploadManualLease(dataFromForm, x);
-
-        System.out.println(dataFromForm.getParameter("carId"));
-
-
-
+        lrs.uploadManualLease(dataFromForm, x);
         return "redirect:/data-registration";
     }
 
@@ -106,11 +110,8 @@ public class DataRegistrationController {
 
     @RequestMapping("delete-lease-report")
     public String tester(HttpSession session, WebRequest dataFromForm){
-        System.out.println( "leasereport ID: " + dataFromForm.getParameter("leaseId"));
         int leaseReportId = Integer.parseInt(dataFromForm.getParameter("leaseId"));
-        LeaseReportService lrs = new LeaseReportService();
         lrs.removeLeaseReport(leaseReportId);
-
         return "redirect:/data-registration";
     }
 

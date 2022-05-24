@@ -18,7 +18,7 @@
         <p>Log ind på din personlige arbejdskonto herunder for at fortsætte til Bilabonnement</p>
         <span class="error" th:text="${loginerror}"></span>
         <form method="POST" action="/attempt-login" class="login-box-form-container">
-            <input type="text" placeholder="E-mailadresse" class="login-input-field" name="id">
+            <input type="email" placeholder="E-mailadresse" class="login-input-field" name="email">
             <input type="password" placeholder="Adgangskode" class="login-input-field" name="password">
             <button type="submit" class="button">Fortsæt</button>
         </form>

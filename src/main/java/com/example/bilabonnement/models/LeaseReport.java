@@ -49,7 +49,7 @@ public class LeaseReport {
         this.createdDate = LocalDate.now();
         this.price = getCarPrice(carId);
         if(isLimited){
-            this.period = 120;
+            this.period = 150;
             this.hasLowDeductableInsurance = false;
             this.hasReturnInsurance = false;
         }
@@ -87,9 +87,7 @@ public class LeaseReport {
     //Tager fra en bil fra testrepository lige nu.
     public double getCarPrice(int carId){
         CarRepository carRep = new CarRepository();
-        CarTestRepository carTestRep = new CarTestRepository();
-        //double carPrice = carRep.getSingleById(carId).getPrice();
-        double carPrice = carTestRep.getSingleById(1).getPrice();
+        double carPrice = carRep.getSingleById(carId).getPrice();
         return carPrice;
     }
 
@@ -117,8 +115,6 @@ public class LeaseReport {
     public int getPeriod() {
         return period;
     }
-
-
 
     public boolean hasReturnInsurance() {
         return hasReturnInsurance;

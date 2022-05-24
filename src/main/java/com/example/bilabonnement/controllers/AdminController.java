@@ -47,14 +47,12 @@ public class AdminController {
 
     @PostMapping("change-employee")
     public String changeEmployee(WebRequest dataFromForm){
-        System.out.println("Change employee pressed");
         empService.changeEmployee(dataFromForm);
         return "redirect:/admin";
     }
 
     @PostMapping("delete-employee")
     public String deleteEmployee(WebRequest dataFromForm){
-        System.out.println("Change employee pressed");
         empService.deleteEmployee(dataFromForm);
         return "redirect:/admin";
     }

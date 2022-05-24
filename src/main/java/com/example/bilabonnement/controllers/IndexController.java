@@ -20,8 +20,11 @@ public class IndexController {
 
 
     //Vores indeks side
-    @GetMapping("/")
-    public String frontPage(Model loginVerification, @RequestParam(name="status") Optional<String> message) {
+    @RequestMapping("/")
+    public String frontPage(Model loginVerification, @RequestParam(name="status") Optional<String> message, HttpSession session) {
+        if(session.getAttribute("userId") != null){
+            return "logged-in-frontpage";
+        }
         if(message.isPresent()){
             loginVerification.addAttribute("loginerror","Vi kunne ikke finde en bruger med det angivne " +
                     "brugernavn og adgangskode");
@@ -32,11 +35,11 @@ public class IndexController {
     @PostMapping("/attempt-login")
     public String loggedInFrontpage(WebRequest request, HttpSession session){
         if(loginService.verifyUserFromLoginDetails(request)){
-            Employee currentEmp = loginService.getEmployee(request.getParameter("id"));
+            Employee currentEmp = loginService.getEmployee(request.getParameter("email"));
             session.setAttribute("userId",currentEmp.getId());
             session.setAttribute("accessFeatures", currentEmp.getAccessFeatures());
             session.setAttribute("isAdmin", currentEmp.isAdmin());
-            System.out.println("isadmin is:" + session.getAttribute("isAdmin"));
+
             return "logged-in-frontpage";
 
         } else{
