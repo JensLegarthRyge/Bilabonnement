@@ -27,7 +27,7 @@ public class DamageReportController {
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
-        if(!ls.hasAccess("damage", session)){
+        if(!ls.hasAccess("damage", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
 

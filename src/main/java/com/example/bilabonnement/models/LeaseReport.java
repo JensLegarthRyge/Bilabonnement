@@ -80,12 +80,9 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
-    //Tager fra en bil fra testrepository lige nu.
     public double getCarPrice(int carId){
         CarRepository carRep = new CarRepository();
-        CarTestRepository carTestRep = new CarTestRepository();
-        //double carPrice = carRep.getSingleById(carId).getPrice();
-        double carPrice = carTestRep.getSingleById(1).getPrice();
+        double carPrice = carRep.getSingleById(carId).getPrice();
         return carPrice;
     }
 

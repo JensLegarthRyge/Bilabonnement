@@ -20,7 +20,7 @@ public class BusinessController {
         CarService carService = new CarService();
         carService.updateRentalStatus();
 
-        if(!ls.hasAccess("business", session)){
+        if(!ls.hasAccess("business", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
         model.addAttribute("allCars",new CarRepository().getAll());

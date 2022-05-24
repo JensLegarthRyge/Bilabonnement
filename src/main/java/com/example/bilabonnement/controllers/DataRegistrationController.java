@@ -25,7 +25,7 @@ public class DataRegistrationController {
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model) {
         // TODO: 5/11/2022  TEST REPLACE FOR PROD
-        if(!ls.hasAccess("data", session)){
+        if(!ls.hasAccess("data", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
         model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
@@ -77,8 +77,6 @@ public class DataRegistrationController {
         manU.uploadManualLease(dataFromForm, x);
 
         System.out.println(dataFromForm.getParameter("carId"));
-
-
 
         return "redirect:/data-registration";
     }

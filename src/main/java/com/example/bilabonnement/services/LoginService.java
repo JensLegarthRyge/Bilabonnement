@@ -35,8 +35,7 @@ public class LoginService {
         return er.getSingleById(intId);
     }
 
-    public boolean hasAccess(String pageToLogInto, HttpSession session){
-        int accessFeatures = (int) (session.getAttribute("accessFeatures"));
+    public boolean hasAccess(String pageToLogInto, int accessFeatures){
 
         System.out.println("accessfeatures" + accessFeatures);
         System.out.println("page" + pageToLogInto);
