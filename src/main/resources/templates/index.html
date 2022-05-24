@@ -10,18 +10,35 @@
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
-<section class="logIn">
-    <img class="clockPicture" src="https://imgur.com/RkpVsO8.png">
+
+<section class="login-box-container">
+    <div class="login-box">
+        <img class="login-box-logo" src="https://imgur.com/RkpVsO8.png">
+        <h1>Velkommen</h1>
+        <p>Log ind på din personlige arbejdskonto herunder for at fortsætte til Bilabonnement</p>
+        <span class="error" th:text="${loginerror}"></span>
+        <form method="POST" action="/attempt-login" class="login-box-form-container">
+            <input type="email" placeholder="E-mailadresse" class="login-input-field" name="id">
+            <input type="password" placeholder="Adgangskode" class="login-input-field" name="password">
+            <button type="submit" class="button">Fortsæt</button>
+        </form>
+    </div>
+</section>
+
+<!--
+<section class="log-in">
+    <img class="clock-picture" src="https://imgur.com/RkpVsO8.png">
     <h2>Velkommen</h2>
     <p>Log ind på din personlige arbejdskonto herunder</p>
     <span class="error" th:text="${loginerror}"></span>
 
     <form method="POST" action="/attempt-login" class="form-container">
-        <input type="text" placeholder="Indtast brugernavn" class="logInFields" name="id">
-        <input type="password" placeholder="Indtast password" class="logInFields" name="password">
-        <button type="submit" class="logInButton">Login</button>
+        <input type="text" placeholder="Indtast brugernavn" class="login-field" name="id">
+        <input type="password" placeholder="Indtast password" class="login-field" name="password">
+        <button type="submit" class="button">Login</button>
     </form>
 
 </section>
+-->
 </body>
 </html>
