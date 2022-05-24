@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Controller
@@ -59,11 +60,18 @@ public class DataRegistrationController {
     }
 
     @PostMapping("/edit-lease-update")
-    public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
-        System.out.println();
-        System.out.println(report);
-
-
+    public String updateLease(WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
+        int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
+        int customerId = Integer.parseInt(dataFromForm.getParameter("edit-customer-id"));
+        int employeeId = Integer.parseInt(dataFromForm.getParameter("employee-id"));
+        boolean hasReturnInsurance = Boolean.parseBoolean(dataFromForm.getParameter("edit.return-insurance"));
+        boolean hasLowDeductable = Boolean.parseBoolean(dataFromForm.getParameter("edit-has-deductable"));
+        boolean isLimited = Boolean.parseBoolean(dataFromForm.getParameter("edit-is-limited"));
+        int pickupLocationId = Integer.parseInt(dataFromForm.getParameter("edit-pickup-address"));
+        LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
+        LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("edit-created-date"));
+        int period = Integer.parseInt(dataFromForm.getParameter("edit-period"));
 
 
 
