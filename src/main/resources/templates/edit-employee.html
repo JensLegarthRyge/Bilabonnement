@@ -4,41 +4,41 @@
     <meta charset="UTF-8">
     <title>Edit employee</title>
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
-    <link rel="stylesheet" th:href="@{admin.css}" href="../static/admin.css">
+    <link rel="stylesheet" th:href="@{administrationForms.css}" href="../static/administrationForms.css">
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
 
 <section class="main-container">
-    <form method="GET" action="/admin">
-        <input type="image" class="report-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
-    </form>
-    <form method="POST" action="change-employee" class="new-employee-form" id="edit-form">
-        <input type="hidden" id="employeeId" name="employeeId" th:value="${employee.getId()}">
-        <span class="admin-header" >Ændring af medarbejderdata</span>
-        <div class="new-employee-form-objects">
-            <div>
-                <label for="firstName" class="admin-input-text"><b>First name</b></label>
-                <input type="text" class="admin-input-fields" id="firstName" name="firstName" th:value="${employee.getFirstName()}" disabled>
+    <section class="creation-form-container">
+        <form method="POST" action="change-employee" class="input-field-container" id="edit-form">
+            <input type="hidden" id="employeeId" name="employeeId" th:value="${employee.getId()}">
+            <span class="administration-creation-form-header">Ændring af medarbejderdata</span>
+
+            <div class="prior-filled-input-field-container">
+                <label for="firstName" class="box-text">Fornavn</label>
+                <input type="text" class="input-field" id="firstName" name="firstName" th:value="${employee.getFirstName()}" disabled>
             </div>
-            <div>
-                <label for="lastName" class="admin-input-text"><b>Last name</b></label>
-                <input type="text" class="admin-input-fields" id="lastName" name="lastName" th:value="${employee.getLastName()}" disabled>
+
+            <div class="prior-filled-input-field-container">
+                <label for="lastName" class="box-text">Efternavn</label>
+                <input type="text" class="input-field" id="lastName" name="lastName" th:value="${employee.getLastName()}" disabled>
             </div>
-        </div>
-        <div class="new-employee-form-objects">
-            <div>
-                <label for="email" class="admin-input-text"><b>Email</b></label>
-                <input type="text" class="admin-input-fields" id="email" name="email" th:value="${employee.getEmail()}" disabled>
+
+
+            <div class="prior-filled-input-field-container">
+                <label for="email" class="box-text">E-mailadresse</label>
+                <input type="text" class="input-field" id="email" name="email" th:value="${employee.getEmail()}" disabled>
             </div>
-            <div>
-                <label for="password" class="admin-input-text"><b>Password</b></label>
-                <input type="text" class="admin-input-fields" id="password" name="password" th:value="${employee.getPassword()}" disabled>
+
+            <div class="prior-filled-input-field-container">
+                <label for="password" class="box-text">Adgangskode</label>
+                <input type="text" class="input-field" id="password" name="password" th:value="${employee.getPassword()}" disabled>
             </div>
-        </div>
-        <div class="new-employee-form-objects">
-            <div>
-                <label for="accessFeatures" class="admin-input-text"><b>Adgangsrettigheder</b></label>
+
+
+            <div class="prior-filled-input-field-container">
+                <label for="accessFeatures" class="box-text">Adgangsrettigheder<br></label>
                 <select  class="admin-input-fields" id="accessFeatures" name="accessFeatures" disabled>
                     <option th:value="${employee.getAccessFeatures()}" th:text="${employee.getAccessFeatureText()}" disabled></option>
                     <option value="1">Dataregistrering</option>
@@ -50,8 +50,9 @@
                     <option value="7">Dataregistrering, skaderegistrering og forretningsanalyse</option>
                 </select>
             </div>
-            <div>
-                <label for="isAdmin" class="admin-input-text"><b>Is admin</b></label>
+
+            <div class="prior-filled-input-field-container">
+                <label for="isAdmin" class="box-text">Adminisratorrettigheder</label>
                 <span th:if="${employee.isAdmin()}">
                     <input type="checkbox" name="isAdmin" id="isAdmin" checked>
                 </span>
@@ -59,18 +60,14 @@
                     <input type="checkbox" name="isAdmin">
                 </span>
             </div>
-        </div>
-        <div class="new-employee-form-objects">
-            <button class="button" id="edit" onclick="unlockButton()" type="button">Rediger</button>
-            <input class="button" type="submit" id="apply-button" disabled value="Anvend">
-        </div>
 
+            <div class="button-split-container">
+                <button class="button" id="edit" onclick="unlockButton()" type="button">Rediger</button>
+                <input class="button" type="submit" id="apply-button" disabled value="Anvend">
+            </div>
 
-
-
-    </form>
-
-
+        </form>
+    </section>
 </section>
 <script>
 

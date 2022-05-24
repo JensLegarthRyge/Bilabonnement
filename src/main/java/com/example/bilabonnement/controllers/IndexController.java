@@ -37,8 +37,8 @@ public class IndexController {
             session.setAttribute("accessFeatures", currentEmp.getAccessFeatures());
             session.setAttribute("isAdmin", currentEmp.isAdmin());
             System.out.println("isadmin is:" + session.getAttribute("isAdmin"));
-
             return "logged-in-frontpage";
+
         } else{
             return "redirect:/?status=not-verified";
         }

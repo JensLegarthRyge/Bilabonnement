@@ -4,61 +4,40 @@
     <meta charset="UTF-8">
     <title>New employee - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
-    <link rel="stylesheet" th:href="@{admin.css}" href="../static/admin.css">
+    <link rel="stylesheet" th:href="@{administrationForms.css}" href="../static/administrationForms.css">
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
+
 <section class="main-container">
-        <form method="GET" action="/admin">
-            <input type="image" class="report-cross" src="https://img.icons8.com/external-royyan-wijaya-detailed-outline-royyan-wijaya/344/external-cross-interface-royyan-wijaya-detailed-outline-royyan-wijaya-2.png" alt="submit">
-        </form>
-        <form method="POST" action="create-new-employee" class="new-employee-form">
-            <span class="admin-header" >Opret ny medarbejde</span>
-            <div class="new-employee-form-objects">
-                <div>
-                    <span class="admin-input-text">First name</span>
-                    <input type="text" class="admin-input-fields" name="firstName" required>
-                </div>
-                <div>
-                    <span class="admin-input-text">Last name</span>
-                    <input type="text" class="admin-input-fields" name="lastName" required>
-                </div>
-            </div>
-            <div class="new-employee-form-objects">
-                <div>
-                    <span class="admin-input-text">Email</span>
-                    <input type="text" class="admin-input-fields" name="email" required>
-                </div>
-                <div>
-                    <span class="admin-input-text">Password</span>
-                    <input type="text" class="admin-input-fields" name="password" required>
-                </div>
-            </div>
-            <div class="new-employee-form-objects">
-                <div>
-                    <span class="admin-input-text">Adgangsrettigheder</span>
-                    <select name="accessFeatures"  class="admin-input-fields">
-                        <option value="1">Dataregistrering</option>
-                        <option value="2">Skaderegistrering</option>
-                        <option value="3">Forretningsanalyse</option>
-                        <option value="4">Dataregistrering og skaderegistrering</option>
-                        <option value="5">Dataregistrering og forretningsanalyse</option>
-                        <option value="6">Skaderegistrering og Forretningsanalyse</option>
-                        <option value="7">Dataregistrering, skaderegistrering og forretningsanalyse</option>
-                    </select>
-                </div>
-                <div>
-                    <span class="admin-input-text">Skal være admin</span>
-                    <input type="checkbox" name="isAdmin">
-                </div>
-            </div>
-            <div class="new-employee-form-objects">
-                <input type="submit" class="button" value="Opret">
+    <section class="creation-form-container">
+        <span class="administration-creation-form-header">Opret medarbejder</span>
+        <form method="POST" action="create-new-employee" class="input-field-container">
+            <input type="text" placeholder="Fornavn" class="input-field" name="firstName" required>
+            <input type="text" placeholder="Efternavn" class="input-field" name="lastName" required>
+            <input type="text" placeholder="E-mailadresse" class="input-field" name="email" required>
+            <input type="text" placeholder="Adgangskode" class="input-field" name="password" required>
+
+            <div>
+                <span class="box-text">Administratorettigheder</span>
+                <input type="checkbox" name="isAdmin">
             </div>
 
-
+            <div class="new-employee-form-objects">
+                <select name="accessFeatures" class="drop-down">
+                    <option value="1">Dataregistrering</option>
+                    <option value="2">Skaderegistrering</option>
+                    <option value="3">Forretningsanalyse</option>
+                    <option value="4">Dataregistrering og skaderegistrering</option>
+                    <option value="5">Dataregistrering og forretningsanalyse</option>
+                    <option value="6">Skaderegistrering og Forretningsanalyse</option>
+                    <option value="7">Dataregistrering, skaderegistrering og forretningsanalyse</option>
+                </select>
+            </div>
+            <input type="submit" class="button" value="Opret">
         </form>
+
+    </section>
 </section>
-
 </body>
 </html>

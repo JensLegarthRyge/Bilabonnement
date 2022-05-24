@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Administration - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
-    <link rel="stylesheet" th:href="@{admin.css}" href="../static/admin.css">
+    <link rel="stylesheet" th:href="@{administration.css}" href="../static/administration.css">
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
@@ -13,15 +13,13 @@
 
 
 </section>
-
-
-
-
 <section class="main-container">
     <section class="lease-container" id="employees">
         <form method="POST" action="/create-new-employee-site">
-            <input type="submit" class="button" value="Ny medarbejder" title="Tilføj ny medarbejder">
+            <label for="new-user" class="button"><img class="button-icon" src="https://img.icons8.com/ios/344/ffffff/add--v1.png">Opret ny medarbejder</label>
+            <input id="new-user" type="submit" style="display: none">
         </form>
+
         <div class="lease-info-container-header">
             <span class="info-field">Medarbjeder ID:</span>
             <span class="info-field-name">Medarbejder navn:</span>
@@ -29,6 +27,7 @@
             <span class="info-field">Rettighedsniveau:</span>
             <span class="info-field-filler"></span>
         </div>
+
         <div class="lease-info-container" th:each="Employee : ${allEmployees}">
             <span class="info-field" th:text="${Employee.getId()}"></span>
             <span class="info-field-name" th:text="${Employee.getFullName()}"></span>
