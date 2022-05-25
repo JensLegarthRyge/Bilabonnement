@@ -7,10 +7,8 @@
     <title>Forretningsudvikling - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
     <link rel="stylesheet" th:href="@{businessDevelopment.css}" href="../static/businessDevelopment.css">
+    <!-- Jens Legarth Ryge-->
 </head>
-
-<!-- penge https://img.icons8.com/ios/344/swedish-krona.png -->
-<!-- available https://img.icons8.com/ios/344/car--v1.png -->
 
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
@@ -88,12 +86,9 @@
                     <span class="info-field" th:text="${Car.getPrice()}"></span>
                     <span class="info-field" th:text="${Car.getHorsePower()}"></span>
             </span>
-
         </div>
-
     </section>
 </section>
-
 
 </body>
 </html>

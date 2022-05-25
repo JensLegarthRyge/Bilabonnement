@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LeaseTestRepository implements CRUDInterface<LeaseReport> {
+
+    //Jens Legarth Ryge
     EmployeeTestRepository etr = new EmployeeTestRepository();
     CustomerTestRepository ctr = new CustomerTestRepository();
 

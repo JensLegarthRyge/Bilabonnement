@@ -38,7 +38,6 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
-    //Bruges til at oprette nye leasereports
     public LeaseReport(int carId, int customerId, int employeeId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, int pickupLocationId, LocalDate startDate){
         this.carId = carId;
         this.customerId = customerId;
@@ -84,7 +83,6 @@ public class LeaseReport {
 
     }
 
-    //Tager fra en bil fra testrepository lige nu.
     public double getCarPrice(int carId){
         CarRepository carRep = new CarRepository();
         double carPrice = carRep.getSingleById(carId).getPrice();
