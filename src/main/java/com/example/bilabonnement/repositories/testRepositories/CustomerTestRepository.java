@@ -5,7 +5,7 @@ import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+//Jens Legarth Ryge
 public class CustomerTestRepository implements CRUDInterface<Customer> {
     ArrayList<Customer> allCustomers = new ArrayList<>(
             Arrays.asList(

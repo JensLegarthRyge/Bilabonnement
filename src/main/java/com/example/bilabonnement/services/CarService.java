@@ -7,6 +7,7 @@ import com.example.bilabonnement.repositories.CarRepository;
 import java.util.ArrayList;
 
 public class CarService {
+    //Jens Legarth Ryge
     LeaseReportService lrs = new LeaseReportService();
     CarRepository cr = new CarRepository();
     public void updateRentalStatus(){

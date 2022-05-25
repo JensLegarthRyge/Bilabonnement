@@ -6,7 +6,7 @@
     <title>Forside - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{logIn.css}"href="../static/logIn.css">
     <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
-
+    <!-- Jens Legarth Ryge-->
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
@@ -24,21 +24,5 @@
         </form>
     </div>
 </section>
-
-<!--
-<section class="log-in">
-    <img class="clock-picture" src="https://imgur.com/RkpVsO8.png">
-    <h2>Velkommen</h2>
-    <p>Log ind på din personlige arbejdskonto herunder</p>
-    <span class="error" th:text="${loginerror}"></span>
-
-    <form method="POST" action="/attempt-login" class="form-container">
-        <input type="text" placeholder="Indtast brugernavn" class="login-field" name="id">
-        <input type="password" placeholder="Indtast password" class="login-field" name="password">
-        <button type="submit" class="button">Login</button>
-    </form>
-
-</section>
--->
 </body>
 </html>

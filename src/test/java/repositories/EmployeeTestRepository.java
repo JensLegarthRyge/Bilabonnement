@@ -6,9 +6,9 @@ import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//Jens Legarth Ryge
 
 public class EmployeeTestRepository implements CRUDInterface<Employee> {
+    //Jens Legarth Ryge
     ArrayList<Employee> employees = new ArrayList<>(
             Arrays.asList(
                     new Employee(1,"Jens","Legarth Ryge", "Jense1337"

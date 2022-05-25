@@ -1,8 +1,8 @@
 package com.example.bilabonnement.controllers;
 
-import com.example.bilabonnement.models.Incident;
 import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.repositories.*;
+import com.example.bilabonnement.services.IncidentReportService;
 import com.example.bilabonnement.services.IncidentService;
 import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,11 @@ import java.util.ArrayList;
 
 @Controller
 public class DamageReportController {
-    LeaseReportRepository lr = new LeaseReportRepository();
-    IncidentRepository ir = new IncidentRepository();
     IncidentReportRepository irr = new IncidentReportRepository();
-    CustomerRepository cr = new CustomerRepository();
-    CarRepository carRepository = new CarRepository();
-    IncidentTypeRepository itr = new IncidentTypeRepository();
     LoginService ls = new LoginService();
-    IncidentService incidentService = new IncidentService();
+    IncidentService is = new IncidentService();
+
+    IncidentReportService irs = new IncidentReportService();
 
     @GetMapping("/damage")
     public String damageAndMaintenance(HttpSession session, Model damageModel){
@@ -48,25 +45,20 @@ public class DamageReportController {
             session.setAttribute("incidentReportId", Integer.parseInt(dataFromForm.getParameter("id")));
         }
         int incidentReportId = (int)session.getAttribute("incidentReportId");
-
-        model.addAttribute("customer", cr.getSingleById(lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()).getCustomerId()));
-        model.addAttribute("leaseReport", lr.getSingleById(irr.getSingleById(incidentReportId).getLeaseReportId()));
-        model.addAttribute("incidentReport", irr.getSingleById(incidentReportId));
-        model.addAttribute("incidents", ir.getALlSpecific(incidentReportId));
-        model.addAttribute("incidentTypes", itr.getAll());
+        model = irs.getIncidentReportModel(incidentReportId, model);
 
         return "damage-report";
     }
 
     @PostMapping("delete-incident")
     public String deleteIncident(WebRequest dataFromForm){
-        incidentService.deleteIncident(dataFromForm);
+        is.deleteIncident(dataFromForm);
         return "redirect:/report";
     }
 
     @PostMapping("create-incident")
     public String createIncident(HttpSession session, WebRequest dataFromForm){
-        incidentService.createNewIncident(dataFromForm);
+        is.createNewIncident(dataFromForm);
         return "redirect:/report";
     }
 

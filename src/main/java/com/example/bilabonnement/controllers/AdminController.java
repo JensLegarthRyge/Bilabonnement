@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
+
     EmployeeRepository er = new EmployeeRepository();
     EmployeeService empService = new EmployeeService();
     @GetMapping("admin")
@@ -26,8 +27,6 @@ public class AdminController {
 
     @PostMapping("create-new-employee-site")
     public String createNewEmployeeSite(){
-
-
         return "new-employee";
     }
 

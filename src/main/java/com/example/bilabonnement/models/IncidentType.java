@@ -1,5 +1,7 @@
 package com.example.bilabonnement.models;
 
+
+//Johannes Forsting
 public class IncidentType {
     private int id;
     private String type;

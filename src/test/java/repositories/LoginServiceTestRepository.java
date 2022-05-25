@@ -11,21 +11,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LoginServiceTestRepository implements CRUDInterface{
-
+    //Johannes Forsting
     ArrayList<WebRequest> falseRequests = new ArrayList<>(
             Arrays.asList(
-                    getWebRequest("1", "mads123"),
-                    getWebRequest("10", "jensemand1234"),
-                    getWebRequest("15", "johan321")
+                    getWebRequest("Madssaasdfasdsfsdfasdasdf@BA.com", "mads123"),
+                    getWebRequest("jens.l.ryge@pol.dk", "jensemand1234"),
+                    getWebRequest("johan@johanes.com", "johannes123")
 
             )
     );
 
     ArrayList<WebRequest> trueRequests = new ArrayList<>(
             Arrays.asList(
-                    getWebRequest("1", "mbhxluna1998"),
-                    getWebRequest("10", "jensejense1337"),
-                    getWebRequest("15", "johannes123")
+                    getWebRequest("Madssaasdfasdsfsdfasdasdf@BA.com", "mbhxluna1998"),
+                    getWebRequest("jens.l.ryge@pol.dk", "jensejense1337"),
+                    getWebRequest("johannes@johannes.com", "johannes123")
 
             )
     );
@@ -33,7 +33,7 @@ public class LoginServiceTestRepository implements CRUDInterface{
 
     public WebRequest getWebRequest(String userLogin, String password) {
         MockHttpServletRequest mockObject = new MockHttpServletRequest();
-        mockObject.addParameter("id", userLogin);
+        mockObject.addParameter("email", userLogin);
         mockObject.addParameter("password", password);
         HttpServletRequest request = new HttpServletRequestWrapper(mockObject);
         WebRequest webRequest = new ServletWebRequest(request);
