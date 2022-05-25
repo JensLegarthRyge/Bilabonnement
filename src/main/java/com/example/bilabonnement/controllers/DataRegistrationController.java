@@ -63,7 +63,7 @@ public class DataRegistrationController {
     @PostMapping("/edit-lease-report")
     public String editLeaseReport(WebRequest dataFromForm) {
         int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
-        return "redirect:/data-registration";
+        return "/data-registration-edit";
     }
     @PostMapping("/edit-lease-update")
     public String updateLease(HttpSession session, WebRequest dataFromForm) {
