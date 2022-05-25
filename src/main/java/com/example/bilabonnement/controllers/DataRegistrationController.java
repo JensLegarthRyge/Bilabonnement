@@ -4,7 +4,6 @@ import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.LoginService;
-import com.example.bilabonnement.services.ManualUpload;
 
 import com.example.bilabonnement.services.CSVFileService;
 import org.springframework.stereotype.Controller;
@@ -62,7 +61,6 @@ public class DataRegistrationController {
 
     @PostMapping("/edit-lease-update")
     public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
-    public String updateLease(WebRequest dataFromForm) {
         int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
         int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
         int customerId = Integer.parseInt(dataFromForm.getParameter("edit-customer-id"));
