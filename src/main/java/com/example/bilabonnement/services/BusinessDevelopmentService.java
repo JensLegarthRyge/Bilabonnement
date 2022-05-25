@@ -10,7 +10,7 @@ import java.util.Locale;
 
 
 public class BusinessDevelopmentService {
-    /*Jens Legarth Ryge*/
+    //Jens Legarth Ryge
     CarRepository cr = new CarRepository();
     LeaseReportService lrs = new LeaseReportService();
     IncidentReportService irs = new IncidentReportService();

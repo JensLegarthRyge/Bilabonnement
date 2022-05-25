@@ -5,6 +5,7 @@ import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.LoginService;
 
+
 import com.example.bilabonnement.services.CSVFileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,9 +60,14 @@ public class DataRegistrationController {
         return "data-registration";
     }
 
+    @PostMapping("/edit-lease-report")
+    public String editLeaseReport(WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
+        return "redirect:/data-registration";
+    }
     @PostMapping("/edit-lease-update")
-    public String updateLease(WebRequest dataFromForm, @ModelAttribute("updateLease") LeaseReport report) {
-        int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
+    public String updateLease(HttpSession session, WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
         int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
         int customerId = Integer.parseInt(dataFromForm.getParameter("edit-customer-id"));
         int employeeId = Integer.parseInt(dataFromForm.getParameter("employee-id"));
@@ -72,8 +78,10 @@ public class DataRegistrationController {
         LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
         LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("edit-created-date"));
         int period = Integer.parseInt(dataFromForm.getParameter("edit-period"));
+        double price = Double.parseDouble(dataFromForm.getParameter("edit-price"));
 
-
+        LeaseReport leaseReport = new LeaseReport(id,carId,employeeId,customerId,createdDate,period,hasReturnInsurance,hasLowDeductable,pickupLocationId,isLimited,price,startDate);
+        System.out.println(leaseReport);
 
         return "redirect:/data-registration";
     }

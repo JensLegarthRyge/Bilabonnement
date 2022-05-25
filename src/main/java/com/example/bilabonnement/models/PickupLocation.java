@@ -1,5 +1,7 @@
 package com.example.bilabonnement.models;
 
+
+//Jens Legarth Ryge
 public class PickupLocation {
     private int id;
     private String name;

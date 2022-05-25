@@ -8,9 +8,9 @@ import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//Jens Legarth Ryge
 
 public class CarTestRepository implements CRUDInterface<Car> {
+    //Jens Legarth Ryge
     ArrayList<Car> allCars = new ArrayList<>(
             Arrays.asList(
                     new Car(1, "BS23576", "YSK7759123J1723", false, true, FuelType.DIESEL,

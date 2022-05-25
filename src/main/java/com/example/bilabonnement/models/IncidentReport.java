@@ -1,6 +1,6 @@
 package com.example.bilabonnement.models;
 
-//Jens Legarth Ryge
+//Jens Legarth Ryge og Johannes Forsting
 
 import com.example.bilabonnement.repositories.CarRepository;
 import com.example.bilabonnement.repositories.CustomerRepository;

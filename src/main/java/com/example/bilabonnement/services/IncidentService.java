@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class IncidentService {
     IncidentRepository ir = new IncidentRepository();
+
+    //Johannes Forsting
     public void createNewIncident(WebRequest dataFromForm){
         int incidentReportId = Integer.parseInt(dataFromForm.getParameter("incidentReportId"));
         int incidentTypeId = Integer.parseInt(dataFromForm.getParameter("incident"));

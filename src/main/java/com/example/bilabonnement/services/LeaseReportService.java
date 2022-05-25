@@ -34,6 +34,7 @@ public class LeaseReportService {
     }
 
 
+    //Johannes Forsting
     public void removeLeaseReport(int id){
 
         int incidentReportId = irr.getSpecificByLeaseReportId(id).getId();
@@ -56,7 +57,7 @@ public class LeaseReportService {
     }
 
 
-    //Johannes Forsting
+
     public boolean uploadManualLease(WebRequest dataFromForm, int userId){
         int carId = Integer.parseInt(dataFromForm.getParameter("carId"));
         int customerId = Integer.parseInt(dataFromForm.getParameter("customerId"));

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class IncidentTypeRepository {
+    //Johannes Forsting
     Connection connection = DatabaseConnectionManager.getConnection();
 
     public IncidentType getSingleById(int id) {

@@ -5,14 +5,11 @@
     <title>Administration - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}" href="../static/general.css">
     <link rel="stylesheet" th:href="@{administration.css}" href="../static/administration.css">
+    <!-- Johannes Forsting-->
 </head>
 <body>
 <div th:replace="fragments/general.html :: header()"></div>
 
-<section id="popup" style="display: none">
-
-
-</section>
 <section class="main-container">
     <section class="lease-container" id="employees">
         <form method="POST" action="/create-new-employee-site">
@@ -43,9 +40,6 @@
                     <input type="image" class="info-field-icon" src="https://img.icons8.com/fluency-systems-regular/344/filled-trash.png" alt="delete">
                 </form></div>
             </div>
-
-
-
         </div>
     </section>
 </section>
