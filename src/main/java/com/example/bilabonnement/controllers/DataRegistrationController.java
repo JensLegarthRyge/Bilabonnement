@@ -7,6 +7,7 @@ import com.example.bilabonnement.services.LoginService;
 
 
 import com.example.bilabonnement.services.CSVFileService;
+import com.example.bilabonnement.services.ModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,38 +26,10 @@ public class DataRegistrationController {
 
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model) {
-        // TODO: 5/11/2022  TEST REPLACE FOR PROD
         if(!ls.hasAccess("data", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
-        model.addAttribute("allLeaseReports",new LeaseReportRepository().getAll());
-        model.addAttribute("allPickupLocations",new PickupLocationRepository().getAll());
-
-        //Working, DO NOT REPLACE
-        CustomerRepository customerRepository = new CustomerRepository();
-        CarRepository carRepository = new CarRepository();
-        EmployeeRepository employeeRepository = new EmployeeRepository();
-        PickupLocationRepository pickupLocationRepository = new PickupLocationRepository();
-        model.addAttribute("pickupLocationRepository", pickupLocationRepository);
-        model.addAttribute("employeeRepository",employeeRepository);
-        model.addAttribute("customerRepository",customerRepository);
-        model.addAttribute("carRepository",carRepository);
-        model.addAttribute("allCars", carRepository.getAll());
-        model.addAttribute("allCustomers", customerRepository.getAll());
-
-        LeaseReport report = new LeaseReport();
-        LeaseReportRepository lr = new LeaseReportRepository();
-        EmployeeRepository er = new EmployeeRepository();
-        PickupLocationRepository pr = new PickupLocationRepository();
-        ArrayList<LeaseReport> test = new ArrayList<>(lr.getAll());
-
-        model.addAttribute("updateLease", report);
-        model.addAttribute("allLeaseReports",lr.getAll());
-        model.addAttribute("allPickupLocations",pr.getAll());
-        model.addAttribute("allEmployees", er.getAll());
-
-
-
+        ModelService.fillModel(model);
         return "data-registration";
     }
 
