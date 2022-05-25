@@ -73,6 +73,10 @@ public class DataRegistrationController {
         LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
         LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("edit-created-date"));
         int period = Integer.parseInt(dataFromForm.getParameter("edit-period"));
+        double price = Double.parseDouble(dataFromForm.getParameter("edit.price"));
+
+
+
 
         return "redirect:/data-registration";
     }
