@@ -1,7 +1,4 @@
 package com.example.bilabonnement.services;
-
-import com.example.bilabonnement.models.Customer;
-import com.example.bilabonnement.models.Employee;
 import com.example.bilabonnement.models.IncidentReport;
 import com.example.bilabonnement.models.LeaseReport;
 import com.example.bilabonnement.repositories.*;
@@ -29,6 +26,7 @@ public class CSVFileService {
         writer.writeNext(row);
         writer.close();
         osw.close();
+
 
         ArrayList<LeaseReport> leaseReportList = formatDataFromFile();
         for (int i = 0; i < leaseReportList.size(); i++) {
@@ -58,27 +56,17 @@ public class CSVFileService {
                 String leaseReportDetails = sc.nextLine();
                 String[] stringAsArray = leaseReportDetails.split(",");
                 int carId = carRepo.getCarByChassisNumber(stringAsArray[0]);
-                System.out.println(carId);
                 int employeeID = Integer.parseInt(stringAsArray[1]);
-                System.out.println(employeeID);
                 int customerID = Integer.parseInt(stringAsArray[2]);
-                System.out.println(customerID);
                 int period = Integer.parseInt(stringAsArray[3]);
-                System.out.println(period);
                 boolean hasDeliveryInsurance = isTrue(Integer.parseInt(stringAsArray[4]));
-                System.out.println(hasDeliveryInsurance);
                 boolean hasLowDeductable = isTrue(Integer.parseInt(stringAsArray[5]));
-                System.out.println(hasLowDeductable);
                 int pickupLocationId = Integer.parseInt(stringAsArray[7]);
-                System.out.println(pickupLocationId);
                 boolean isLimited = isTrue(Integer.parseInt(stringAsArray[6]));
-                System.out.println(isLimited);
                 double price = Double.parseDouble(stringAsArray[8]);
-                System.out.println(price);
 
                 String createdDateToFormat = stringAsArray[9];
                 String[] createdDateToFormatAsArray = createdDateToFormat.split("/");
-                System.out.println(createdDateToFormat);
                 int createdYear = Integer.parseInt(createdDateToFormatAsArray[2]);
                 int createdMonth = Integer.parseInt(createdDateToFormatAsArray[0]);
                 int createdDay = Integer.parseInt(createdDateToFormatAsArray[1]);
@@ -86,7 +74,6 @@ public class CSVFileService {
 
                 String dateToFormat = stringAsArray[10];
                 String[] dateToFormatAsArray = dateToFormat.split("/");
-                System.out.println(dateToFormat);
                 int year = Integer.parseInt(dateToFormatAsArray[2]);
                 int month = Integer.parseInt(dateToFormatAsArray[0]);
                 int day = Integer.parseInt(dateToFormatAsArray[1]);
