@@ -58,8 +58,13 @@ public class DataRegistrationController {
         return "data-registration";
     }
 
+    @PostMapping("/edit-lease-report")
+    public String editLeaseReport(WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
+        return "redirect:/data-registration";
+    }
     @PostMapping("/edit-lease-update")
-    public String updateLease(WebRequest dataFromForm) {
+    public String updateLease(HttpSession session, WebRequest dataFromForm) {
         int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
         int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
         int customerId = Integer.parseInt(dataFromForm.getParameter("edit-customer-id"));
@@ -71,10 +76,9 @@ public class DataRegistrationController {
         LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
         LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("edit-created-date"));
         int period = Integer.parseInt(dataFromForm.getParameter("edit-period"));
-        double price = Double.parseDouble(dataFromForm.getParameter("edit.price"));
+        double price = Double.parseDouble(dataFromForm.getParameter("edit-price"));
 
         LeaseReport leaseReport = new LeaseReport(id,carId,employeeId,customerId,createdDate,period,hasReturnInsurance,hasLowDeductable,pickupLocationId,isLimited,price,startDate);
-
         System.out.println(leaseReport);
 
         return "redirect:/data-registration";
