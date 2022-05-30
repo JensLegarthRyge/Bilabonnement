@@ -65,6 +65,35 @@ public class LeaseReport {
         }
     }
 
+    public LeaseReport(int id, int carId, int customerId, int employeeId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, int pickupLocationId, LocalDate startDate, LocalDate createdDate){
+        this.id = id;
+        this.carId = carId;
+        this.customerId = customerId;
+        this.employeeId = employeeId;
+        this.pickupLocationId = pickupLocationId;
+        this.startDate = startDate;
+        this.isLimited = isLimited;
+        this.createdDate = LocalDate.now();
+        this.price = getCarPrice(carId);
+        this.createdDate = createdDate;
+        if(isLimited){
+            this.period = 150;
+            this.hasLowDeductableInsurance = false;
+            this.hasReturnInsurance = false;
+        }
+        else {
+            this.period = period;
+            this.hasReturnInsurance = hasReturnInsurance;
+            this.hasLowDeductableInsurance = hasLowDeductableInsurance;
+        }
+        if(hasLowDeductableInsurance){
+            price += 64;
+        }
+        if(hasReturnInsurance){
+            price += 119;
+        }
+    }
+
     public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, int pickupLocationId, boolean isLimited, double price, LocalDate createdDate, LocalDate startDate) {
         this.carId = carId;
         this.employeeId = employeeId;
@@ -81,6 +110,9 @@ public class LeaseReport {
 
     public LeaseReport() {
 
+    }
+
+    public LeaseReport(LeaseReport singleById) {
     }
 
     public double getCarPrice(int carId){

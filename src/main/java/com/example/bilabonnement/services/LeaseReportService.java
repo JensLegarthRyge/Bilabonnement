@@ -78,4 +78,31 @@ public class LeaseReportService {
         }
         return success;
     }
+
+    public void uploadUpdatedLease(WebRequest dataFromForm) {
+        int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
+        int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
+        int customerId = Integer.parseInt(dataFromForm.getParameter("customer-id"));
+        int employeeId = Integer.parseInt(dataFromForm.getParameter("employee-id"));
+        boolean hasReturnInsurance = Boolean.parseBoolean(dataFromForm.getParameter("return-insurance"));
+        boolean hasLowDeductable = Boolean.parseBoolean(dataFromForm.getParameter("has-deductable"));
+        boolean isLimited = Boolean.parseBoolean(dataFromForm.getParameter("is-limited"));
+        int pickupLocationId = Integer.parseInt(dataFromForm.getParameter("pickup-address"));
+        LocalDate startDate = LocalDate.parse(dataFromForm.getParameter("start-date"));
+        LocalDate createdDate = LocalDate.parse(dataFromForm.getParameter("created-date"));
+        int period = Integer.parseInt(dataFromForm.getParameter("period"));
+
+        LeaseReport leaseReport = new LeaseReport(id,carId,customerId,employeeId,period,hasReturnInsurance,hasLowDeductable,isLimited,pickupLocationId,startDate, createdDate);
+        lrr.update(leaseReport);
+    }
+
+    public boolean checkForExistingLeases(LeaseReport leaseReportToCheck) {
+        ArrayList<LeaseReport> existingLeases = getActiveLeaseReports();
+        for (int i = 0; i < existingLeases.size(); i++) {
+            if (existingLeases.get(i) == leaseReportToCheck) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
