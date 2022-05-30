@@ -180,7 +180,7 @@ public class CarRepository implements CRUDInterface<Car> {
             carId = rs.getInt("car_id");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("End of CSV file");
         }
         return carId;
     }
