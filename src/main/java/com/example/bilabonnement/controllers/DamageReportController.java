@@ -45,7 +45,7 @@ public class DamageReportController {
             session.setAttribute("incidentReportId", Integer.parseInt(dataFromForm.getParameter("id")));
         }
         int incidentReportId = (int)session.getAttribute("incidentReportId");
-        model = irs.getIncidentReportModel(incidentReportId, model);
+        irs.getIncidentReportModel(incidentReportId, model);
 
         return "damage-report";
     }

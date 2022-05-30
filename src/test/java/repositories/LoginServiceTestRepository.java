@@ -30,7 +30,6 @@ public class LoginServiceTestRepository implements CRUDInterface{
             )
     );
 
-
     public WebRequest getWebRequest(String userLogin, String password) {
         MockHttpServletRequest mockObject = new MockHttpServletRequest();
         mockObject.addParameter("email", userLogin);
