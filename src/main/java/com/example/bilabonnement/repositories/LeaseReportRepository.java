@@ -111,7 +111,7 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         int employeeId = entity.getEmployeeId();
         int customerId = entity.getCustomerId();
         LocalDate createdDate = entity.getCreatedDate();
-        int period = entity.getPeriod();
+        int periodTime = entity.getPeriod();
         int hasDeliveryInsurance = entity.hasReturnInsurance() ? 1 : 0;
         int hasLowDeductableInsurance = entity.hasLowDeductableInsurance() ? 1 : 0;
         int pickupLocation = entity.getPickupLocationId();
@@ -119,14 +119,14 @@ public class LeaseReportRepository implements CRUDInterface<LeaseReport> {
         double price = entity.getPrice();
         LocalDate startDate = entity.getStartDate();
 
-        String query = "SELECT * FROM leasing_report AS l WHERE l.lease_report_id = '" + leaseReportId + "'";
+        String query = "SELECT * FROM leasing_report WHERE lease_report_id = '" + leaseReportId + "'";
 
-        String query2 = "UPDATE employees SET " +
+        String query2 = "UPDATE leasing_report SET " +
                 "car_id='" + carId + "' , " +
                 "employee_id='" + employeeId + "' , " +
-                "costumer_id='" + customerId + "' , " +
+                "customer_id='" + customerId + "' , " +
                 "created_date='" + createdDate + "' ," +
-                "period='" + period + "' ," +
+                "period='" + periodTime + "' ," +
                 "has_delivery_insurance='" + hasDeliveryInsurance + "' ," +
                 "has_low_deductable_insurance='" + hasLowDeductableInsurance + "' ," +
                 "pickup_location_id='" + pickupLocation + "' ," +

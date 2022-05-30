@@ -50,36 +50,38 @@ public class CSVFileService {
         File leaseReportFile = new File("src/main/resources/static/csvFiles/temp");
 
         try {
+            System.out.println("in try catch");
             Scanner sc = new Scanner(leaseReportFile);
             sc.nextLine();
             while (sc.hasNextLine()){
                 String leaseReportDetails = sc.nextLine();
-                String[] stringAsArray = leaseReportDetails.split(",");
+                String[] stringAsArray = leaseReportDetails.split(";");
                 int carId = carRepo.getCarByChassisNumber(stringAsArray[0]);
-                int employeeID = Integer.parseInt(stringAsArray[1]);
-                int customerID = Integer.parseInt(stringAsArray[2]);
+                int customerID = Integer.parseInt(stringAsArray[1]);
+                int employeeID = Integer.parseInt(stringAsArray[2]);
                 int period = Integer.parseInt(stringAsArray[3]);
                 boolean hasDeliveryInsurance = isTrue(Integer.parseInt(stringAsArray[4]));
                 boolean hasLowDeductable = isTrue(Integer.parseInt(stringAsArray[5]));
-                int pickupLocationId = Integer.parseInt(stringAsArray[7]);
                 boolean isLimited = isTrue(Integer.parseInt(stringAsArray[6]));
-                double price = Double.parseDouble(stringAsArray[8]);
+                int pickupLocationId = Integer.parseInt(stringAsArray[7]);
 
-                String createdDateToFormat = stringAsArray[9];
-                String[] createdDateToFormatAsArray = createdDateToFormat.split("/");
-                int createdYear = Integer.parseInt(createdDateToFormatAsArray[2]);
-                int createdMonth = Integer.parseInt(createdDateToFormatAsArray[0]);
-                int createdDay = Integer.parseInt(createdDateToFormatAsArray[1]);
-                LocalDate createdDate = LocalDate.of(createdYear,createdMonth,createdDay);
-
-                String dateToFormat = stringAsArray[10];
+                String dateToFormat = stringAsArray[8];
                 String[] dateToFormatAsArray = dateToFormat.split("/");
                 int year = Integer.parseInt(dateToFormatAsArray[2]);
                 int month = Integer.parseInt(dateToFormatAsArray[0]);
                 int day = Integer.parseInt(dateToFormatAsArray[1]);
                 LocalDate date = LocalDate.of(year,month,day);
 
-                LeaseReport tmp = new LeaseReport(carId, employeeID, customerID, period, hasDeliveryInsurance, hasLowDeductable, pickupLocationId, isLimited, price, createdDate, date);
+                System.out.println("carid" + carId);
+                System.out.println("customerid" + customerID);
+                System.out.println("employeeid" + employeeID);
+                System.out.println("period" + period);
+                System.out.println("hasdeliveryinsurance" + hasDeliveryInsurance);
+                System.out.println("haslowdeduct " + hasLowDeductable);
+                System.out.println("islimited " + isLimited);
+                System.out.println("pickuplocationId " + pickupLocationId);
+
+                LeaseReport tmp = new LeaseReport(carId, customerID, employeeID, period, hasDeliveryInsurance, hasLowDeductable, isLimited, pickupLocationId, date);
                 leaseReportList.add(tmp);
 
             }
