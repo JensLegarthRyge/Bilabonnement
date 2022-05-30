@@ -87,16 +87,9 @@ public class Car {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
 
     public String getChassisNumber() {
         return chassisNumber;
-    }
-
-    public void setChassisNumber(String chassisNumber) {
-        this.chassisNumber = chassisNumber;
     }
 
     public boolean isCurrentlyRented() {
@@ -111,33 +104,20 @@ public class Car {
         return isManual;
     }
 
-    public void setManual(boolean manual) {
-        isManual = manual;
-    }
 
     public FuelType getFuelType() {
         return fuelType;
-    }
-
-    public void setFuelType(FuelType fuelType) {
-        this.fuelType = fuelType;
     }
 
     public double getFuelConsumptionPerKilometer() {
         return fuelConsumptionPerKilometer;
     }
 
-    public void setFuelConsumptionPerKilometer(double fuelConsumptionPerKilometer) {
-        this.fuelConsumptionPerKilometer = fuelConsumptionPerKilometer;
-    }
 
     public EnergyLabel getEnergyLabel() {
         return energyLabel;
     }
 
-    public void setEnergyLabel(EnergyLabel energyLabel) {
-        this.energyLabel = energyLabel;
-    }
 
     public String getColor() {
         return color;
@@ -159,17 +139,11 @@ public class Car {
         return horsePower;
     }
 
-    public void setHorsePower(int horsePower) {
-        this.horsePower = horsePower;
-    }
 
     public double getIncidentFactor() {
         return incidentFactor;
     }
 
-    public void setIncidentFactor(double incidentFactor) {
-        this.incidentFactor = incidentFactor;
-    }
 }
 
 

@@ -55,7 +55,7 @@ public class ModelService {
         } else if (lr.isLimited() == false) {
             model.addAttribute("textIsLimited", "Unlimited");
         }
-        model.addAttribute("getPickupLocation", lr.getPickupLocationById(pickupLocationId).getStreetNameNumberPostcode());
+        model.addAttribute("getPickupLocation", lr.getPickupLocationById(pickupLocationId).getAddressWithId());
         model.addAttribute("startDate", lr.getStartDate());
         model.addAttribute("createdDate", lr.getCreatedDate());
         model.addAttribute("period", lr.getPeriod());

@@ -8,10 +8,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
 
-
+//Jens Legarth Ryge
 public class IncidentReportService {
-
-    /*Jens Legarth Ryge*/
     LeaseReportService lrs = new LeaseReportService();
     LeaseReportRepository lrr = new LeaseReportRepository();
     CustomerRepository cr = new CustomerRepository();
@@ -35,7 +33,6 @@ public class IncidentReportService {
         );
         return allIncidentReports;
     }
-
 
     //Johannes Forsting
     public Model getIncidentReportModel(int incidentReportId, Model model){

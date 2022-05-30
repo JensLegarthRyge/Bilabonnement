@@ -39,7 +39,6 @@ public class IncidentReport {
         return leaseReportId;
     }
 
-
     public double getPrice() {
         price = calculatePrice();
         return price;
@@ -54,10 +53,6 @@ public class IncidentReport {
         }
         finalPrice = finalPrice * getIncidentFactor();
         return finalPrice;
-    }
-
-    public double getCustomerPrice() {
-        return customerPrice;
     }
 
     public String getRegistrationNumber(){
@@ -81,7 +76,5 @@ public class IncidentReport {
         String creationDate = lr.getSingleById(this.leaseReportId).getCreatedDate().toString();
         return creationDate;
     }
-
-
 
 }

@@ -7,10 +7,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
 
+//Johannes Forsting
 public class IncidentService {
     IncidentRepository ir = new IncidentRepository();
 
-    //Johannes Forsting
     public void createNewIncident(WebRequest dataFromForm){
         int incidentReportId = Integer.parseInt(dataFromForm.getParameter("incidentReportId"));
         int incidentTypeId = Integer.parseInt(dataFromForm.getParameter("incident"));

@@ -10,6 +10,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 
+//JOhannes Forsting
+
 @Controller
 public class AdminController {
 
@@ -55,8 +57,5 @@ public class AdminController {
         empService.deleteEmployee(dataFromForm);
         return "redirect:/admin";
     }
-
-
-
 
 }

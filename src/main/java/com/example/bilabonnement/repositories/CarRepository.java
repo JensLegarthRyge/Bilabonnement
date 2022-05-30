@@ -7,7 +7,7 @@ import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge & Mads Bøgh Højer Nielsen
+//Mads Bøgh Højer Nielsen
 
 public class CarRepository implements CRUDInterface<Car> {
     Connection connection = DatabaseConnectionManager.getConnection();

@@ -12,9 +12,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-
+//Jens Legarth Ryge
 public class LeaseReportService {
-    /*Jens Legarth Ryge*/
     LeaseReportRepository lrr = new LeaseReportRepository();
     IncidentReportRepository irr = new IncidentReportRepository();
 
@@ -79,6 +78,7 @@ public class LeaseReportService {
         return success;
     }
 
+    //Mads Nielsen
     public void uploadUpdatedLease(WebRequest dataFromForm) {
         int id = Integer.parseInt(dataFromForm.getParameter("lease-id"));
         int carId = Integer.parseInt(dataFromForm.getParameter("car-chassis"));
@@ -94,15 +94,5 @@ public class LeaseReportService {
 
         LeaseReport leaseReport = new LeaseReport(id,carId,customerId,employeeId,period,hasReturnInsurance,hasLowDeductable,isLimited,pickupLocationId,startDate, createdDate);
         lrr.update(leaseReport);
-    }
-
-    public boolean checkForExistingLeases(LeaseReport leaseReportToCheck) {
-        ArrayList<LeaseReport> existingLeases = getActiveLeaseReports();
-        for (int i = 0; i < existingLeases.size(); i++) {
-            if (existingLeases.get(i) == leaseReportToCheck) {
-                return false;
-            }
-        }
-        return true;
     }
 }

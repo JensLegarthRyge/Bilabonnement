@@ -8,9 +8,8 @@ import com.example.bilabonnement.repositories.CarRepository;
 import java.util.ArrayList;
 import java.util.Locale;
 
-
+//Jens Legarth Ryge
 public class BusinessDevelopmentService {
-    //Jens Legarth Ryge
     CarRepository cr = new CarRepository();
     LeaseReportService lrs = new LeaseReportService();
     IncidentReportService irs = new IncidentReportService();

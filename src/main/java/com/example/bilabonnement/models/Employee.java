@@ -2,10 +2,6 @@ package com.example.bilabonnement.models;
 
 //Jens Legarth Ryge og Johannes Forsting
 
-import com.example.bilabonnement.models.Enum.AccessFeatures;
-
-import java.util.ArrayList;
-
 public class Employee extends User {
     private String password;
     private int accessFeatures;

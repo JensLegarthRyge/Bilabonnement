@@ -20,7 +20,7 @@ public class IndexController {
     LoginService loginService = new LoginService();
 
 
-    //Vores indeks side
+    //Jens Legart Ryge
     @RequestMapping("/")
     public String frontPage(Model loginVerification, @RequestParam(name="status") Optional<String> message, HttpSession session) {
         if(session.getAttribute("userId") != null){
@@ -33,6 +33,7 @@ public class IndexController {
         return "index";
     }
 
+    //Jens Legarth Ryge
     @PostMapping("/attempt-login")
     public String loggedInFrontpage(WebRequest request, HttpSession session){
         if(loginService.verifyUserFromLoginDetails(request)){
@@ -48,15 +49,16 @@ public class IndexController {
         }
     }
 
+    //Mads Nielsen
     @GetMapping("/log-out")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
+    //Johannes Forsting
     @RequestMapping("back-to-logged-in-frontpage")
     public String backToLoggedInFrontpage(){
-
         return "logged-in-frontpage";
     }
 

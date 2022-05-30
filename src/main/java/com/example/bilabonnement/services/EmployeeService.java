@@ -5,9 +5,8 @@ import com.example.bilabonnement.repositories.EmployeeRepository;
 import org.springframework.web.context.request.WebRequest;
 
 
-
+//Johannes Forsting
 public class EmployeeService {
-    //Johannes Forsting
     EmployeeRepository er = new EmployeeRepository();
     public void createNewEmployee(WebRequest dataFromForm){
         er.create(getEmployee(dataFromForm));

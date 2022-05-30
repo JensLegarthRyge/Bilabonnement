@@ -1,5 +1,3 @@
-<!-- Jens Legarth Ryge -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
@@ -10,10 +8,11 @@
     <title>Dataregistrering - Bilabonnement</title>
     <link rel="stylesheet" th:href="@{general.css}"href="../static/general.css">
     <link rel="stylesheet" th:href="@{dataRegistration.css}"href="../static/dataRegistration.css">
-    <!-- Jens Legarth Ryge og Mads Nielsen-->
 </head>
 
 <body>
+<!-- Jens Legarth Ryge og Johannes Forsting-->
+
 <div th:replace="fragments/general.html :: header()"></div>
 
 <section class="popup" id="manual-registration-popup-form" style="display: none">
@@ -74,6 +73,8 @@
         </form>
     </section>
 </section>
+
+<!-- Jens Legarth Ryge-->
 
 <section class="main-container" id="blurr">
     <section class="registration-creation-container">
@@ -161,21 +162,10 @@
 </section>
 
 <script >
+    <!--Johanens Forsting-->
+
     function ask() {
         return confirm('Er du sikker på du vil slette denne lejeaftale og tilhørende skadesrapport?');
-    }
-
-    function openEditForm(leaseReportNumber) {
-        document.getElementById("edit-popup-form" + leaseReportNumber).style.display = "flex";
-        document.getElementById("blurr").style.filter = "blur(5x)";
-        addListener(leaseReportNumber);
-    }
-
-    function closeEditForm(leaseReportNumber) {
-        document.getElementById("edit-popup-form" + leaseReportNumber).style.display = "none";
-        document.getElementById("blurr").style.filter = "blur(0x)";
-        lockButton(leaseReportNumber);
-        lockFields(leaseReportNumber)
     }
 
     function openManualRegistrationForm() {
@@ -185,39 +175,6 @@
     function closeManualRegistrationForm() {
         document.getElementById("manual-registration-popup-form").style.display = "none";
         document.getElementById("blurr").style.filter= "blur(0px)";
-    }
-
-
-    function addListener(leaseReportNumber) {
-        var button = document.getElementById("edit" + leaseReportNumber);
-        var info = document.getElementById("edit-information" + leaseReportNumber);
-        button.addEventListener('click', function () {
-            for (var i = 1; i < info.length; i++) {
-                    info.elements[i].disabled = false;
-            }
-        })
-    }
-
-    function lockFields(leaseReportNumber) {
-        var info = document.getElementById("edit-information" + leaseReportNumber);
-        for (var i = 0; i < info.length ; i++) {
-            info.elements[i].disabled = true;
-        }
-        info.elements[12].disabled = false;
-    }
-
-    function unlockButton(leaseReportNumber) {
-        document.getElementById("apply-button" + leaseReportNumber).disabled = false;
-    }
-
-    function unlockIdField(leaseReportNumber) {
-        var info = document.getElementById("edit-information" + leaseReportNumber);
-        info.elements[0].disabled = false;
-
-    }
-
-    function lockButton(leaseReportNumber) {
-        document.getElementById("apply-button" + leaseReportNumber).disabled = true;
     }
 
 

@@ -25,18 +25,6 @@ public class PickupLocation {
         return name;
     }
 
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public int getPostcode() {
-        return postcode;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -45,19 +33,8 @@ public class PickupLocation {
         this.name = name;
     }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    public void setPostcode(int postcode) {
-        this.postcode = postcode;
-    }
-
-    public String getStreetNameNumberPostcode( ){
+    //Mads Nieslen
+    public String getAddressWithId( ){
         return this.id + " - " + this.streetName + " " + this.streetNumber + ", " + this.postcode;
     }
 }

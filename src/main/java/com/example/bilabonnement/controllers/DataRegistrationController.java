@@ -26,8 +26,11 @@ public class DataRegistrationController {
     LoginService ls = new LoginService();
     LeaseReportService lrs = new LeaseReportService();
 
+
+    //Jens Legarth Ryge
     @GetMapping("/data-registration")
     public String dataRegistration(HttpSession session, Model model) {
+        //Johannes Forsting
         if(!ls.hasAccess("data", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
@@ -35,6 +38,8 @@ public class DataRegistrationController {
         return "data-registration";
     }
 
+
+    //Mads Nielsen
     @PostMapping("/edit-lease-report")
     public String editLeaseReport(WebRequest dataFromForm, Model model) {
         int id = Integer.parseInt(dataFromForm.getParameter("edit-lease-id"));
@@ -42,13 +47,15 @@ public class DataRegistrationController {
         ms.fillModel(model);
         return "/data-registration-edit";
     }
+
+    //Mads Nielsen
     @PostMapping("/edit-lease-update")
     public String updateLease(HttpSession session, WebRequest dataFromForm) {
         lrs.uploadUpdatedLease(dataFromForm);
         return "redirect:/data-registration";
     }
 
-
+    //Mads Nielsen
     @PostMapping("/get-upload")
     public String getUpload(@RequestParam("registration-file") MultipartFile file) throws IOException {
         CSVFileService.writeDataToFile(file);
@@ -56,6 +63,7 @@ public class DataRegistrationController {
         return "redirect:/data-registration";
     }
 
+    //Johannes Forsting
     @PostMapping("/manual-upload")
     public String manualUpload(HttpSession session, WebRequest dataFromForm){
         int x = Integer.parseInt(session.getAttribute("userId").toString());
@@ -63,6 +71,7 @@ public class DataRegistrationController {
         return "redirect:/data-registration";
     }
 
+    //Johannes Forsting
     @RequestMapping("delete-lease-report")
     public String tester(HttpSession session, WebRequest dataFromForm){
         int leaseReportId = Integer.parseInt(dataFromForm.getParameter("leaseId"));

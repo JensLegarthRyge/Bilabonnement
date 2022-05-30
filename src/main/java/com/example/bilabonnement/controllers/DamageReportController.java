@@ -14,6 +14,8 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
+//Johannes Forsting
+
 @Controller
 public class DamageReportController {
     IncidentReportRepository irr = new IncidentReportRepository();
@@ -60,7 +62,6 @@ public class DamageReportController {
         is.createNewIncident(dataFromForm);
         return "redirect:/report";
     }
-
 
     @PostMapping("search")
     public String search(HttpSession session, WebRequest dataFromForm){

@@ -10,9 +10,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//Mads Nielsen
 public class CSVFileService {
-    //Mads Nielsen
+
     public static void writeDataToFile(MultipartFile file) throws IOException {
         LeaseReportRepository lr = new LeaseReportRepository();
         IncidentReportRepository ir = new IncidentReportRepository();

@@ -34,47 +34,24 @@ public class Customer extends User {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getZipCode() {
         return zipCode;
-    }
-
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
     }
 
     public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
     public long getCprNumber() {
         return cprNumber;
-    }
-
-    public void setCprNumber(long cprNumber) {
-        this.cprNumber = cprNumber;
     }
 
     public long getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(long registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
     public int getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 }

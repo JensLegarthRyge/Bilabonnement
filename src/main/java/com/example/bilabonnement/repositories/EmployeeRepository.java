@@ -6,7 +6,7 @@ import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 import java.sql.*;
 import java.util.ArrayList;
 
-//Jens Legarth Ryge, Johannes Forsting og Mads Bøgh Højer Nielsen
+//Jens Legarth Ryge, Johannes Forsting
 
 public class EmployeeRepository implements CRUDInterface<Employee> {
     Connection connection = DatabaseConnectionManager.getConnection();

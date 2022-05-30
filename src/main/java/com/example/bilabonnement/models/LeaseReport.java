@@ -194,21 +194,6 @@ public class LeaseReport {
         return plr.getSingleById(id);
     }
 
-    public boolean isHasReturnInsurance() {
-        return hasReturnInsurance;
-    }
-
-    public boolean isHasLowDeductableInsurance() {
-        return hasLowDeductableInsurance;
-    }
-    public boolean isIsLimited() {
-        return isLimited;
-    }
-
-    public void setIsLimited(boolean limited) {
-        isLimited = limited;
-    }
-
     @Override
     public String toString() {
         return "LeaseReport{" +
@@ -229,49 +214,5 @@ public class LeaseReport {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCarId(int carId) {
-        this.carId = carId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public void setPeriod(int period) {
-        this.period = period;
-    }
-
-    public void setHasReturnInsurance(boolean hasReturnInsurance) {
-        this.hasReturnInsurance = hasReturnInsurance;
-    }
-
-    public void setHasLowDeductableInsurance(boolean hasLowDeductableInsurance) {
-        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
-    }
-
-    public void setPickupLocationId(int pickupLocationId) {
-        this.pickupLocationId = pickupLocationId;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setLimited(boolean limited) {
-        isLimited = limited;
     }
 }

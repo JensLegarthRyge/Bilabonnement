@@ -6,9 +6,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-
+//Jens Legarth Ryge
 public class LoginService {
-    //Johannes Forsting
     EmployeeRepository er = new EmployeeRepository();
 
     public boolean verifyUserFromLoginDetails(WebRequest loginForm){
@@ -41,6 +40,7 @@ public class LoginService {
         return null;
     }
 
+    //Johannes Forsting
     public boolean hasAccess(String pageToLogInto, int accessFeatures){
         switch (pageToLogInto){
             case "data":
@@ -61,6 +61,4 @@ public class LoginService {
         }
         return false;
     }
-
-
 }

@@ -9,7 +9,10 @@
     <link rel="stylesheet" th:href="@{administrationForms.css}" href="../static/administrationForms.css">
 </head>
 <body>
+<!-- Jens Legarth Ryge og Mads Nielsen-->
+
 <div th:replace="fragments/general.html :: header()"></div>
+
 <section class="main-container" >
     <section class="creation-form-container" >
         <span class="administration-creation-form-header">Rediger lejeaftale</span>
@@ -91,7 +94,7 @@
                         <label for="pickup-address">Afhentningssted</label>
                         <select name="pickup-address" id="pickup-address" disabled>
                             <option  th:value="${pickupLocationId}" th:text="${getPickupLocation}" selected="selected"></option>
-                            <option  th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getStreetNameNumberPostcode()}"></option>
+                            <option  th:each="PickupLocation : ${allPickupLocations}" th:value="${PickupLocation.getId()}" th:text="${PickupLocation.getAddressWithId()}"></option>
                         </select>
                     </div>
                     <div>
@@ -117,6 +120,8 @@
     </section>
 </section>
 <script>
+    <!--Mads Nielsen-->
+
     function setInputAttributes() {
         var id = document.getElementById("lease-id").valueOf();
         document.getElementById("temp-id").setAttribute("value", id);

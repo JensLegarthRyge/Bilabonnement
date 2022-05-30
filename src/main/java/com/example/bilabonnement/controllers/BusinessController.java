@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 
+//Jens Legarth Ryge
+
 @Controller
 public class BusinessController {
 
@@ -18,9 +20,11 @@ public class BusinessController {
 
     @GetMapping("/business")
     public String businessDevelopment(HttpSession session, Model model){
+        //Johannes Forsting
         if(!ls.hasAccess("business", (int) (session.getAttribute("accessFeatures")))){
             return "redirect:/no-access";
         }
+        //Jens Legarth Ryge
         carService.updateRentalStatus();
         model.addAttribute("allCars",new CarRepository().getAll());
         model.addAttribute("BusinessDevelopmentService", new BusinessDevelopmentService());
