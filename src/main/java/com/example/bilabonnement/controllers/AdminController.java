@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 
-//JOhannes Forsting
+//Johannes Forsting
 
 @Controller
 public class AdminController {
