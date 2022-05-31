@@ -1,7 +1,5 @@
 package com.example.bilabonnement.controllers;
 
-import com.example.bilabonnement.models.LeaseReport;
-import com.example.bilabonnement.repositories.*;
 import com.example.bilabonnement.services.LeaseReportService;
 import com.example.bilabonnement.services.LoginService;
 
@@ -16,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.time.LocalDate;
 
 //Jens Legarth Ryge, Johannes Forsting og Mads Bøgh Højer Nielsen
 
