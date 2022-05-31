@@ -50,7 +50,7 @@ public class DataRegistrationController {
 
     //Mads Nielsen
     @PostMapping("/edit-lease-update")
-    public String updateLease(HttpSession session, WebRequest dataFromForm) {
+    public String updateLease(WebRequest dataFromForm) {
         lrs.uploadUpdatedLease(dataFromForm);
         return "redirect:/data-registration";
     }
@@ -73,10 +73,9 @@ public class DataRegistrationController {
 
     //Johannes Forsting
     @RequestMapping("delete-lease-report")
-    public String tester(HttpSession session, WebRequest dataFromForm){
+    public String deleteLeaseReport(WebRequest dataFromForm){
         int leaseReportId = Integer.parseInt(dataFromForm.getParameter("leaseId"));
         lrs.removeLeaseReport(leaseReportId);
         return "redirect:/data-registration";
     }
-
 }

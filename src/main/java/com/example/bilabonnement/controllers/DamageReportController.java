@@ -33,7 +33,7 @@ public class DamageReportController {
         session.setAttribute("incidentReportId", null);
 
         if(session.getAttribute("registrationNumber") != null){
-            incidentReports = IncidentService.removeAllBut(incidentReports, session.getAttribute("registrationNumber").toString());
+            incidentReports = is.removeAllBut(incidentReports, session.getAttribute("registrationNumber").toString());
             session.setAttribute("registrationNumber", null);
         }
         damageModel.addAttribute("allIncidentReports",incidentReports);
@@ -58,7 +58,7 @@ public class DamageReportController {
     }
 
     @PostMapping("create-incident")
-    public String createIncident(HttpSession session, WebRequest dataFromForm){
+    public String createIncident(WebRequest dataFromForm){
         is.createNewIncident(dataFromForm);
         return "redirect:/report";
     }

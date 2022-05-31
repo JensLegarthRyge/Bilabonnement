@@ -22,7 +22,7 @@ public class IncidentService {
         ir.delete(incidentId);
     }
 
-    public static ArrayList<IncidentReport> removeAllBut(ArrayList<IncidentReport> reports, String search){
+    public ArrayList<IncidentReport> removeAllBut(ArrayList<IncidentReport> reports, String search){
         ArrayList<IncidentReport> newReports = new ArrayList<IncidentReport>();
         for (int i = 0; i < reports.size(); i++) {
             if(reports.get(i).getRegistrationNumber().toLowerCase().contains(search.toLowerCase())){

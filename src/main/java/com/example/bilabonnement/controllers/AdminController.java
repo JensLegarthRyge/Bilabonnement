@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AdminController {
 
-    EmployeeRepository er = new EmployeeRepository();
-    EmployeeService empService = new EmployeeService();
+    private EmployeeRepository er = new EmployeeRepository();
+    private EmployeeService es = new EmployeeService();
     @GetMapping("admin")
     public String admin(HttpSession session, Model allEmployees){
         if (session.getAttribute("isAdmin").toString().equals("false")) {
@@ -34,7 +34,7 @@ public class AdminController {
 
     @PostMapping("create-new-employee")
     public String createNewEmployee(WebRequest dataFromForm){
-        empService.createNewEmployee(dataFromForm);
+        es.createNewEmployee(dataFromForm);
 
         return "redirect:/admin";
     }
@@ -48,13 +48,13 @@ public class AdminController {
 
     @PostMapping("change-employee")
     public String changeEmployee(WebRequest dataFromForm){
-        empService.changeEmployee(dataFromForm);
+        es.changeEmployee(dataFromForm);
         return "redirect:/admin";
     }
 
     @PostMapping("delete-employee")
     public String deleteEmployee(WebRequest dataFromForm){
-        empService.deleteEmployee(dataFromForm);
+        es.deleteEmployee(dataFromForm);
         return "redirect:/admin";
     }
 

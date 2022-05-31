@@ -38,6 +38,10 @@ public class LeaseReport {
         this.startDate = startDate;
     }
 
+
+
+
+
     public LeaseReport(int carId, int customerId, int employeeId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, boolean isLimited, int pickupLocationId, LocalDate startDate){
         this.carId = carId;
         this.customerId = customerId;
@@ -94,26 +98,6 @@ public class LeaseReport {
         }
     }
 
-    public LeaseReport(int carId, int employeeId, int customerId, int period, boolean hasReturnInsurance, boolean hasLowDeductableInsurance, int pickupLocationId, boolean isLimited, double price, LocalDate createdDate, LocalDate startDate) {
-        this.carId = carId;
-        this.employeeId = employeeId;
-        this.customerId = customerId;
-        this.period = period;
-        this.hasReturnInsurance = hasReturnInsurance;
-        this.hasLowDeductableInsurance = hasLowDeductableInsurance;
-        this.pickupLocationId = pickupLocationId;
-        this.isLimited = isLimited;
-        this.price = price;
-        this.createdDate = createdDate;
-        this.startDate = startDate;
-    }
-
-    public LeaseReport() {
-
-    }
-
-    public LeaseReport(LeaseReport singleById) {
-    }
 
     public double getCarPrice(int carId){
         CarRepository carRep = new CarRepository();

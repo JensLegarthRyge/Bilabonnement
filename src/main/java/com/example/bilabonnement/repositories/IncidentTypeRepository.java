@@ -2,6 +2,7 @@ package com.example.bilabonnement.repositories;
 
 import com.example.bilabonnement.models.Incident;
 import com.example.bilabonnement.models.IncidentType;
+import com.example.bilabonnement.repositories.interfaces.CRUDInterface;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,10 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class IncidentTypeRepository {
+public class IncidentTypeRepository implements CRUDInterface<IncidentType> {
     //Johannes Forsting
     Connection connection = DatabaseConnectionManager.getConnection();
 
+    @Override
     public IncidentType getSingleById(int id) {
         try {
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -33,6 +35,26 @@ public class IncidentTypeRepository {
         return null;
     }
 
+    @Override
+    //not relevant
+    public boolean update(IncidentType entity) {
+        return false;
+    }
+
+    @Override
+    //not relevant
+
+    public void delete(int id) {
+
+    }
+
+    @Override
+    //not relevant
+    public boolean create(IncidentType entity) {
+        return false;
+    }
+
+    @Override
     public ArrayList<IncidentType> getAll() {
         ArrayList<IncidentType> incidentTypes = new ArrayList<>();
         try {

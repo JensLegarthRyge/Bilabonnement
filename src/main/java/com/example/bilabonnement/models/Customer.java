@@ -10,16 +10,6 @@ public class Customer extends User {
     private long registrationNumber;
     private int accountNumber;
 
-    public Customer(int id, String firstName, String lastName, String address, int zipCode, String mobile, long cprNumber, long registrationNumber, int accountNumber, String email) {
-        super(id, firstName, lastName, email);
-        this.address = address;
-        this.zipCode = zipCode;
-        this.mobile = mobile;
-        this.cprNumber = cprNumber;
-        this.registrationNumber = registrationNumber;
-        this.accountNumber = accountNumber;
-    }
-
     public Customer(int id, String firstName, String lastName, String address, int zipCode, String email, String mobile, long cpr, long regNum, int accountNum) {
         super(id,firstName,lastName,email);
         this.address = address;

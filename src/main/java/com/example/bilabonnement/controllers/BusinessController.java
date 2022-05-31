@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class BusinessController {
 
     LoginService ls = new LoginService();
-    CarService carService = new CarService();
+    CarService cs = new CarService();
 
     @GetMapping("/business")
     public String businessDevelopment(HttpSession session, Model model){
@@ -25,7 +25,7 @@ public class BusinessController {
             return "redirect:/no-access";
         }
         //Jens Legarth Ryge
-        carService.updateRentalStatus();
+        cs.updateRentalStatus();
         model.addAttribute("allCars",new CarRepository().getAll());
         model.addAttribute("BusinessDevelopmentService", new BusinessDevelopmentService());
         return "business-development";

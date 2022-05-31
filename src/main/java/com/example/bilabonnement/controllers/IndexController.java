@@ -1,6 +1,5 @@
 package com.example.bilabonnement.controllers;
 import com.example.bilabonnement.models.Employee;
-import com.example.bilabonnement.repositories.EmployeeRepository;
 import com.example.bilabonnement.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,7 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    LoginService loginService = new LoginService();
+    LoginService ls = new LoginService();
 
 
     //Jens Legart Ryge
@@ -36,8 +35,8 @@ public class IndexController {
     //Jens Legarth Ryge
     @PostMapping("/attempt-login")
     public String loggedInFrontpage(WebRequest request, HttpSession session){
-        if(loginService.verifyUserFromLoginDetails(request)){
-            Employee currentEmp = loginService.getEmployee(request.getParameter("email"));
+        if(ls.verifyUserFromLoginDetails(request)){
+            Employee currentEmp = ls.getEmployee(request.getParameter("email"));
             session.setAttribute("userId",currentEmp.getId());
             session.setAttribute("accessFeatures", currentEmp.getAccessFeatures());
             session.setAttribute("isAdmin", currentEmp.isAdmin());
